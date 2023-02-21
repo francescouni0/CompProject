@@ -1,6 +1,8 @@
 import os
 import numpy as np
 import nibabel as nib
+import matplotlib.pyplot as plt
+from nilearn import plotting
 
 #La funzione scorre tutte le cartelle e seleziona i file nelle cartelle e sottocartelle
 #selezionate, restituisce un array di paths per i file della sottocartella
@@ -37,8 +39,3 @@ def load(a):
         
     return  f
     
-
-imgs=load(paths_AD)
-print(imgs[0])
-
-
