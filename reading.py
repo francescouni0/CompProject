@@ -23,6 +23,7 @@ def data_path(dir,subdir):
                     
                     
     return a
+#CERCARE DI FARE UNA FUNZIONE CHE DEFINISCE QUESTE VARIABILI
 
 paths_AD= data_path("Diffusion_parameters_maps-20230215T134959Z-001","corrected_AD_image")
 paths_MD= data_path("Diffusion_parameters_maps-20230215T134959Z-001","corrected_MD_image")
