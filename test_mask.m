@@ -3,8 +3,8 @@ close all
 clc
 
 %% Visualizzazione (Non necessario se importo da Python)
-image_filename = "C:\Users\simol\OneDrive\Documenti\GitHub\CompProject\Diffusion_parameters_maps-20230215T134959Z-001\Diffusion_parameters_maps\003_S_4081\corrected_AD_image\ADNI_003_S_4081_MR_corrected_AD_image_Br_20130213172736437_S114205_I359073.nii";
-mask_filename = "C:\Users\simol\OneDrive\Documenti\GitHub\CompProject\Diffusion_space_segmentations-20230215T134839Z-001\Diffusion_space_segmentations\003_S_4081_wmparc_on_MD.nii.gz";
+image_filename = "C:\Users\simol\OneDrive\Documenti\GitHub\CompProject\Diffusion_parameters_maps-20230215T134959Z-001\Diffusion_parameters_maps\003_S_4152\corrected_AD_image\2011-08-30_09_55_00.0\I359077\ADNI_003_S_4152_MR_corrected_AD_image_Br_20130213172802294_S120805_I359077.nii";
+mask_filename = "C:\Users\simol\OneDrive\Documenti\GitHub\CompProject\Diffusion_space_segmentations-20230215T134839Z-001\Diffusion_space_segmentations\003_S_4152_wmparc_on_MD.nii.gz";
 
 % Leggo le info relative all'immagine NIFTI
 image_info = niftiinfo(image_filename);
@@ -76,7 +76,42 @@ end
 Features = table(Region, f_mean.', f_std.');
 Features.Properties.VariableNames = ["Region" "Mean" "Standard deviation"];
 
+%% 
+test = table('Size', [0,4], ...
+    'VariableTypes', ["double", "string", "cell", "cell"], ...
+    'VariableNames', ["Subject", "Region", "Mean", "Standard Deviation"])
 
+row = {1, Region.', f_mean, f_std}
 
+% test(1, :) = {a, b, c, d}
 
+test = [test; row]
+test
 
+%% 
+test = table('Size', [0,4], ...
+    'VariableTypes', ["double", "string", "cell", "cell"], ...
+    'VariableNames', ["Subject", "Region", "Mean", "Standard Deviation"])
+
+row = table(1, Region.', f_mean, f_std, ...
+    'VariableNames', ["Subject", "Region", "Mean", "Standard Deviation"])
+
+% test_new = [test; row]
+
+%% 
+test = table;
+
+for i = 1:1:5
+    row = {i, Region.', f_mean, f_std}
+    test = [test; row]
+end
+
+test.Properties.VariableNames = ["A", "B", "C", "D"]
+
+%% 
+image_filepaths = ["C:\Users\simol\OneDrive\Documenti\GitHub\CompProject\Diffusion_parameters_maps-20230215T134959Z-001\Diffusion_parameters_maps\003_S_4081\corrected_AD_image\ADNI_003_S_4081_MR_corrected_AD_image_Br_20130213172736437_S114205_I359073.nii", "C:\Users\simol\OneDrive\Documenti\GitHub\CompProject\Diffusion_parameters_maps-20230215T134959Z-001\Diffusion_parameters_maps\003_S_4119\corrected_AD_image\ADNI_003_S_4119_MR_corrected_AD_image_Br_20130213172743850_S118964_I359074.nii"];
+segmentation_filepaths = ["C:\Users\simol\OneDrive\Documenti\GitHub\CompProject\Diffusion_space_segmentations-20230215T134839Z-001\Diffusion_space_segmentations\003_S_4081_wmparc_on_MD.nii.gz", "C:\Users\simol\OneDrive\Documenti\GitHub\CompProject\Diffusion_space_segmentations-20230215T134839Z-001\Diffusion_space_segmentations\003_S_4119_wmparc_on_MD.nii.gz"];
+
+Features = feature_extractor(image_filepaths, segmentation_filepaths)
+
+a = Features(1,3)
