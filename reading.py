@@ -18,6 +18,7 @@ def data_path(dir,subdir):
     for i, word in enumerate(r):
         
         if subdir in word:
+            
             a.append(r[i])
             
                     
