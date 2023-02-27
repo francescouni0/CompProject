@@ -24,6 +24,7 @@ for i = 1:1:length(image_filepaths)
         results = image(bool_mask);
         f_mean = [f_mean mean(results)];
         f_std = [f_std std(results)];
+
     end
 
     row = {i, region.', f_mean, f_std};

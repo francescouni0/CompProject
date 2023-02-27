@@ -9,6 +9,10 @@ from nilearn import image
 import sys
 from nilearn.regions import RegionExtractor
 from nilearn import regions
+
+import matlab.engine
+
+
 #np.set_printoptions(threshold=sys.maxsize)
 #QUELLO CHE VOGLIO CERCARE DI FARE ORA È FARE UNA MAPPA STATISTICA DELLE FEATURE
 
@@ -35,3 +39,17 @@ print(paths_masks[0])
 plotting.show()
 
 '''
+
+
+# Start MATLAB engine
+matlab_eng = matlab.engine.start_matlab()
+
+
+# Call a MATLAB function
+feature = matlab_eng.feature_extractor('Diffusion_parameters_maps-20230215T134959Z-001/Diffusion_parameters_maps/098_S_4003/corrected_FA_image/2011-03-22_09_23_47.0/I299742/ADNI_098_S_4003_MR_corrected_FA_image_Br_20120421215950180_S102157_I299742.nii', 'Diffusion_space_segmentations-20230215T134839Z-001/Diffusion_space_segmentations/098_S_4003_wmparc_on_MD.nii.gz')
+
+# Print the result
+print(feature)
+
+# Stop MATLAB engine
+matlab_eng.quit()
