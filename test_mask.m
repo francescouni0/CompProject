@@ -114,8 +114,6 @@ segmentation_filepaths = ["C:\Users\simol\OneDrive\Documenti\GitHub\CompProject\
 
 Features = feature_extractor(image_filepaths, segmentation_filepaths)
 
-a = Features(1,3)
-
 %% 
 A = [0 1 2 3];
 B = [4 5 6 7 8];
@@ -132,4 +130,8 @@ patient(3).value = C;
 for i = 1:1:10
     feature(i).subject = ['Name ', num2str(i)];
 end
+
+%% 
+
+
 

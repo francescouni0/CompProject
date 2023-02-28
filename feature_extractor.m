@@ -26,7 +26,7 @@ for i = 1:1:length(image_filepaths)
     end
 
     Features(i).Subject = ['Subject ', num2str(i)];
-    Features(i).Region = region;
+    Features(i).Region = region.';
     Features(i).Mean = f_mean;
     Features(i).Standard_Dev = f_std;
 
