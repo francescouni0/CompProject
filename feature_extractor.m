@@ -1,14 +1,17 @@
-function [Features] = feature_extractor(image_filepaths, segmentation_filepaths)
+function [Regions, Means, Stds] = feature_extractor(image_filepaths, segmentation_filepaths)
 
 opts = detectImportOptions('FreeSurferColorLUT.txt');
 opts.VariableNames = {'Index', 'Name', 'R', 'G', 'B', 'A'};
 opts.CommentStyle = '#';
 labels = readtable("FreeSurferColorLUT.txt", opts);
 
+Means = struct();
+Stds = struct();
+
 for i = 1:1:length(image_filepaths)
     
-    image = niftiread(image_filepaths(i));
-    segmentation = niftiread(segmentation_filepaths(i));
+    image = niftiread(string(image_filepaths(i)));
+    segmentation = niftiread(string(segmentation_filepaths(i)));
 
     indices = unique(segmentation);
 
@@ -18,6 +21,7 @@ for i = 1:1:length(image_filepaths)
     f_std = [];
 
     for j = 1:1:length(indices)
+
         bool_mask = segmentation == indices(j);
         results = image(bool_mask);
         f_mean = [f_mean mean(results)];
@@ -25,10 +29,9 @@ for i = 1:1:length(image_filepaths)
 
     end
 
-    Features(i).Subject = ['Subject ', num2str(i)];
-    Features(i).Region = region.';
-    Features(i).Mean = f_mean;
-    Features(i).Standard_Dev = f_std;
+Regions.("Subject_"+i) = region;
+Means.("Subject_"+i) = f_mean.';
+Stds.("Subject_"+i) = f_std.';
 
 end
 

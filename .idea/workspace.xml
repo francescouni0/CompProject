@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="336eb2b3-5b48-4ed4-b1de-8ea2e1353e74" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/feature_extractor.asv" beforeDir="false" afterPath="$PROJECT_DIR$/feature_extractor.asv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/feature_extractor.m" beforeDir="false" afterPath="$PROJECT_DIR$/feature_extractor.m" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/map.py" beforeDir="false" afterPath="$PROJECT_DIR$/map.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_mask.asv" beforeDir="false" afterPath="$PROJECT_DIR$/test_mask.asv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_mask.m" beforeDir="false" afterPath="$PROJECT_DIR$/test_mask.m" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
