@@ -1,4 +1,11 @@
+
+
+
+
+
+
 function [Features] = feature_extractor(image_filepaths, segmentation_filepaths)
+
 
 opts = detectImportOptions('FreeSurferColorLUT.txt');
 opts.VariableNames = {'Index', 'Name', 'R', 'G', 'B', 'A'};
@@ -9,8 +16,8 @@ Features = table;
 
 for i = 1:1:length(image_filepaths)
     
-    image = niftiread(image_filepaths(i));
-    segmentation = niftiread(segmentation_filepaths(i));
+    image = niftiread(image_filepaths{i});
+    segmentation = niftiread(segmentation_filepaths{i});
 
     indices = unique(segmentation);
 
@@ -26,12 +33,14 @@ for i = 1:1:length(image_filepaths)
         f_std = [f_std std(results)];
 
     end
-
-    row = {i, region.', f_mean, f_std};
-    Features = [Features; row];
-
-end
-
-Features.Properties.VariableNames = ["Subject", "Region", "Mean", "Standard Deviation"];
+%le dimensioni degli oggetti concatenati non è consistente, le ho messi tra
+%virgolette per provarea vedere se funziona il codice
+%la parte da cambiare è questa, serve qualcosa che 
+    row = [i, region.', f_mean, f_std];
+    Features = vercat(row{:});
 
 end
+
+%Features.Properties.VariableNames = ["Subject", "Region", "Mean", "Standard Deviation"];
+
+%end

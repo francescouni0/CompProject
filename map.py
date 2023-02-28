@@ -24,6 +24,9 @@ paths_masks=data_path("Diffusion_space_segmentations-20230215T134839Z-001","Diff
 paths_FA.sort(key=lambda x: int(os.path.basename(x).split('_')[3][1:]))
 paths_masks.sort(key=lambda x: int(os.path.basename(x).split('_')[2][1:]))
 
+
+print(type(paths_FA))
+
 '''
 imgs = image.smooth_img(paths_FA,0) 
 masks = image.smooth_img(paths_masks,0) 
@@ -41,15 +44,25 @@ plotting.show()
 '''
 
 
+
 # Start MATLAB engine
-matlab_eng = matlab.engine.start_matlab()
+eng = matlab.engine.start_matlab()
+
+s = eng.genpath("/home/francesco/CompProject")
+
+eng.addpath(s, nargout=0)
+
+image_filepaths=(paths_FA)
+masks_filepaths=(paths_masks)
+
+
 
 
 # Call a MATLAB function
-feature = matlab_eng.feature_extractor('Diffusion_parameters_maps-20230215T134959Z-001/Diffusion_parameters_maps/098_S_4003/corrected_FA_image/2011-03-22_09_23_47.0/I299742/ADNI_098_S_4003_MR_corrected_FA_image_Br_20120421215950180_S102157_I299742.nii', 'Diffusion_space_segmentations-20230215T134839Z-001/Diffusion_space_segmentations/098_S_4003_wmparc_on_MD.nii.gz')
+feature = eng.feature_extractor( image_filepaths[0:10],masks_filepaths[0:10])
 
 # Print the result
 print(feature)
 
 # Stop MATLAB engine
-matlab_eng.quit()
+eng.quit()
