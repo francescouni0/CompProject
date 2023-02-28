@@ -46,7 +46,7 @@ matlab_eng = matlab.engine.start_matlab()
 
 
 # Call a MATLAB function
-feature = matlab_eng.feature_extractor('Diffusion_parameters_maps-20230215T134959Z-001/Diffusion_parameters_maps/098_S_4003/corrected_FA_image/2011-03-22_09_23_47.0/I299742/ADNI_098_S_4003_MR_corrected_FA_image_Br_20120421215950180_S102157_I299742.nii', 'Diffusion_space_segmentations-20230215T134839Z-001/Diffusion_space_segmentations/098_S_4003_wmparc_on_MD.nii.gz')
+feature = matlab_eng.feature_extractor(paths_FA, paths_masks)
 
 # Print the result
 print(feature)
