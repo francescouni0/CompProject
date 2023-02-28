@@ -121,15 +121,9 @@ A = [0 1 2 3];
 B = [4 5 6 7 8];
 C = [9];
 
-patient(1).name = 'Alpha';
+patient(1).name = 'Culo';
 patient(1).value = A;
-patient(2).name = 'Beta';
+patient(2).name = 'Pene';
 patient(2).value = B;
-patient(3).name = 'Omega';
-patient(3).value = C;
-
-%% 
-for i = 1:1:10
-    feature(i).subject = ['Name ', num2str(i)];
-end
+patient(3).name = 'Vagina';
 
