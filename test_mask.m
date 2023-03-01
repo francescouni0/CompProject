@@ -3,8 +3,8 @@ close all
 clc
 
 %% Visualizzazione (Non necessario se importo da Python)
-image_filename = "C:\Users\simol\OneDrive\Documenti\GitHub\CompProject\Diffusion_parameters_maps-20230215T134959Z-001\Diffusion_parameters_maps\003_S_4152\corrected_AD_image\2011-08-30_09_55_00.0\I359077\ADNI_003_S_4152_MR_corrected_AD_image_Br_20130213172802294_S120805_I359077.nii";
-mask_filename = "C:\Users\simol\OneDrive\Documenti\GitHub\CompProject\Diffusion_space_segmentations-20230215T134839Z-001\Diffusion_space_segmentations\003_S_4152_wmparc_on_MD.nii.gz";
+image_filename = 'Diffusion_parameters_maps-20230215T134959Z-001\\Diffusion_parameters_maps\\098_S_4002\\corrected_FA_image\\2011-02-28_15_42_50.0\\I397180\\ADNI_098_S_4002_MR_corrected_FA_image_Br_20131105134057196_S100616_I397180.nii';
+mask_filename = 'Diffusion_space_segmentations-20230215T134839Z-001\\Diffusion_space_segmentations\\098_S_4002_wmparc_on_MD.nii.gz';
 
 % Leggo le info relative all'immagine NIFTI
 image_info = niftiinfo(image_filename);
@@ -109,9 +109,39 @@ end
 test.Properties.VariableNames = ["A", "B", "C", "D"]
 
 %% 
-image_filepaths = ["C:\Users\simol\OneDrive\Documenti\GitHub\CompProject\Diffusion_parameters_maps-20230215T134959Z-001\Diffusion_parameters_maps\003_S_4081\corrected_AD_image\ADNI_003_S_4081_MR_corrected_AD_image_Br_20130213172736437_S114205_I359073.nii", "C:\Users\simol\OneDrive\Documenti\GitHub\CompProject\Diffusion_parameters_maps-20230215T134959Z-001\Diffusion_parameters_maps\003_S_4119\corrected_AD_image\ADNI_003_S_4119_MR_corrected_AD_image_Br_20130213172743850_S118964_I359074.nii"];
-segmentation_filepaths = ["C:\Users\simol\OneDrive\Documenti\GitHub\CompProject\Diffusion_space_segmentations-20230215T134839Z-001\Diffusion_space_segmentations\003_S_4081_wmparc_on_MD.nii.gz", "C:\Users\simol\OneDrive\Documenti\GitHub\CompProject\Diffusion_space_segmentations-20230215T134839Z-001\Diffusion_space_segmentations\003_S_4119_wmparc_on_MD.nii.gz"];
+image_filepaths = ["\\?\C:\Users\simol\OneDrive\Documenti\GitHub\CompProject\Diffusion_parameters_maps-20230215T134959Z-001\Diffusion_parameters_maps\098_S_4002\corrected_FA_image\2011-02-28_15_42_50.0\I397180\ADNI_098_S_4002_MR_corrected_FA_image_Br_20131105134057196_S100616_I397180.nii", "\\?\C:\Users\simol\OneDrive\Documenti\GitHub\CompProject\Diffusion_parameters_maps-20230215T134959Z-001\Diffusion_parameters_maps\098_S_4003\corrected_FA_image\2011-03-22_09_23_47.0\I299742\ADNI_098_S_4003_MR_corrected_FA_image_Br_20120421215950180_S102157_I299742.nii"];
+segmentation_filepaths = ["C:\Users\simol\OneDrive\Documenti\GitHub\CompProject\Diffusion_space_segmentations-20230215T134839Z-001\Diffusion_space_segmentations\098_S_4002_wmparc_on_MD.nii.gz", "C:\Users\simol\OneDrive\Documenti\GitHub\CompProject\Diffusion_space_segmentations-20230215T134839Z-001\Diffusion_space_segmentations\098_S_4003_wmparc_on_MD.nii.gz"];
 
-Features = feature_extractor(image_filepaths, segmentation_filepaths)
+[r, m, s] = feature_extractor(image_filepaths, segmentation_filepaths)
 
-a = Features(1,3)
+%% 
+A = [0 1 2 3].';
+B = [4 5 6 7 8].';
+C = [9];
+D = [2 4 6 8].';
+E = ["a" "b" "c" "d"].';
+
+if length(A)==length(E)
+    R = [A E]
+else
+    disp('Caca')
+end
+
+%% 
+a = {};
+
+for i=1:10
+    for j=1:5
+        a{i,j}=[i j];
+    end
+end
+
+%% 
+n=10;
+priors=struct();
+for ind=1:n
+    priors.("Subject_"+ind) = ind;
+end
+
+
+
