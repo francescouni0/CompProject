@@ -112,7 +112,8 @@ test.Properties.VariableNames = ["A", "B", "C", "D"]
 image_filepaths = ["\\?\C:\Users\simol\OneDrive\Documenti\GitHub\CompProject\Diffusion_parameters_maps-20230215T134959Z-001\Diffusion_parameters_maps\098_S_4002\corrected_FA_image\2011-02-28_15_42_50.0\I397180\ADNI_098_S_4002_MR_corrected_FA_image_Br_20131105134057196_S100616_I397180.nii", "\\?\C:\Users\simol\OneDrive\Documenti\GitHub\CompProject\Diffusion_parameters_maps-20230215T134959Z-001\Diffusion_parameters_maps\098_S_4003\corrected_FA_image\2011-03-22_09_23_47.0\I299742\ADNI_098_S_4003_MR_corrected_FA_image_Br_20120421215950180_S102157_I299742.nii"];
 segmentation_filepaths = ["C:\Users\simol\OneDrive\Documenti\GitHub\CompProject\Diffusion_space_segmentations-20230215T134839Z-001\Diffusion_space_segmentations\098_S_4002_wmparc_on_MD.nii.gz", "C:\Users\simol\OneDrive\Documenti\GitHub\CompProject\Diffusion_space_segmentations-20230215T134839Z-001\Diffusion_space_segmentations\098_S_4003_wmparc_on_MD.nii.gz"];
 
-[r, m, s] = feature_extractor(image_filepaths, segmentation_filepaths)
+[ro, mo, so] = feature_extractor_old(image_filepaths, segmentation_filepaths);
+[r, m, s] = feature_extractor(image_filepaths, segmentation_filepaths);
 
 %% 
 A = [0 1 2 3].';
@@ -143,5 +144,16 @@ for ind=1:n
     priors.("Subject_"+ind) = ind;
 end
 
+%% 
+list = [];
+for i = 1:10
+    list = [list i];
+end
+list = [list 1 2 3]
+list = unique(list)
 
+%% 
+A = NaN;
+B = [0 1 2 3 4 5]
+C = [A; B.']
 
