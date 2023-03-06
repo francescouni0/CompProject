@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="336eb2b3-5b48-4ed4-b1de-8ea2e1353e74" name="Changes" comment="" />
+    <list default="true" id="336eb2b3-5b48-4ed4-b1de-8ea2e1353e74" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/CNN.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AnalisiMD_tree.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/AnalisiMD_tree.ipynb" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

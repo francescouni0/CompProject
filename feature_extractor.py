@@ -3,6 +3,8 @@ import numpy as np
 from reading import load
 from reading import data_path
 
+import time
+
 import matlab.engine
 #QUELLO CHE VOGLIO CERCARE DI FARE ORA È FARE UNA MAPPA STATISTICA DELLE FEATURE
 
@@ -21,7 +23,7 @@ paths_masks.sort(key=lambda x: int(os.path.basename(x).split('_')[2][1:]))
 
 #DEFINISCO FUNZIONE DI ESTRAZIONE FEATURE
 
-def feature_extractor(image_filepaths,masks_filepaths):
+def feature_extractor(image_filepaths, masks_filepaths):
     # Start MATLAB engine
     eng = matlab.engine.start_matlab()
 
@@ -31,15 +33,21 @@ def feature_extractor(image_filepaths,masks_filepaths):
 
 
 # Call a MATLAB function
-    [region, mean, std] = eng.feature_extractor(image_filepaths,masks_filepaths,nargout=3)
+    [region, mean, std] = eng.feature_extractor(image_filepaths, masks_filepaths, nargout=3)
 
 
 # Stop MATLAB engine
     eng.quit()
-# Print the result
-    return region,mean,std
+# Return the result
+    return region, np.asarray(mean), np.asarray(std)
 
 
-
-
-
+if __name__ == "__main__":
+    start = time.time()
+    [r, m, s] = feature_extractor(paths_FA, paths_masks)
+    end = time.time()
+    print('Elapsed time: ', end-start)
+    print(paths_FA[0])
+    print(paths_masks[0])
+    print(m[:,1])
+    #print(s[:,1])
