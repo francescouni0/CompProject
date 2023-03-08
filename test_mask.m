@@ -153,7 +153,17 @@ list = [list 1 2 3]
 list = unique(list)
 
 %% 
-A = NaN;
-B = [0 1 2 3 4 5]
-C = [A; B.']
+image_filepaths = ["\\?\C:\Users\simol\OneDrive\Documenti\GitHub\CompProject\Diffusion_parameters_maps-20230215T134959Z-001\Diffusion_parameters_maps\003_S_4081\corrected_FA_image\ADNI_003_S_4081_MR_corrected_FA_image_Br_20120421203936832_S114205_I299596.nii", "\\?\C:\Users\simol\OneDrive\Documenti\GitHub\CompProject\Diffusion_parameters_maps-20230215T134959Z-001\Diffusion_parameters_maps\098_S_4003\corrected_FA_image\2011-03-22_09_23_47.0\I299742\ADNI_098_S_4003_MR_corrected_FA_image_Br_20120421215950180_S102157_I299742.nii"];
+
+% Importo l'immagine NIFTI
+image = niftiread(image_filepaths(1));
+central_slice = image(:,:,30);
+central_slice(central_slice == 0) = NaN;
+
+% Mostro in sequenza tutte le slice della DTI
+figure('Name', 'DTI, all slices')
+montage(image,'Indices',1:1:size(image,3),'DisplayRange',[])
+
+figure('Name', 'DTI, central slice')
+imagesc(central_slice)
 
