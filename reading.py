@@ -1,8 +1,5 @@
 import os
-import numpy as np
 import nibabel as nib
-import matplotlib.pyplot as plt
-from nilearn import plotting
 
 # La funzione scorre tutte le cartelle e seleziona i file nelle cartelle e sottocartelle
 # selezionate, restituisce un array di paths per i file della sottocartella
@@ -21,15 +18,23 @@ def data_path(dir,subdir):
             
             a.append(r[i])
             
+    
+    if "segmentation" in subdir:
+        a.sort(key=lambda x: int(os.path.basename(x).split('_')[2]))
+    
+    else:
+        a.sort(key=lambda x: int(os.path.basename(x).split('_')[3]))         
                     
                     
     return a
-#CERCARE DI FARE UNA FUNZIONE CHE DEFINISCE QUESTE VARIABILI
 
-paths_AD= data_path("Diffusion_parameters_maps-20230215T134959Z-001","corrected_AD_image")
-paths_MD= data_path("Diffusion_parameters_maps-20230215T134959Z-001","corrected_MD_image")
-paths_RD= data_path("Diffusion_parameters_maps-20230215T134959Z-001","corrected_RD_image")
-paths_FA= data_path("Diffusion_parameters_maps-20230215T134959Z-001","corrected_FA_image")
+#
+
+
+
+
+
+
 
 #Prende un array di paths e fa il caricamento delle immagini, restituisce un array
 #di oggetti nib

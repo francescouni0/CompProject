@@ -26,7 +26,7 @@ for i = 1:1:length(image_filepaths)
     image = niftiread(string(image_filepaths(i)));
     segmentation = niftiread(string(segmentation_filepaths(i)));
 
-    f_mean = [i];5
+    f_mean = [i];
     f_std = [i];
 
     for j = 1:1:length(indices)

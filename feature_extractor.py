@@ -2,7 +2,7 @@ import os
 import numpy as np
 from reading import load
 from reading import data_path
-
+import pandas as pd
 import time
 
 import matlab.engine
@@ -11,11 +11,6 @@ import matlab.engine
 paths_FA= data_path("Diffusion_parameters_maps-20230215T134959Z-001","corrected_FA_image")
 paths_masks=data_path("Diffusion_space_segmentations-20230215T134839Z-001","Diffusion_space_segmentations-20230215T134839Z-001")
 
-
-#QUESTO MI ORDINA TUTTO IN MODO CHE MASCHERA E FILE CORRISPONDANO DA AGGIUNGERE ALLA DEFINIZIONE DI DATAPATH
-#SOLO CHE MASCHERE E MAPPE VANNO SORTATE IN MANIERA DIVERSA
-paths_FA.sort(key=lambda x: int(os.path.basename(x).split('_')[3][1:]))
-paths_masks.sort(key=lambda x: int(os.path.basename(x).split('_')[2][1:]))
 
 
 
@@ -27,27 +22,34 @@ def feature_extractor(image_filepaths, masks_filepaths):
     # Start MATLAB engine
     eng = matlab.engine.start_matlab()
 
-
-
-
-
-
 # Call a MATLAB function
     [region, mean, std] = eng.feature_extractor(image_filepaths, masks_filepaths, nargout=3)
 
 
 # Stop MATLAB engine
     eng.quit()
-# Return the result
-    return region, np.asarray(mean), np.asarray(std)
+# Create Pd dataframe
+    n_regxsub=np.shape(mean[:][0])
+    mean_t=np.transpose(np.asarray(mean))
+    std_t=np.transpose(np.asarray(std))
+    df_mean = pd.DataFrame(mean_t[1:,1:(n_regxsub[0]-1)],index=mean[0][1:n_regxsub[1]],columns=region[1:(n_regxsub[0]-1)])
+    df_std=pd.DataFrame(std_t[1:,1:(n_regxsub[0]-1)],index=std[0][1:n_regxsub[1]],columns=region[1:(n_regxsub[0]-1)])
+
+    df_group=pd.DataFrame(pd.read_csv('ADNI_dataset_diffusion.csv'))
+    df_group.sort_values(by=["Subject"],inplace=True)
+    df_group=df_group["Group"]
+    
+    dfm=pd.concat([df_mean,df_group],axis=1)
+    dfs=pd.concat([df_std,df_group],axis=1)
+    
+    
+    return dfm, dfs
 
 
-if __name__ == "__main__":
-    start = time.time()
-    [r, m, s] = feature_extractor(paths_FA, paths_masks)
-    end = time.time()
-    print('Elapsed time: ', end-start)
-    print(paths_FA[0])
-    print(paths_masks[0])
-    print(m[:,1])
+a,b = feature_extractor(paths_FA, paths_masks)
+
+
+print(a)
+
+
     #print(s[:,1])
