@@ -32,15 +32,15 @@ def feature_extractor(image_filepaths, masks_filepaths):
     n_regxsub=np.shape(mean[:][0])
     mean_t=np.transpose(np.asarray(mean))
     std_t=np.transpose(np.asarray(std))
-    df_mean = pd.DataFrame(mean_t[1:,1:(n_regxsub[0]-1)],index=mean[0][1:(n_regxsub[1]-1)],columns=region[1:(n_regxsub[0]-1)])
-    df_std=pd.DataFrame(std_t[1:,1:(n_regxsub[0]-1)],index=std[0][1:(n_regxsub[1]-1)],columns=region[1:(n_regxsub[0]-1)])
+    df_mean = pd.DataFrame(mean_t[1:,1:(n_regxsub[0]-1)],index=mean[0][1:(n_regxsub[1]-2)],columns=region[1:(n_regxsub[0]-1)])
+    df_std=pd.DataFrame(std_t[1:,1:(n_regxsub[0]-1)],index=std[0][1:(n_regxsub[1]-2)],columns=region[1:(n_regxsub[0]-1)])
 
     df_group=pd.DataFrame(pd.read_csv('ADNI_dataset_diffusion.csv'))
     df_group.sort_values(by=["Subject"],inplace=True)
-    df_group=df_group["Group"]
+    group=df_group["Group"]
     
-    dfm=pd.concat([df_mean,df_group],axis=1)
-    dfs=pd.concat([df_std,df_group],axis=1)
+    dfm=pd.concat([df_mean.reset_index(drop=True),group.reset_index(drop=True)],axis=1)
+    dfs=pd.concat([df_std.reset_index(drop=True),group.reset_index(drop=True)],axis=1)
     
     
     return dfm, dfs
