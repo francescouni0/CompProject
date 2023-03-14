@@ -39,11 +39,9 @@ def feature_extractor(image_filepaths, masks_filepaths):
     df_group.sort_values(by=["Subject"],inplace=True)
     group=df_group["Group"]
     
-    dfm=pd.concat([df_mean.reset_index(drop=True),group.reset_index(drop=True)],axis=1)
-    dfs=pd.concat([df_std.reset_index(drop=True),group.reset_index(drop=True)],axis=1)
     
     
-    return dfm, dfs
+    return df_mean, df_std, group
 
 
 
