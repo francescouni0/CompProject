@@ -8,8 +8,6 @@ import time
 import matlab.engine
 #QUELLO CHE VOGLIO CERCARE DI FARE ORA È FARE UNA MAPPA STATISTICA DELLE FEATURE
 
-paths_FA= data_path("Diffusion_parameters_maps-20230215T134959Z-001","corrected_FA_image")
-paths_masks=data_path("Diffusion_space_segmentations-20230215T134839Z-001","Diffusion_space_segmentations-20230215T134839Z-001")
 
 
 
@@ -32,8 +30,8 @@ def feature_extractor(image_filepaths, masks_filepaths):
     n_regxsub=np.shape(mean[:][0])
     mean_t=np.transpose(np.asarray(mean))
     std_t=np.transpose(np.asarray(std))
-    df_mean = pd.DataFrame(mean_t[1:,1:(n_regxsub[0]-1)],index=mean[0][1:(n_regxsub[1])],columns=region[1:(n_regxsub[0]-1)])
-    df_std=pd.DataFrame(std_t[1:,1:(n_regxsub[0]-1)],index=std[0][1:(n_regxsub[1])],columns=region[1:(n_regxsub[0]-1)])
+    df_mean = pd.DataFrame(mean_t[1:,0:(n_regxsub[0]-1)],index=mean[0][1:(n_regxsub[1])],columns=region[0:(n_regxsub[0]-1)])
+    df_std=pd.DataFrame(std_t[1:,0:(n_regxsub[0]-1)],index=std[0][1:(n_regxsub[1])],columns=region[0:(n_regxsub[0]-1)])
 
     df_group=pd.DataFrame(pd.read_csv('ADNI_dataset_diffusion.csv'))
     df_group.sort_values(by=["Subject"],inplace=True)
