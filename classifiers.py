@@ -7,7 +7,7 @@ from sklearn.model_selection import RandomizedSearchCV, train_test_split
 from scipy.stats import randint
 import matplotlib.pyplot as plt
 from sklearn.tree import export_graphviz
-from IPython.display import Image
+from IPython.display import display 
 import graphviz
 
 
@@ -53,9 +53,9 @@ def RFPipeline_noPCA(a,c,n_iter,cv):
     
     for i in range(3):
         tree = pipeline_simple["hyper_opt"].best_estimator_[i]
-        dot_data = export_graphviz(tree,feature_names=region[1:],  filled=True, impurity=False, proportion=True,class_names=["CN","AD"])
+        dot_data = export_graphviz(tree,feature_names=region,  filled=True, impurity=False, proportion=True,class_names=["CN","AD"])
         graph = graphviz.Source(dot_data)
-        display(graph)
+        graph.render(view=True)
 
 
     return pipeline_simple.fit
@@ -98,10 +98,13 @@ def RFPipeline_PCA(a,c,n_iter,cv):
 
     plt.show()
     
+    
+    print(pipeline_PCA["dim_reduction"].components_)
+        
     for i in range(3):
         tree = pipeline_PCA["hyper_opt"].best_estimator_[i]
-        dot_data = export_graphviz(tree,feature_names=region[1:],  filled=True, impurity=False, proportion=True,class_names=["CN","AD"])
+        dot_data = export_graphviz(tree,feature_names=pipeline_PCA["dim_reduction"].components_[0,:],  filled=True, impurity=False, proportion=True,class_names=["CN","AD"])
         graph = graphviz.Source(dot_data)
-        display(graph)
+        graph.render(view=True)
 
     return pipeline_PCA.fit

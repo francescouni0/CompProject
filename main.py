@@ -1,4 +1,4 @@
-from classifiers import RFPipeline_noPCA
+from classifiers import RFPipeline_noPCA, RFPipeline_PCA
 from sklearn.model_selection import train_test_split
 
 
@@ -14,4 +14,6 @@ paths_masks=reading.data_path("Diffusion_space_segmentations-20230215T134839Z-00
 
 a, b ,c=feature_extractor(paths_FA,paths_masks)
 
-RFPipeline_noPCA(a,c,10,5)
+#RFPipeline_noPCA(a,c,10,5)
+
+RFPipeline_PCA(a,c,10,5)
