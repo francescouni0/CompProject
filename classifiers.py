@@ -52,7 +52,7 @@ def RFPipeline_noPCA(a,c,n_iter,cv):
     
     
     for i in range(3):
-        tree = RandomizedSearchCV.best_estimator_[i]
+        tree = RandomForestClassifier.best_estimator_[i]
         dot_data = export_graphviz(tree,feature_names=region[1:],  filled=True, impurity=False, proportion=True,class_names=["CN","AD"])
         graph = graphviz.Source(dot_data)
         display(graph)
@@ -99,7 +99,7 @@ def RFPipeline_PCA(a,c,n_iter,cv):
     plt.show()
     
     for i in range(3):
-        tree = RandomizedSearchCV.best_estimator_[i]
+        tree = RandomForestClassifier.best_estimator_[i]
         dot_data = export_graphviz(tree,feature_names=region[1:],  filled=True, impurity=False, proportion=True,class_names=["CN","AD"])
         graph = graphviz.Source(dot_data)
         display(graph)
