@@ -35,7 +35,6 @@ def data_path(dir,subdir):
 
 
 
-
 #Prende un array di paths e fa il caricamento delle immagini, restituisce un array
 #di oggetti nib
 def load(a):
