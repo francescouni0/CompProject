@@ -9,6 +9,11 @@ import matplotlib.pyplot as plt
 from sklearn.tree import export_graphviz
 from IPython.display import display 
 import graphviz
+import numpy as np
+
+C_range=scipy.stats.expon.rvs(size=100)
+g=scipy.stats.expon(scale=.1)
+gamma_range=g.rvs(size=100)
 
 
 
@@ -99,12 +104,22 @@ def RFPipeline_PCA(a,c,n_iter,cv):
     plt.show()
     
     
-    print(pipeline_PCA["dim_reduction"].components_)
+    print("Components shape is:",np.shape(pipeline_PCA["dim_reduction"].components_)[0])
         
-    for i in range(3):
-        tree = pipeline_PCA["hyper_opt"].best_estimator_[i]
-        dot_data = export_graphviz(tree,feature_names=pipeline_PCA["dim_reduction"].components_[0,:],  filled=True, impurity=False, proportion=True,class_names=["CN","AD"])
-        graph = graphviz.Source(dot_data)
-        graph.render(view=True)
+    
 
     return pipeline_PCA.fit
+
+
+
+
+def SVMPipeline(a,c,kernel)
+    param_grid = {'C': C_range,
+              'gamma': gamma_range, 
+              'kernel': [str(kernel)], 
+              'class_weight':['balanced', None]}
+    
+    X=a.values
+    y=c.values
+    
+    X_tr, X_tst, y_tr, y_tst = train_test_split(X, y, test_size=.1, random_state=6)
