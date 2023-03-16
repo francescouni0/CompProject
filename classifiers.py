@@ -130,7 +130,7 @@ def SVMPipeline_feature_reduction(a,c,kernel):
     clf = svm.SVC(kernel=kernel)
     
     pipeline = Pipeline(steps = [("f_selection", RFECV(estimator=clf, step=1, cv=5, scoring="accuracy", min_features_to_select=len(y), n_jobs=-1)),
-                                 ("model", svm.SVC(kernel=kernel)])
+                                 ("model", svm.SVC(kernel=kernel))])
     
     grid = GridSearchCV(pipeline, param_grid, refit = True, n_jobs=-1) 
     
