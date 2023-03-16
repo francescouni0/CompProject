@@ -3,13 +3,15 @@ from sklearn.decomposition import PCA
 from sklearn.metrics import RocCurveDisplay
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score, confusion_matrix, precision_score, recall_score, ConfusionMatrixDisplay
-from sklearn.model_selection import RandomizedSearchCV, train_test_split
+from sklearn.model_selection import RandomizedSearchCV, train_test_split, GridSearchCV
 from scipy.stats import randint
 import matplotlib.pyplot as plt
 from sklearn.tree import export_graphviz
 from IPython.display import display 
 import graphviz
 import numpy as np
+from sklearn import svm, metrics
+from sklearn.feature_selection import RFECV
 
 C_range=scipy.stats.expon.rvs(size=100)
 g=scipy.stats.expon(scale=.1)
@@ -113,13 +115,34 @@ def RFPipeline_PCA(a,c,n_iter,cv):
 
 
 
-def SVMPipeline(a,c,kernel)
+def SVMPipeline_feature_reduction(a,c,kernel):
     param_grid = {'C': C_range,
               'gamma': gamma_range, 
-              'kernel': [str(kernel)], 
+              'kernel': [kernel], 
               'class_weight':['balanced', None]}
     
     X=a.values
     y=c.values
     
     X_tr, X_tst, y_tr, y_tst = train_test_split(X, y, test_size=.1, random_state=6)
+    
+    
+    clf = svm.SVC(kernel=kernel)
+    
+    pipeline = Pipeline(steps = [("f_selection", RFECV(estimator=clf, step=1, cv=5, scoring="accuracy", min_features_to_select=len(y), n_jobs=-1)),
+                                 ("model", svm.SVC(kernel=kernel)])
+    
+    grid = GridSearchCV(pipeline, param_grid, refit = True, n_jobs=-1) 
+    
+    # fitting the model
+    grid.fit(X_tr, y_tr) 
+     
+    # print best parameter after tuning 
+    predictions = grid.predict(X_tst) 
+    print(predictions)
+    print(y_tst)
+       
+    # print classification report 
+    print(metrics.classification_report(y_tst, predictions))
+    
+    return grid.fit
