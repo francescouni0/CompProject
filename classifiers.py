@@ -12,6 +12,7 @@ import graphviz
 import numpy as np
 from sklearn import svm, metrics
 from sklearn.feature_selection import RFECV
+import scipy
 
 C_range=scipy.stats.expon.rvs(size=100)
 g=scipy.stats.expon(scale=.1)
