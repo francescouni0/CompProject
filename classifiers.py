@@ -116,10 +116,11 @@ def RFPipeline_PCA(a,c,n_iter,cv):
 
 
 
-def SVMPipeline_feature_reduction(a,c,kernel):
+def SVMPipeline_feature_reduction(a,c,ker):
+    
     param_grid = {'C': C_range,
               'gamma': gamma_range, 
-              'kernel': [kernel], 
+              'kernel': [ker], 
               'class_weight':['balanced', None]}
     
     X=a.values
@@ -128,15 +129,29 @@ def SVMPipeline_feature_reduction(a,c,kernel):
     X_tr, X_tst, y_tr, y_tst = train_test_split(X, y, test_size=.1, random_state=6)
     
     
-    clf = svm.SVC(kernel=kernel)
+    clf = svm.SVC(kernel=ker)
+
+    print("Checkpoint 0")
     
-    pipeline = Pipeline(steps = [("f_selection", RFECV(estimator=clf, step=1, cv=5, scoring="accuracy", min_features_to_select=len(y), n_jobs=-1)),
-                                 ("model", svm.SVC(kernel=kernel))])
+    rfecv = RFECV(
+        estimator=clf,
+        step=1,
+        cv=5,
+        scoring="accuracy",
+        min_features_to_select=len(a["Subject"]),
+        n_jobs=-1,
+    )
     
-    grid = GridSearchCV(pipeline, param_grid, refit = True, n_jobs=-1) 
+    print("Checkpoint 1")
+    
+    grid = GridSearchCV(rfecv, param_grid, refit = True, n_jobs=-1) 
+    
+    print("Checkpoint 2")
     
     # fitting the model
-    grid.fit(X_tr, y_tr) 
+    grid.fit(X_tr, y_tr)
+    
+    print("Checkpoint 3")
      
     # print best parameter after tuning 
     predictions = grid.predict(X_tst) 
@@ -144,6 +159,7 @@ def SVMPipeline_feature_reduction(a,c,kernel):
     print(y_tst)
        
     # print classification report 
-    print(metrics.classification_report(y_tst, predictions))
-    
+    print(metrics.classification_report(y_tst, predictions)) 
+        
     return grid.fit
+    
