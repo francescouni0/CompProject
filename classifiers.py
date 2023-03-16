@@ -23,6 +23,17 @@ param_dist = {'n_estimators': randint(50,500),
               'max_depth': randint(1,20)}
 
 def RFPipeline_noPCA(a,c,n_iter,cv):
+    """_summary_
+
+    Args:
+        a (_type_): _description_
+        c (_type_): _description_
+        n_iter (_type_): _description_
+        cv (_type_): _description_
+
+    Returns:
+        _type_: _description_
+    """
     
 
 #a and c should be pandas dataframe
@@ -70,6 +81,17 @@ def RFPipeline_noPCA(a,c,n_iter,cv):
 
 
 def RFPipeline_PCA(a,c,n_iter,cv):
+    """_summary_
+
+    Args:
+        a (_type_): _description_
+        c (_type_): _description_
+        n_iter (_type_): _description_
+        cv (_type_): _description_
+
+    Returns:
+        _type_: _description_
+    """
 
 
 #a and c should be pandas dataframe
@@ -115,6 +137,16 @@ def RFPipeline_PCA(a,c,n_iter,cv):
 
 
 def SVMPipeline(a,c,ker:str):
+    """_summary_
+
+    Args:
+        a (_type_): _description_
+        c (_type_): _description_
+        ker (str): _description_
+
+    Returns:
+        _type_: _description_
+    """
     
     if ker=='linear':
     
@@ -160,7 +192,15 @@ def SVMPipeline(a,c,ker:str):
 
 
 def SVMPipeline_feature_red(a,c):
-        
+    """_summary_
+
+    Args:
+        a (_type_): _description_
+        c (_type_): _description_
+
+    Returns:
+        _type_: _description_
+    """
     X=a.values
     y=c.values
     
@@ -169,9 +209,9 @@ def SVMPipeline_feature_red(a,c):
         
         
         
-    C_range=scipy.stats.expon.rvs(size=100)
+    C_range=scipy.stats.expon.rvs(size=10)
     g=scipy.stats.expon(scale=.1)
-    gamma_range=g.rvs(size=100)
+    gamma_range=g.rvs(size=10)
     # defining parameter range 
     param_grid = {'estimator__C': C_range,
                   'estimator__gamma': gamma_range, 
