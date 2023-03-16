@@ -154,4 +154,61 @@ def SVMPipeline(a,c,ker:str):
     print(metrics.classification_report(y_tst, grid_predictions)) 
         
     return grid.fit
+
+
+
+
+
+def SVMPipeline_feature_red(a,c):
+        
+    X=a.values
+    y=c.values
     
+    X_tr, X_tst, y_tr, y_tst = train_test_split(X, y, test_size=.1, random_state=6)
+       
+        
+        
+        
+    C_range=scipy.stats.expon.rvs(size=100)
+    g=scipy.stats.expon(scale=.1)
+    gamma_range=g.rvs(size=100)
+    # defining parameter range 
+    param_grid = {'estimator__C': C_range,
+                  'estimator__gamma': gamma_range, 
+                  'estimator__kernel': ['linear'], 
+                  'estimator__class_weight':['balanced', None]}
+    
+    clf = svm.SVC(kernel="linear")
+    
+    print("Checkpoint 0")
+    
+    rfecv = RFECV(
+        estimator=clf,
+        step=1,
+        cv=5,
+        scoring="accuracy",
+        min_features_to_select=len(y),
+        n_jobs=-1,
+    )
+    
+    print("Checkpoint 1")
+    
+    grid = GridSearchCV(rfecv, param_grid, refit = True, n_jobs=-1) 
+    
+    print("Checkpoint 2")
+    
+    # fitting the model
+    grid.fit(X_tr, y_tr)
+    
+    print("Checkpoint 3")
+     
+    # print best parameter after tuning 
+    predictions = grid.predict(X_tst) 
+    print(predictions)
+    print(y_tst)
+       
+    # print classification report 
+    print(metrics.classification_report(y_tst, predictions))
+    return grid.fit
+    
+        
