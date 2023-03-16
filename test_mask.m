@@ -20,13 +20,26 @@ montage(image,'Indices',1:1:size(image,3),'DisplayRange',[])
 
 %Mostro le slice centrali delle immagini NIFTI
 central_slice=round(size(image,3)/2);
+k_slice=40;
+
+segmentation(segmentation~=0 & segmentation~=18 & segmentation~=54)=1;
+segmentation(segmentation==18 | segmentation==54)=0.5;
+
 figure('Name', 'DTI, central slice')
-imagesc(image(:,:,central_slice))
+imagesc(image(:,:,k_slice))
 % colormap("gray")
 figure('Name', 'Mask, central slice')
-imagesc(segmentation(:,:,central_slice))
+imagesc(segmentation(:,:,k_slice))
 xlabel('Columns')
 ylabel('Rows')
+
+for i=44:46
+    figure(i)
+    subplot(1,2,1)
+    imagesc(image(:,:,i))
+    subplot(1,2,2)
+    imagesc(segmentation(:,:,i))
+end
 
 %% Segmentazione
 % Importo la tabella di conversione Indice-Regione
