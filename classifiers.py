@@ -14,9 +14,7 @@ from sklearn import svm, metrics
 from sklearn.feature_selection import RFECV
 import scipy
 
-C_range=scipy.stats.expon.rvs(size=100)
-g=scipy.stats.expon(scale=.1)
-gamma_range=g.rvs(size=100)
+
 
 
 
@@ -118,11 +116,20 @@ def RFPipeline_PCA(a,c,n_iter,cv):
 
 def SVMPipeline(a,c,ker:str):
     
-    param_grid = {'C': C_range,
-              'gamma': gamma_range, 
-              'kernel': [ker], 
-              'class_weight':['balanced', None]}
+    if ker=='linear':
     
+        param_grid = {'C': scipy.stats.expon.rvs(size=100),
+                  'gamma': scipy.stats.expon(scale=.1).rvs(size=100), 
+                  'kernel': [ker], 
+                  'class_weight':['balanced', None]}
+    else:
+        param_grid = {'C': np.logspace(-2, 10, 13),
+                  'gamma': np.logspace(-9, 3, 13) , 
+                  'kernel': [ker], 
+                  'class_weight':['balanced', None]}
+          
+        
+        
     X=a.values
     y=c.values
     

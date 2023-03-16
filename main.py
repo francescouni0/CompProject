@@ -17,7 +17,7 @@ paths_masks=reading.data_path("Diffusion_space_segmentations-20230215T134839Z-00
 
 mean_fa, std_fa ,group=feature_extractor(paths_FA,paths_masks)
 
-mean_md, std_md ,_=feature_extractor(paths_FA,paths_masks)
+mean_md, std_md ,_=feature_extractor(paths_MD,paths_masks)
 
 
 #RFPipeline_noPCA(a,c,10,5)
