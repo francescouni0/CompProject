@@ -138,7 +138,7 @@ def SVMPipeline_feature_reduction(a,c,ker):
         step=1,
         cv=5,
         scoring="accuracy",
-        min_features_to_select=len(a["Subject"]),
+        min_features_to_select=len(y),
         n_jobs=-1,
     )
     
