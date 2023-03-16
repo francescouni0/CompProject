@@ -17,6 +17,12 @@ import matlab.engine
 #DEFINISCO FUNZIONE DI ESTRAZIONE FEATURE
 
 def feature_extractor(image_filepaths, masks_filepaths):
+    """_summary_
+
+    Args:
+        image_filepaths (_type_): _description_
+        masks_filepaths (_type_): _description_
+    """
     # Start MATLAB engine
     eng = matlab.engine.start_matlab()
 

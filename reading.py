@@ -4,6 +4,15 @@ import nibabel as nib
 # La funzione scorre tutte le cartelle e seleziona i file nelle cartelle e sottocartelle
 # selezionate, restituisce un array di paths per i file della sottocartella
 def data_path(dir,subdir):
+    """_summary_
+
+    Args:
+        dir (_type_): _description_
+        subdir (_type_): _description_
+
+    Returns:
+        _type_: _description_
+    """
     r = []
     a = []
 
