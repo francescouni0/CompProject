@@ -116,7 +116,7 @@ def RFPipeline_PCA(a,c,n_iter,cv):
 
 
 
-def SVMPipeline_feature_reduction(a,c,ker):
+def SVMPipeline(a,c,ker:str):
     
     param_grid = {'C': C_range,
               'gamma': gamma_range, 
@@ -131,35 +131,20 @@ def SVMPipeline_feature_reduction(a,c,ker):
     
     clf = svm.SVC(kernel=ker)
 
-    print("Checkpoint 0")
-    
-    rfecv = RFECV(
-        estimator=clf,
-        step=1,
-        cv=5,
-        scoring="accuracy",
-        min_features_to_select=len(y),
-        n_jobs=-1,
-    )
-    
-    print("Checkpoint 1")
-    
-    grid = GridSearchCV(rfecv, param_grid, refit = True, n_jobs=-1) 
-    
-    print("Checkpoint 2")
-    
-    # fitting the model
-    grid.fit(X_tr, y_tr)
-    
-    print("Checkpoint 3")
+    grid = GridSearchCV(clf, param_grid, refit = True,n_jobs=-1) 
+
+    # fitting the model for grid search 
+    grid.fit(X_tr, y_tr) 
      
     # print best parameter after tuning 
-    predictions = grid.predict(X_tst) 
-    print(predictions)
+    print(grid.best_params_) 
+    
+    grid_predictions = grid.predict(X_tst) 
+    print(grid_predictions)
     print(y_tst)
        
     # print classification report 
-    print(metrics.classification_report(y_tst, predictions)) 
+    print(metrics.classification_report(y_tst, grid_predictions)) 
         
     return grid.fit
     
