@@ -1,4 +1,4 @@
-from classifiers import RFPipeline_noPCA, RFPipeline_PCA
+from classifiers import RFPipeline_noPCA, RFPipeline_PCA , SVMPipeline_feature_reduction
 from sklearn.model_selection import train_test_split
 
 
@@ -16,4 +16,4 @@ a, b ,c=feature_extractor(paths_FA,paths_masks)
 
 #RFPipeline_noPCA(a,c,10,5)
 
-RFPipeline_PCA(a,c,10,5)
+SVMPipeline_feature_reduction(a,c,"linear")
