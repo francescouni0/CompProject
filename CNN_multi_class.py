@@ -24,7 +24,7 @@ class CNN_multi(keras.Sequential):
     
 
 
-    def __init__(self,images):
+    def __init__(self,images,labels):
         super().__init__()
         
         X_train, x_test, Y_train, y_test = train_test_split(images[:,:,:], labels, test_size=0.2, random_state=10)
