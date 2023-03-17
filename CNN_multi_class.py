@@ -59,6 +59,8 @@ class CNN_multi(keras.Sequential):
        
 
     def build_model(self):
+        
+        shape=(110, 110, 3)
         model = Sequential([
       
       Conv2D(8, (3,3), padding='valid', input_shape=shape, kernel_regularizer='l1'),
