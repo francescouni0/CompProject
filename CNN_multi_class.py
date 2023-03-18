@@ -49,7 +49,7 @@ class MyModel(tensorflow.keras.Model):
         x = self.fc1(x)
         return self.fc2(x)
     
-    def compile_and_fit(self, x_train, y_train, x_val, y_val):
+    def compile_and_fit(self, x_train, y_train, x_val, y_val,x_test,y_test):
         self.compile(optimizer=SGD(learning_rate=0.01), loss=losses.Hinge(), metrics=['accuracy'])
         reduce_on_plateau = ReduceLROnPlateau(
             monitor="val_loss",
@@ -81,7 +81,7 @@ class MyModel(tensorflow.keras.Model):
                             validation_data=(x_val, y_val),
                             validation_steps=round(len(x_val)/batch_size),
                             callbacks=[reduce_on_plateau, early_stopping])
-        self.loss_plot(history), self.accuracy_roc(x_val,y_val)
+        self.loss_plot(history), self.accuracy_roc(x_val,y_val),self.test_roc(x_test,y_test)
 
     def loss_plot(self, history):
         acc = history.history['accuracy']
@@ -127,7 +127,27 @@ class MyModel(tensorflow.keras.Model):
         plt.title('Validation ROC')
         plt.legend(loc="lower right")
         plt.show()
-
+        
+    def test_roc(self,x_test,y_test):
+        test_loss, test_acc = self.evaluate(x_test, y_test)
+        print('\nTest accuracy: %.3f' % (test_acc))
+        
+        preds_test = self.predict(x_test, verbose=1)
+        fpr, tpr, _ = roc_curve(y_test, preds_test)
+        roc_auc = auc(fpr, tpr)
+        print('AUC = %.3f'% (roc_auc))
+        
+        plt.figure()
+        lw = 2
+        plt.plot(fpr, tpr, color='darkorange', lw=lw, label='ROC curve (area = %0.2f)' % roc_auc)
+        plt.plot([0, 1], [0, 1], color='navy', lw=lw, linestyle='--')
+        plt.xlim([0.0, 1.0])
+        plt.ylim([0.0, 1.05])
+        plt.xlabel('False Positive Rate')
+        plt.ylabel('True Positive Rate')
+        plt.title('Test ROC')
+        plt.legend(loc="lower right")
+        plt.show()
 
 
 
@@ -213,5 +233,5 @@ shape=(110, 110, 3)
 model=MyModel(shape)
 
 
-model.compile_and_fit(x_train,y_train,x_val,y_val)
+model.compile_and_fit(x_train,y_train,x_val,y_val,x_test,y_test)
 
