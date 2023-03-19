@@ -1,4 +1,5 @@
 import reading
+import CNN_multi_utilities
 import numpy as np
 import pandas as pd
 import nibabel as nib
@@ -6,7 +7,7 @@ import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import BatchNormalization, Dense, Flatten, InputLayer, Activation, Dropout
-from tensorflow.keras.layers import Conv2D, Conv3D, AveragePooling2D, AveragePooling3D, MaxPooling2D, MaxPooling3D,GlobalAvgPool2D
+from tensorflow.keras.layers import Conv2D, AveragePooling2D, MaxPooling2D, GlobalAvgPool2D
 from tensorflow.keras.optimizers import Adam, SGD
 from keras.callbacks import ReduceLROnPlateau, EarlyStopping
 from sklearn.metrics import roc_curve, auc
@@ -153,13 +154,15 @@ class MyModel(tensorflow.keras.Model):
 
 
 
-        """Prova Prova
         """
-        
-paths_FA= reading.data_path("Diffusion_parameters_maps-20230215T134959Z-001","corrected_FA_image")
-paths_MD= reading.data_path("Diffusion_parameters_maps-20230215T134959Z-001","corrected_MD_image")
-paths_AD= reading.data_path("Diffusion_parameters_maps-20230215T134959Z-001","corrected_AD_image")
-paths_RD= reading.data_path("Diffusion_parameters_maps-20230215T134959Z-001","corrected_RD_image")
+        Prova Prova
+        """
+
+
+paths_FA = reading.data_path("Diffusion_parameters_maps-20230215T134959Z-001", "corrected_FA_image")
+paths_MD = reading.data_path("Diffusion_parameters_maps-20230215T134959Z-001", "corrected_MD_image")
+paths_AD = reading.data_path("Diffusion_parameters_maps-20230215T134959Z-001", "corrected_AD_image")
+paths_RD = reading.data_path("Diffusion_parameters_maps-20230215T134959Z-001", "corrected_RD_image")
 
 #paths_FA.sort(key=lambda x: int(os.path.basename(x).split('_')[3]))
 #paths_MD.sort(key=lambda x: int(os.path.basename(x).split('_')[3]))
@@ -167,12 +170,12 @@ paths_RD= reading.data_path("Diffusion_parameters_maps-20230215T134959Z-001","co
 #paths_RD.sort(key=lambda x: int(os.path.basename(x).split('_')[3]))
 
 dataset=pd.DataFrame(pd.read_csv('ADNI_dataset_diffusion.csv'))
-dataset.sort_values(by=["Subject"],inplace=True,ignore_index=True)
-dataset["Path FA"]=paths_FA
-dataset["Path MD"]=paths_MD
-dataset["Path AD"]=paths_AD
-dataset["Path RD"]=paths_RD
-pd.set_option("max_colwidth",None)       
+dataset.sort_values(by=["Subject"], inplace=True, ignore_index=True)
+dataset["Path FA"] = paths_FA
+dataset["Path MD"] = paths_MD
+dataset["Path AD"] = paths_AD
+dataset["Path RD"] = paths_RD
+pd.set_option("max_colwidth", None)
 
 
 images_list = []
@@ -190,29 +193,27 @@ labels = np.array(dataset["Group"], dtype='int64')
 
 print(np.shape(images))
 
-
-
-augmentation_rot = Sequential([layers.RandomRotation((-0.5,0.5))])
+augmentation_rot = Sequential([layers.RandomRotation((-0.5, 0.5))])
 augmentation_zoom = Sequential([layers.RandomZoom(0.5)])
 augmentation_crop = Sequential([layers.RandomCrop(110, 110, seed=3)])
-augmentation_cont = Sequential([layers.RandomContrast(1,seed=5)])
+augmentation_cont = Sequential([layers.RandomContrast(1, seed=5)])
 augmentation_zoom2 = Sequential([layers.RandomZoom(0.6)])
 augmentation_zoom3 = Sequential([layers.RandomZoom(0.7)])
 augmentation_zoom4 = Sequential([layers.RandomZoom(0.65)])
-augmentation_cont2 = Sequential([layers.RandomContrast(0.8,seed=8)])
-
-
-
-
+augmentation_cont2 = Sequential([layers.RandomContrast(0.8, seed=8)])
 
 images_rotated = augmentation_rot(images)
 images_zoomed = augmentation_zoom(images)
 images_croped = augmentation_crop(images)
-images_contr= augmentation_cont(images)
+images_contr = augmentation_cont(images)
 images_zoomed2 = augmentation_zoom2(images)
-images_zoomed3=augmentation_zoom3(images)
-images_zoomed4=augmentation_zoom4(images)
-images_contr2= augmentation_cont2(images)
+images_zoomed3 = augmentation_zoom3(images)
+images_zoomed4 = augmentation_zoom4(images)
+images_contr2 = augmentation_cont2(images)
+
+images = np.concatenate((images, images_rotated, images_zoomed, images_croped, images_contr, images_zoomed2, images_zoomed3, images_zoomed4, images_contr2), axis=0)
+
+labels = np.concatenate((labels, labels, labels, labels, labels, labels, labels, labels, labels))
 
 
 
