@@ -28,7 +28,7 @@ def import_dataset(k_slice=45):
         images_list.append(image)
 
     images = np.array(images_list, dtype='float64')
-    labels = np.asarray(dataset["Group"])
+    labels = np.asarray(dataset["Group"],dtype='float64')
 
     return images, labels
 
