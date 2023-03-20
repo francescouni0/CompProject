@@ -29,7 +29,7 @@ if __name__ == '__main__':
         "--epochs",
         metavar="",
         help="Number of epochs for training",
-        default="1000",
+        default=1000,
     )
     
     parser.add_argument(
@@ -38,7 +38,7 @@ if __name__ == '__main__':
         metavar="",
         
         help="Batch size for training",
-        default="10",
+        default=10,
     )
 
     args = parser.parse_args()

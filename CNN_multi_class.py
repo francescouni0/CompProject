@@ -89,7 +89,7 @@ class MyModel(tensorflow.keras.Model):
         self.loss_plot(history)
         self.accuracy_roc(x_val, y_val)
         self.test_roc(x_test, y_test)
-        self.save(Path('model.h5'))
+        self.save_weights(Path('model.h5'))
 
     def loss_plot(self, history):
         acc = history.history['accuracy']
