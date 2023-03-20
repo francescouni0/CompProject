@@ -83,7 +83,7 @@ class MyModel(tensorflow.keras.Model):
                             validation_data=(x_val, y_val),
                             validation_steps=round(len(x_val)/batch_size),
                             callbacks=[reduce_on_plateau, early_stopping])
-        self.loss_plot(history), self.accuracy_roc(x_val,y_val),self.test_roc(x_test,y_test),self.save(Path('model.h5'))
+        self.loss_plot(history), self.accuracy_roc(x_val,y_val),self.test_roc(x_test,y_test),self.save_weights(Path('model.h5'))
 
 
     def loss_plot(self, history):
@@ -152,12 +152,14 @@ class MyModel(tensorflow.keras.Model):
         plt.legend(loc="lower right")
         plt.show()
     
-    def load(self, path,x_val,y_val,x_test,y_test):
-        loaded_model = keras.models.load_model(path)
-        history=loaded_model.fit(x_val, y_val)
-        self.loss_plot(history), self.accuracy_roc(x_val,y_val),self.test_roc(x_test,y_test)
+    def load(self, path,x_train,y_train,x_val,y_val,x_test,y_test):
+        self.compile(optimizer=SGD(learning_rate=0.01), loss=losses.Hinge(), metrics=['accuracy'])
+        
+        self.train_on_batch(x_train, y_train)
 
-
+        self.load_weights(path)
+        
+        self.compile_and_fit(x_train, y_train, x_val, y_val,x_test,y_test)
 
 
 
@@ -180,6 +182,5 @@ shape=(110, 110, 3)
 
 model=MyModel(shape)
 
-
-model.compile_and_fit(x_train,y_train,x_val,y_val,x_test,y_test)
+model.load('model.h5',x_train,y_train,x_val,y_val,x_test,y_test)
 
