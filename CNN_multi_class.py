@@ -52,7 +52,7 @@ class MyModel(tensorflow.keras.Model):
 
         return self.fc2(x)
     
-    def compile_and_fit(self, x_train, y_train, x_val, y_val, x_test, y_test):
+    def compile_and_fit(self, x_train, y_train, x_val, y_val, x_test, y_test,n_epochs,batchsize):
         self.compile(optimizer=SGD(learning_rate=0.01), loss=losses.Hinge(), metrics=['accuracy'])
 
         reduce_on_plateau = ReduceLROnPlateau(
@@ -75,8 +75,8 @@ class MyModel(tensorflow.keras.Model):
             restore_best_weights=False,
             start_from_epoch=10)
 
-        epochs = 1000
-        batch_size = 10
+        epochs = n_epochs
+        batch_size = batchsize
         history = self.fit(x_train, y_train,
                            batch_size=batch_size,
                            epochs=epochs,
@@ -89,7 +89,7 @@ class MyModel(tensorflow.keras.Model):
         self.loss_plot(history)
         self.accuracy_roc(x_val, y_val)
         self.test_roc(x_test, y_test)
-        self.save(Path('model.h5'))
+        self.save_weights(Path('model.h5'))
 
     def loss_plot(self, history):
         acc = history.history['accuracy']
@@ -159,33 +159,11 @@ class MyModel(tensorflow.keras.Model):
         plt.legend(loc="lower right")
         plt.show()
     
-    def load(self, path, x_val, y_val, x_test, y_test):
-        loaded_model = keras.models.load_model(path)
-        history=loaded_model.fit(x_val, y_val)
+    def load(self, path,x_train,y_train,x_val,y_val,x_test,y_test,n_epochs,batchsize):
+        self.compile(optimizer=SGD(learning_rate=0.01), loss=losses.Hinge(), metrics=['accuracy'])
+        
+        self.train_on_batch(x_train, y_train)
 
-        self.loss_plot(history)
-        self.accuracy_roc(x_val, y_val)
-        self.test_roc(x_test, y_test)
-
-
-
-
-
-        """
-        Prova Prova
-        """
-
-
-images, labels =CNN_multi_utilities.import_dataset()
-
-augmented_images, augmented_labels = CNN_multi_utilities.data_augmentation(images, labels)
-
-x_train, y_train, x_val, y_val, x_test, y_test=CNN_multi_utilities.train_val_test_split(augmented_images, augmented_labels)
-
-shape=(110, 110, 3)
-
-model=MyModel(shape)
-
-
-model.compile_and_fit(x_train,y_train,x_val,y_val,x_test,y_test)
-
+        self.load_weights(path)
+        
+        self.compile_and_fit(x_train, y_train, x_val, y_val,x_test,y_test,n_epochs,batchsize)

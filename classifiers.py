@@ -15,36 +15,37 @@ from sklearn.feature_selection import RFECV
 import scipy
 
 
-param_dist = {'n_estimators': randint(50, 500),
-              'max_depth': randint(1, 20)}
 
 
-def RFPipeline_noPCA(df1, df2, n_iter, cv):
+
+
+param_dist = {'n_estimators': randint(50,500),
+              'max_depth': randint(1,20)}
+
+def RFPipeline_noPCA(a,c,n_iter,cv):
     """_summary_
 
     Args:
-        df1 (_type_): _description_
-        df2 (_type_): _description_
+        a (_type_): _description_
+        c (_type_): _description_
         n_iter (_type_): _description_
         cv (_type_): _description_
 
     Returns:
         _type_: _description_
     """
+    
 
-    X = df1.values
-    y = df2.values
-    region = list(df1.columns.values)
+#a and c should be pandas dataframe
+
+    
+    X=a.values
+    y=c.values
+    region = list(a.columns.values)
 
     X_tr, X_tst, y_tr, y_tst = train_test_split(X, y, test_size=.1, random_state=6)
 
-    pipeline_simple = Pipeline(steps=[("hyper_opt", RandomizedSearchCV(RandomForestClassifier(),
-                                                                       param_distributions=param_dist,
-                                                                       n_iter=n_iter,
-                                                                       cv=cv))
-                                      ]
-                               )
-
+    pipeline_simple = Pipeline(steps=[("hyper_opt", RandomizedSearchCV(RandomForestClassifier(), param_distributions = param_dist, n_iter=n_iter, cv=cv))])
     pipeline_simple.fit(X_tr, y_tr)
 
     y_pred = pipeline_simple.predict(X_tst)
@@ -53,35 +54,38 @@ def RFPipeline_noPCA(df1, df2, n_iter, cv):
     precision = precision_score(y_tst, y_pred)
     recall = recall_score(y_tst, y_pred)
 
-    print("Accuracy: ", accuracy)
-    print("Precision: ", precision)
-    print("Recall: ", recall)
+
+    print("Accuracy:", accuracy)
+    print("Precision:", precision)
+    print("Recall:", recall)
+
 
     ax = plt.gca()
     rnds_disp = RocCurveDisplay.from_estimator(pipeline_simple, X_tst, y_tst, ax=ax, alpha=0.8)
 
-    plt.show()
 
+    plt.show()
+    
+    
+    
     for i in range(3):
         tree = pipeline_simple["hyper_opt"].best_estimator_[i]
-        dot_data = export_graphviz(tree,
-                                   feature_names=region,
-                                   filled=True,
-                                   impurity=False,
-                                   proportion=True,
-                                   class_names=["CN", "AD"])
+        dot_data = export_graphviz(tree,feature_names=region,  filled=True, impurity=False, proportion=True,class_names=["CN","AD"])
         graph = graphviz.Source(dot_data)
         graph.render(view=True)
+
 
     return pipeline_simple.fit
 
 
-def RFPipeline_PCA(df1, df2, n_iter, cv):
+
+
+def RFPipeline_PCA(a,c,n_iter,cv):
     """_summary_
 
     Args:
-        df1 (_type_): _description_
-        df2 (_type_): _description_
+        a (_type_): _description_
+        c (_type_): _description_
         n_iter (_type_): _description_
         cv (_type_): _description_
 
@@ -89,20 +93,19 @@ def RFPipeline_PCA(df1, df2, n_iter, cv):
         _type_: _description_
     """
 
-    X = df1.values
-    y = df2.values
 
-    region = list(df1.columns.values)
+#a and c should be pandas dataframe
+
+    X=a.values
+    y=c.values
+
+
+    region = list(a.columns.values)
+
 
     X_tr, X_tst, y_tr, y_tst = train_test_split(X, y, test_size=.1, random_state=6)
 
-    pipeline_PCA = Pipeline(steps=[("dim_reduction", PCA()),
-                                   ("hyper_opt", RandomizedSearchCV(RandomForestClassifier(),
-                                                                    param_distributions=param_dist,
-                                                                    n_iter=n_iter,
-                                                                    cv=cv))
-                                   ]
-                            )
+    pipeline_PCA = Pipeline(steps=[("dim_reduction", PCA()),("hyper_opt", RandomizedSearchCV(RandomForestClassifier(), param_distributions = param_dist, n_iter=n_iter, cv=cv))])
     pipeline_PCA.fit(X_tr, y_tr)
 
     y_pred = pipeline_PCA.predict(X_tst)
@@ -111,51 +114,63 @@ def RFPipeline_PCA(df1, df2, n_iter, cv):
     precision = precision_score(y_tst, y_pred)
     recall = recall_score(y_tst, y_pred)
 
-    print("Accuracy: ", accuracy)
-    print("Precision: ", precision)
-    print("Recall: ", recall)
+
+    print("Accuracy:", accuracy)
+    print("Precision:", precision)
+    print("Recall:", recall)
+
 
     ax = plt.gca()
     rnds_disp = RocCurveDisplay.from_estimator(pipeline_PCA, X_tst, y_tst, ax=ax, alpha=0.8)
 
-    plt.show()
 
-    print("Components shape is:", np.shape(pipeline_PCA["dim_reduction"].components_)[0])
+    plt.show()
+    
+    
+    print("Components shape is:",np.shape(pipeline_PCA["dim_reduction"].components_)[0])
+        
+    
 
     return pipeline_PCA.fit
 
 
-def SVMPipeline(df1, df2, ker: str):
+
+
+def SVMPipeline(a,c,ker:str):
     """_summary_
 
     Args:
-        df1 (_type_): _description_
-        df2 (_type_): _description_
+        a (_type_): _description_
+        c (_type_): _description_
         ker (str): _description_
 
     Returns:
         _type_: _description_
     """
     
-    if ker == 'linear':
+    if ker=='linear':
+    
         param_grid = {'C': scipy.stats.expon.rvs(size=100),
-                      'gamma': scipy.stats.expon(scale=.1).rvs(size=100),
-                      'kernel': [ker],
-                      'class_weight': ['balanced', None]}
+                  'gamma': scipy.stats.expon(scale=.1).rvs(size=100), 
+                  'kernel': [ker], 
+                  'class_weight':['balanced', None]}
     else:
         param_grid = {'C': np.logspace(-2, 10, 13),
-                      'gamma': np.logspace(-9, 3, 13),
-                      'kernel': [ker],
-                      'class_weight': ['balanced', None]}
-
-    X = df1.values
-    y = df2.values
+                  'gamma': np.logspace(-9, 3, 13) , 
+                  'kernel': [ker], 
+                  'class_weight':['balanced', None]}
+          
+        
+        
+    X=a.values
+    y=c.values
     
     X_tr, X_tst, y_tr, y_tst = train_test_split(X, y, test_size=.1, random_state=6)
-
+    
+    
     clf = svm.SVC(kernel=ker)
 
-    grid = GridSearchCV(clf, param_grid, refit=True, n_jobs=-1)
+    grid = GridSearchCV(clf, param_grid, refit = True,n_jobs=-1) 
 
     # fitting the model for grid search 
     grid.fit(X_tr, y_tr) 
@@ -173,30 +188,35 @@ def SVMPipeline(df1, df2, ker: str):
     return grid.fit
 
 
-def SVMPipeline_feature_red(df1, df2):
+
+
+
+def SVMPipeline_feature_red(a,c):
     """_summary_
 
     Args:
-        df1 (_type_): _description_
-        df2 (_type_): _description_
+        a (_type_): _description_
+        c (_type_): _description_
 
     Returns:
         _type_: _description_
     """
-
-    X = df1.values
-    y = df2.values
+    X=a.values
+    y=c.values
     
     X_tr, X_tst, y_tr, y_tst = train_test_split(X, y, test_size=.1, random_state=6)
-
-    C_range = scipy.stats.expon.rvs(size=10)
-    g = scipy.stats.expon(scale=.1)
-    gamma_range = g.rvs(size=10)
+       
+        
+        
+        
+    C_range=scipy.stats.expon.rvs(size=10)
+    g=scipy.stats.expon(scale=.1)
+    gamma_range=g.rvs(size=10)
     # defining parameter range 
     param_grid = {'estimator__C': C_range,
                   'estimator__gamma': gamma_range, 
                   'estimator__kernel': ['linear'], 
-                  'estimator__class_weight': ['balanced', None]}
+                  'estimator__class_weight':['balanced', None]}
     
     clf = svm.SVC(kernel="linear")
     
@@ -213,7 +233,7 @@ def SVMPipeline_feature_red(df1, df2):
     
     print("Checkpoint 1")
     
-    grid = GridSearchCV(rfecv, param_grid, refit=True, n_jobs=-1)
+    grid = GridSearchCV(rfecv, param_grid, refit = True, n_jobs=-1) 
     
     print("Checkpoint 2")
     
@@ -230,3 +250,6 @@ def SVMPipeline_feature_red(df1, df2):
     # print classification report 
     print(metrics.classification_report(y_tst, predictions))
     return grid.fit
+    
+        
+        
