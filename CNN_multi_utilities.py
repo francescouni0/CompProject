@@ -57,7 +57,7 @@ def data_augmentation(images, labels):
         axis=0
     )
     augmented_labels=labels
-    augmented_labels =np.concatenate(augmented_labels,labels,labels,labels,labels,labels,labels,labels,labels)
+    augmented_labels =np.concatenate((augmented_labels,labels,labels,labels,labels,labels,labels,labels,labels))
 
     return augmented_images, augmented_labels
 
