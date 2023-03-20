@@ -58,7 +58,7 @@ def data_augmentation(images, labels):
     )
 
     augmented_labels = labels
-    for i in range(8):
+    for _ in range(8):
         augmented_labels = np.concatenate(augmented_labels, labels)
 
     return augmented_images, augmented_labels

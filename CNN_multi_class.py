@@ -169,7 +169,7 @@ class MyModel(tensorflow.keras.Model):
 images, labels =CNN_multi_utilities.import_dataset()
 
 
-
+augmented_labels = labels
 
 for i in range(8):
     augmented_labels = np.concatenate(augmented_labels, labels)
