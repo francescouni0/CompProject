@@ -28,9 +28,10 @@ def import_dataset(k_slice=45):
         images_list.append(image)
 
     images = np.array(images_list, dtype='float64')
-    labels = np.asarray(dataset["Group"],dtype='float64')
+    labels = np.asarray(dataset["Group"], dtype='float64')
 
     return images, labels
+
 
 def data_augmentation(images, labels):
     aug_rotation = Sequential([RandomRotation((-0.5, 0.5))])
@@ -56,10 +57,23 @@ def data_augmentation(images, labels):
         ),
         axis=0
     )
-    augmented_labels=labels
-    augmented_labels =np.concatenate((augmented_labels,labels,labels,labels,labels,labels,labels,labels,labels))
+
+    augmented_labels = np.concatenate(
+        (
+            labels,
+            labels,
+            labels,
+            labels,
+            labels,
+            labels,
+            labels,
+            labels,
+            labels,
+        )
+    )
 
     return augmented_images, augmented_labels
+
 
 def train_val_test_split(images, labels):
     X_train, x_test, Y_train, y_test = train_test_split(images[:, :, :], labels, test_size=0.2, random_state=10)
