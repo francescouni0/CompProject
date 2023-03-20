@@ -57,8 +57,7 @@ def data_augmentation(images, labels):
         axis=0
     )
 
-    augmented_labels = labels * 8
-  
+    augmented_labels = [labels] * 8
 
     return augmented_images, augmented_labels
 

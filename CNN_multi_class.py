@@ -169,11 +169,8 @@ class MyModel(tensorflow.keras.Model):
 images, labels =CNN_multi_utilities.import_dataset()
 
 
-augmented_labels = labels
 
-for i in range(8):
-    augmented_labels = np.concatenate(augmented_labels, labels)
-'''
+
 
 augmented_images, augmented_labels = CNN_multi_utilities.data_augmentation(images, labels)
 
@@ -186,4 +183,3 @@ model=MyModel(shape)
 
 model.compile_and_fit(x_train,y_train,x_val,y_val,x_test,y_test)
 
-'''
