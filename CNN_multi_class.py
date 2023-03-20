@@ -16,7 +16,8 @@ from tensorflow.keras import layers
 from tensorflow.keras import losses
 from tensorflow import keras
 import tensorflow
-
+from pathlib import Path
+import CNN_multi_utilities
 
 
 class MyModel(tensorflow.keras.Model):
@@ -82,7 +83,8 @@ class MyModel(tensorflow.keras.Model):
                             validation_data=(x_val, y_val),
                             validation_steps=round(len(x_val)/batch_size),
                             callbacks=[reduce_on_plateau, early_stopping])
-        self.loss_plot(history), self.accuracy_roc(x_val,y_val),self.test_roc(x_test,y_test)
+        self.loss_plot(history), self.accuracy_roc(x_val,y_val),self.test_roc(x_test,y_test),self.save(Path('model.h5'))
+
 
     def loss_plot(self, history):
         acc = history.history['accuracy']
@@ -149,6 +151,11 @@ class MyModel(tensorflow.keras.Model):
         plt.title('Test ROC')
         plt.legend(loc="lower right")
         plt.show()
+    
+    def load(self, path,x_val,y_val,x_test,y_test):
+        loaded_model = keras.models.load_model(path)
+        history=loaded_model.fit(x_val, y_val)
+        self.loss_plot(history), self.accuracy_roc(x_val,y_val),self.test_roc(x_test,y_test)
 
 
 
@@ -159,75 +166,10 @@ class MyModel(tensorflow.keras.Model):
         """
 
 
-paths_FA = reading.data_path("Diffusion_parameters_maps-20230215T134959Z-001", "corrected_FA_image")
-paths_MD = reading.data_path("Diffusion_parameters_maps-20230215T134959Z-001", "corrected_MD_image")
-paths_AD = reading.data_path("Diffusion_parameters_maps-20230215T134959Z-001", "corrected_AD_image")
-paths_RD = reading.data_path("Diffusion_parameters_maps-20230215T134959Z-001", "corrected_RD_image")
+images, labels =CNN_multi_utilities.import_dataset()
+augmented_images, augmented_labels = CNN_multi_utilities.data_augmentation(images, labels)
 
-#paths_FA.sort(key=lambda x: int(os.path.basename(x).split('_')[3]))
-#paths_MD.sort(key=lambda x: int(os.path.basename(x).split('_')[3]))
-#paths_AD.sort(key=lambda x: int(os.path.basename(x).split('_')[3]))
-#paths_RD.sort(key=lambda x: int(os.path.basename(x).split('_')[3]))
-
-dataset=pd.DataFrame(pd.read_csv('ADNI_dataset_diffusion.csv'))
-dataset.sort_values(by=["Subject"], inplace=True, ignore_index=True)
-dataset["Path FA"] = paths_FA
-dataset["Path MD"] = paths_MD
-dataset["Path AD"] = paths_AD
-dataset["Path RD"] = paths_RD
-pd.set_option("max_colwidth", None)
-
-
-images_list = []
-k_slice = 45
-
-for i, datapath in enumerate(dataset["Path FA"]):
-    image_FA = np.asarray(nib.load(dataset["Path FA"][i]).get_fdata())
-    image_MD = np.asarray(nib.load(dataset["Path MD"][i]).get_fdata())
-    image_AD = np.asarray(nib.load(dataset["Path AD"][i]).get_fdata())
-    image = np.stack((image_FA[k_slice], image_MD[k_slice], image_AD[k_slice]), axis=-1)
-    images_list.append(image)
-    
-images = np.array(images_list, dtype='float64')
-labels = np.array(dataset["Group"], dtype='int64')
-
-print(np.shape(images))
-
-augmentation_rot = Sequential([layers.RandomRotation((-0.5, 0.5))])
-augmentation_zoom = Sequential([layers.RandomZoom(0.5)])
-augmentation_crop = Sequential([layers.RandomCrop(110, 110, seed=3)])
-augmentation_cont = Sequential([layers.RandomContrast(1, seed=5)])
-augmentation_zoom2 = Sequential([layers.RandomZoom(0.6)])
-augmentation_zoom3 = Sequential([layers.RandomZoom(0.7)])
-augmentation_zoom4 = Sequential([layers.RandomZoom(0.65)])
-augmentation_cont2 = Sequential([layers.RandomContrast(0.8, seed=8)])
-
-images_rotated = augmentation_rot(images)
-images_zoomed = augmentation_zoom(images)
-images_croped = augmentation_crop(images)
-images_contr = augmentation_cont(images)
-images_zoomed2 = augmentation_zoom2(images)
-images_zoomed3 = augmentation_zoom3(images)
-images_zoomed4 = augmentation_zoom4(images)
-images_contr2 = augmentation_cont2(images)
-
-images = np.concatenate((images, images_rotated, images_zoomed, images_croped, images_contr, images_zoomed2, images_zoomed3, images_zoomed4, images_contr2), axis=0)
-
-labels = np.concatenate((labels, labels, labels, labels, labels, labels, labels, labels, labels))
-
-
-
-images = np.concatenate((images, images_rotated, images_zoomed, images_croped, images_contr,images_zoomed2,images_zoomed3,images_zoomed4,images_contr2), axis = 0)
-
-labels = np.concatenate((labels, labels, labels,labels,labels,labels,labels,labels,labels))
-
-def split_2D():
-    X_train, x_test, Y_train, y_test = train_test_split(images[:,:,:], labels, test_size=0.2, random_state=10)
-    x_train, x_val, y_train, y_val = train_test_split(X_train, Y_train, test_size=0.25, random_state=20)
-    return x_train, y_train, x_val, y_val, x_test, y_test
-        
-
-x_train, y_train, x_val, y_val, x_test, y_test = split_2D()
+x_train, y_train, x_val, y_val, x_test, y_test=CNN_multi_utilities.train_val_test_split(augmented_images, augmented_labels)
 
 shape=(110, 110, 3)
 
