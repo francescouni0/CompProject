@@ -1,3 +1,5 @@
+"""Useful functions for the CNN-2.5D"""
+
 import reading
 import numpy as np
 import pandas as pd
@@ -8,6 +10,24 @@ from tensorflow.keras.layers import RandomRotation, RandomZoom, RandomCrop, Rand
 
 
 def import_dataset(k_slice=45):
+    """
+    Extracts the paths for the FA, MD, and AD diffusion parameter maps and uses them to extract the corresponding NIFTI
+    images, which are subsequently converted to a numpy array.
+
+    Parameters
+    ----------
+    k_slice : int
+        Selected slice. Default value 45 is the slice centered on the hippocampus.
+
+    Returns
+    -------
+    images : ndarray
+        Numpy array containing the DTI images of the subjects. Each slice corresponds to a different parameter (FA, MD
+        and AD in order).
+    labels : ndarray
+        Numpy array containing the corresponding label for each DTI image. Value 1 indicates a subject with alzheimer's
+        disease.
+    """
     paths_FA = reading.data_path("Diffusion_parameters_maps-20230215T134959Z-001", "corrected_FA_image")
     paths_MD = reading.data_path("Diffusion_parameters_maps-20230215T134959Z-001", "corrected_MD_image")
     paths_AD = reading.data_path("Diffusion_parameters_maps-20230215T134959Z-001", "corrected_AD_image")
@@ -34,6 +54,23 @@ def import_dataset(k_slice=45):
 
 
 def data_augmentation(images, labels):
+    """
+    Applies random rotations, zooms, crops and contrast enhancements to increase the size of the input dataset.
+
+    Parameters
+    ----------
+    images : ndarray
+        Numpy array containing the DTI images of the subjects.
+    labels : ndarray
+        Numpy array containing the corresponding label for each DTI image.
+
+    Returns
+    -------
+    augmented_images : ndarray
+        Numpy array containing the original DTI images and the augmented ones.
+    augmented_labels : ndarray
+        Numpy array containing the corresponding label for each image (original and augmented).
+    """
     aug_rotation = Sequential([RandomRotation((-0.5, 0.5))])
     aug_zoom_1 = Sequential([RandomZoom(0.5)])
     aug_zoom_2 = Sequential([RandomZoom(0.6)])
@@ -76,6 +113,32 @@ def data_augmentation(images, labels):
 
 
 def train_val_test_split(images, labels):
+    """
+    Splits arrays into random train, validation and test subsets.
+
+    Parameters
+    ----------
+    images : ndarray
+        Numpy array containing the DTI images of the subjects.
+    labels : ndarray
+        Numpy array containing the corresponding label for each DTI image.
+
+    Returns
+    -------
+    x_train : ndarray
+        Numpy array containing the train subset of DTI images.
+    y_train : ndarray
+        Numpy array containing the labels corresponding to x_train.
+    x_val : ndarray
+        Numpy array containing the validation subset of DTI images.
+    y_val : ndarray
+        Numpy array containing the labels corresponding to x_val.
+    x_test : ndarray
+        Numpy array containing the test subset of DTI images.
+    y_test : ndarray
+        Numpy array containing the labels corresponding to x_test.
+    """
+
     X_train, x_test, Y_train, y_test = train_test_split(images[:, :, :], labels, test_size=0.2, random_state=10)
     x_train, x_val, y_train, y_val = train_test_split(X_train, Y_train, test_size=0.25, random_state=20)
 
