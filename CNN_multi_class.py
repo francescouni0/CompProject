@@ -52,35 +52,34 @@ class MyModel(tensorflow.keras.Model):
 
         return self.fc2(x)
     
-    def compile_and_fit(self, x_train, y_train, x_val, y_val, x_test, y_test,n_epochs,batchsize):
+    def compile_and_fit(self, x_train, y_train, x_val, y_val, x_test, y_test, n_epochs, batchsize):
         self.compile(optimizer=SGD(learning_rate=0.01), loss=losses.Hinge(), metrics=['accuracy'])
 
-        reduce_on_plateau = ReduceLROnPlateau(
-            monitor="val_loss",
-            factor=0.1,
-            patience=20,
-            verbose=0,
-            mode="auto",
-            min_delta=0.0001,
-            cooldown=0,
-            min_lr=0)
+        reduce_on_plateau = ReduceLROnPlateau(monitor="val_loss",
+                                              factor=0.1,
+                                              patience=20,
+                                              verbose=0,
+                                              mode="auto",
+                                              min_delta=0.0001,
+                                              cooldown=0,
+                                              min_lr=0)
 
-        early_stopping = EarlyStopping(
-            monitor="val_loss",
-            min_delta=0,
-            patience=100,
-            verbose=0,
-            mode="auto",
-            baseline=None,
-            restore_best_weights=False,
-            start_from_epoch=10)
+        early_stopping = EarlyStopping(monitor="val_loss",
+                                       min_delta=0,
+                                       patience=100,
+                                       verbose=0,
+                                       mode="auto",
+                                       baseline=None,
+                                       restore_best_weights=False,
+                                       start_from_epoch=10)
 
         epochs = n_epochs
         batch_size = batchsize
+
         history = self.fit(x_train, y_train,
                            batch_size=batch_size,
                            epochs=epochs,
-                           steps_per_epoch = round(len(x_train)/batch_size),
+                           steps_per_epoch=round(len(x_train)/batch_size),
                            verbose=1,
                            validation_data=(x_val, y_val),
                            validation_steps=round(len(x_val)/batch_size),
@@ -159,11 +158,8 @@ class MyModel(tensorflow.keras.Model):
         plt.legend(loc="lower right")
         plt.show()
     
-    def load(self, path,x_train,y_train,x_val,y_val,x_test,y_test,n_epochs,batchsize):
+    def load(self, path, x_train, y_train, x_val, y_val, x_test, y_test, n_epochs, batchsize):
         self.compile(optimizer=SGD(learning_rate=0.01), loss=losses.Hinge(), metrics=['accuracy'])
-        
         self.train_on_batch(x_train, y_train)
-
         self.load_weights(path)
-        
-        self.compile_and_fit(x_train, y_train, x_val, y_val,x_test,y_test,n_epochs,batchsize)
+        self.compile_and_fit(x_train, y_train, x_val, y_val, x_test, y_test, n_epochs, batchsize)

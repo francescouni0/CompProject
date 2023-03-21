@@ -10,7 +10,7 @@ def feature_extractor(image_filepaths, masks_filepaths):
         image_filepaths (_type_): _description_
         masks_filepaths (_type_): _description_
     """
-    # Start MATLAB engine
+# Start MATLAB engine
     eng = matlab.engine.start_matlab()
 
 # Call a MATLAB function
