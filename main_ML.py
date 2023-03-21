@@ -135,9 +135,3 @@ if __name__ == '__main__':
 
     else:
         print('Input not valid, please retry.')
-            
-        
-        
-        
-        
-        
