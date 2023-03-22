@@ -17,8 +17,8 @@ The CNN is evaluated by means the following parameters:
 """
 
 
-import CNN_multi_class
-import CNN_multi_utilities
+import CNN_tools.CNN_multi_class as CNN_multi_class
+import CNN_tools.CNN_multi_utilities as CNN_multi_utilities
 import argparse
 
 

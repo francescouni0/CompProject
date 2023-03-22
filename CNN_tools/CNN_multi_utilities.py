@@ -1,6 +1,6 @@
 """Useful functions for the CNN-2.5D"""
 
-import reading
+import ML_tools.reading as reading
 import numpy as np
 import pandas as pd
 import nibabel as nib

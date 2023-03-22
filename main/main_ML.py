@@ -20,9 +20,9 @@ The binary classifiers are evaluate by means the following parameters:
 
 
 
-import classifiers
-import reading 
-from feature_extractor import feature_extractor, feature_extractor_par
+import ML_tools.classifiers as classifiers
+import ML_tools.reading as reading 
+from ML_tools.feature_extractor import feature_extractor, feature_extractor_par
 import argparse
 
 
