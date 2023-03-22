@@ -1,4 +1,22 @@
-import reading
+
+
+"""CMEPDA Project: Image binary classification using a custom built Convolutional Neural Network.
+This python script trains and evaluates the performance of a custom built Convolutional Neural Network.
+The Neural Network is trained on the hippocampus region of different types of Diffusion Images.
+The data is augmented by applying a random rotation, random zoom to the images and random contrast by means 
+of a costum built function tha uses keras layers.
+Using the color channels as a way of avoiding the use of a 3D convolutional layer.
+As an option the user can use pre-trained weights for the convolutional layers previously trained on the same dataset.
+The subjects are divided in two groups: AD and CN. Corresponding to subjects affected
+with Alzheimer's disease and control subjects respectively.
+The CNN is evaluated by means the following parameters:
+- Accuracy
+- Precision
+- Recall
+- AUC
+"""
+
+
 import CNN_multi_class
 import CNN_multi_utilities
 import argparse
@@ -44,17 +62,27 @@ if __name__ == '__main__':
     args = parser.parse_args()
     
     
+    #IMPORT DATASET OF IMAGES AND LABELS
+    
     
     images, labels =CNN_multi_utilities.import_dataset()
+    
+    #FUNCTION THAT PERFORMS DATA AUGMENTATION   
 
     augmented_images, augmented_labels = CNN_multi_utilities.data_augmentation(images, labels)
+    
+    #TRAIN SPLIT
     
     x_train, y_train, x_val, y_val, x_test, y_test=CNN_multi_utilities.train_val_test_split(augmented_images, augmented_labels)
     
     
     shape=(110, 110, 3)
     
+    #CALLING THE MODEL
+    
     model=CNN_multi_class.MyModel(shape)
+    
+    #OPTION TO LOAD PREVIOUS WEIGHTS AND CONTINUE TRAINING
     
     option = input("Load Previous weights for training? Y or N: ")
     
