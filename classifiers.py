@@ -19,16 +19,21 @@ param_dist = {'n_estimators': randint(50, 500),
 
 
 def RFPipeline_noPCA(df1, df2, n_iter, cv):
-    """_summary_
-
+    """Scikit pipeline that performs a Random Forest classification on the data without 
+    principal compoenent analysis. The input data is split into training and test sets,
+    then a Randomized search is performed to find the best hyperparameters for the model.
+    
+    https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.RandomizedSearchCV.html
+    
+    
     Args:
-        df1 (_type_): _description_
-        df2 (_type_): _description_
-        n_iter (_type_): _description_
-        cv (_type_): _description_
+        df1 (Pandas datafrae): Dataframe that contains the features
+        df2 (Pandas Dataframe): Dataframe that contains the labels
+        n_iter (int): Number of iterations for the Randomized search
+        cv (int): Determines the cross-validation splitting strategy.
 
     Returns:
-        _type_: _description_
+        object: fitted pipeline
     """
 
     X = df1.values
@@ -75,16 +80,20 @@ def RFPipeline_noPCA(df1, df2, n_iter, cv):
 
 
 def RFPipeline_PCA(df1, df2, n_iter, cv):
-    """_summary_
-
+    """Scikit pipeline that performs a Random Forest classification on the data with 
+    principal compoenent analysis. The input data is split into training and test sets,
+    then a Randomized search is performed to find the best hyperparameters for the model.
+    
+    https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html
+    
     Args:
-        df1 (_type_): _description_
-        df2 (_type_): _description_
-        n_iter (_type_): _description_
-        cv (_type_): _description_
+        df1 (Pandas datafrae): Dataframe that contains the features
+        df2 (Pandas Dataframe): Dataframe that contains the labels
+        n_iter (int): Number of iterations for the Randomized search
+        cv (int): Determines the cross-validation splitting strategy.
 
     Returns:
-        _type_: _description_
+        object: Fitted pipeline
     """
 
     X = df1.values
@@ -123,15 +132,17 @@ def RFPipeline_PCA(df1, df2, n_iter, cv):
 
 
 def SVMPipeline(df1, df2, ker: str):
-    """_summary_
+    """Pipeline that performs a SVM classification on the data. The input data is split into
+    training and test sets, than the best hyperparameters are found using a grid search. There is 
+    not a feature reduction step in this pipeline.
 
     Args:
-        df1 (_type_): _description_
-        df2 (_type_): _description_
-        ker (str): _description_
+        df1 (Pandas Dataframe): Dataframe that contains the features
+        df2 (Pandas Dataframe): Dataframe that contains the labels
+        ker (str): kernel type
 
     Returns:
-        _type_: _description_
+        object: Fitted pipeline
     """
     
     if ker == 'linear':
@@ -172,14 +183,15 @@ def SVMPipeline(df1, df2, ker: str):
 
 
 def SVMPipeline_feature_red(df1, df2):
-    """_summary_
-
+    """Pipeline that performs a SVM classification on the data. The input data is split into
+    training and test sets, than the best hyperparameters are found using a grid search. There is a
+    feature reduction step in this pipeline.
     Args:
-        df1 (_type_): _description_
-        df2 (_type_): _description_
+        df1 (Pandas Dataframe): Dataframe that contains the features
+        df2 (Pandas Dataframe): Dataframe that contains the labels
 
     Returns:
-        _type_: _description_
+        object: Fitted pipeline
     """
 
     X = df1.values
