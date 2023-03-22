@@ -19,21 +19,22 @@ param_dist = {'n_estimators': randint(50, 500),
 
 
 def RFPipeline_noPCA(df1, df2, n_iter, cv):
-    """Scikit pipeline that performs a Random Forest classification on the data without 
-    principal compoenent analysis. The input data is split into training and test sets,
-    then a Randomized search is performed to find the best hyperparameters for the model.
+    """
+    Creates pipeline that perform Random Forest classification on the data without Principal Component Analysis. The
+    input data is split into training and test sets, then a Randomized Search (with cross-validation) is performed to
+    find the best hyperparameters for the model.
     
     https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.RandomizedSearchCV.html
-    
-    
+
     Args:
-        df1 (Pandas datafrae): Dataframe that contains the features
-        df2 (Pandas Dataframe): Dataframe that contains the labels
-        n_iter (int): Number of iterations for the Randomized search
-        cv (int): Determines the cross-validation splitting strategy.
+        df1 (pandas.DataFrame): Dataframe containing the features.
+        df2 (pandas.DataFrame): Dataframe containing the labels.
+        n_iter (int): Number of parameter settings that are sampled.
+        cv (int): Number of cross-validation folds to use.
 
     Returns:
-        object: fitted pipeline
+        pipeline_simple (sklearn.pipeline.Pipeline): A fitted pipeline (includes hyperparameter optimization using
+        RandomizedSearchCV and a Random Forest Classifier model).
     """
 
     X = df1.values
@@ -80,20 +81,22 @@ def RFPipeline_noPCA(df1, df2, n_iter, cv):
 
 
 def RFPipeline_PCA(df1, df2, n_iter, cv):
-    """Scikit pipeline that performs a Random Forest classification on the data with 
-    principal compoenent analysis. The input data is split into training and test sets,
-    then a Randomized search is performed to find the best hyperparameters for the model.
-    
-    https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html
-    
+    """
+    Creates pipeline that perform Random Forest classification on the data with Principal Component Analysis. The
+    input data is split into training and test sets, then a Randomized Search (with cross-validation) is performed to
+    find the best hyperparameters for the model.
+
+    https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.RandomizedSearchCV.html
+
     Args:
-        df1 (Pandas datafrae): Dataframe that contains the features
-        df2 (Pandas Dataframe): Dataframe that contains the labels
-        n_iter (int): Number of iterations for the Randomized search
-        cv (int): Determines the cross-validation splitting strategy.
+        df1 (pandas.DataFrame): Dataframe containing the features.
+        df2 (pandas.DataFrame): Dataframe containing the labels.
+        n_iter (int): Number of parameter settings that are sampled.
+        cv (int): Number of cross-validation folds to use.
 
     Returns:
-        object: Fitted pipeline
+        pipeline_simple (sklearn.pipeline.Pipeline): A fitted pipeline (includes PCA, hyperparameter optimization using
+        RandomizedSearchCV and a Random Forest Classifier model).
     """
 
     X = df1.values
@@ -131,18 +134,20 @@ def RFPipeline_PCA(df1, df2, n_iter, cv):
     return pipeline_PCA.fit
 
 
-def SVMPipeline(df1, df2, ker: str):
-    """Pipeline that performs a SVM classification on the data. The input data is split into
-    training and test sets, than the best hyperparameters are found using a grid search. There is 
-    not a feature reduction step in this pipeline.
+def SVM_simple(df1, df2, ker: str):
+    """
+    Performs SVM classification on the data. The input data is split into training and test sets, then a Grid Search
+    (with cross-validation) is performed to find the best hyperparameters for the model. Feature reduction is not
+    implemented in this function.
 
     Args:
-        df1 (Pandas Dataframe): Dataframe that contains the features
-        df2 (Pandas Dataframe): Dataframe that contains the labels
-        ker (str): kernel type
+        df1 (pandas.DataFrame): Dataframe containing the features.
+        df2 (pandas.DataFrame): Dataframe containing the labels.
+        ker (str): Kernel type.
 
     Returns:
-        object: Fitted pipeline
+        grid (sklearn.model_selection.GridSearchCV): A fitted grid search object with the best parameters for the SVM
+        model.
     """
     
     if ker == 'linear':
@@ -182,16 +187,19 @@ def SVMPipeline(df1, df2, ker: str):
     return grid.fit
 
 
-def SVMPipeline_feature_red(df1, df2):
-    """Pipeline that performs a SVM classification on the data. The input data is split into
-    training and test sets, than the best hyperparameters are found using a grid search. There is a
-    feature reduction step in this pipeline.
+def SVM_feature_reduction(df1, df2):
+    """
+    Performs SVM classification on the data. The input data is split into training and test sets, then a Grid Search
+    (with cross-validation) is performed to find the best hyperparameters for the model. Feature reduction is
+    implemented in this function.
+
     Args:
-        df1 (Pandas Dataframe): Dataframe that contains the features
-        df2 (Pandas Dataframe): Dataframe that contains the labels
+        df1 (pandas.DataFrame): Dataframe containing the features.
+        df2 (pandas.DataFrame): Dataframe containing the labels.
 
     Returns:
-        object: Fitted pipeline
+        grid (sklearn.model_selection.GridSearchCV): A fitted grid search object with the best parameters for the SVM
+        model using the selected features.
     """
 
     X = df1.values
@@ -232,6 +240,3 @@ def SVMPipeline_feature_red(df1, df2):
     print(metrics.classification_report(y_tst, predictions))
 
     return grid.fit
-    
-        
-        
