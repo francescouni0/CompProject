@@ -4,12 +4,27 @@ import matlab.engine
 
 
 def feature_extractor(image_filepaths, masks_filepaths):
-    """_summary_
-
-    Args:
-        image_filepaths (_type_): _description_
-        masks_filepaths (_type_): _description_
     """
+    Uses the MATLAB Engine API to run the feature_extractor.m function. From the outputs of that function, it defines 2
+    dataframes containing the extracted features and an array containing the labels of the respective subjects.
+
+    Parameters
+    ----------
+    image_filepaths : list
+        Paths to the diffusion parameters maps.
+    masks_filepaths : list
+        Paths to the diffusion space segmentations.
+
+    Returns
+    -------
+    df_mean : pandas.DataFrame
+        Mean of pixel values for each region (columns) and each subject (rows)
+    df_std : pandas.DataFrame
+        Standard deviation of pixel values for each region (columns) and each subject (rows)
+    group : pandas.Series
+        Subject labels
+    """
+
 # Start MATLAB engine
     eng = matlab.engine.start_matlab()
 
@@ -27,7 +42,7 @@ def feature_extractor(image_filepaths, masks_filepaths):
     df_std = pd.DataFrame(std_t[1:, 1:(n_regxsub[0]-1)],
                           index=std[0][1:(n_regxsub[1])],
                           columns=region[1:(n_regxsub[0]-1)])
-    df_group = pd.DataFrame(pd.read_csv('ADNI_dataset_diffusion.csv'))
+    df_group = pd.read_csv('ADNI_dataset_diffusion.csv')
     df_group.sort_values(by=["Subject"], inplace=True)
     group = df_group["Group"]
 
@@ -35,11 +50,26 @@ def feature_extractor(image_filepaths, masks_filepaths):
 
 
 def feature_extractor_par(image_filepaths, masks_filepaths):
-    """_summary_
+    """
+    Uses the MATLAB Engine API to run the feature_extractor_par.m function (parallelized version of feature_extractor.m).
+    From the outputs of that function, it defines 2 dataframes containing the extracted features and an array containing
+    the labels of the respective subjects.
 
-    Args:
-        image_filepaths (_type_): _description_
-        masks_filepaths (_type_): _description_
+    Parameters
+    ----------
+    image_filepaths : list
+        Paths to the diffusion parameters maps.
+    masks_filepaths : list
+        Paths to the diffusion space segmentations.
+
+    Returns
+    -------
+    df_mean : pandas.DataFrame
+        Mean of pixel values for each region (columns) and each subject (rows)
+    df_std : pandas.DataFrame
+        Standard deviation of pixel values for each region (columns) and each subject (rows)
+    group : pandas.Series
+        Subject labels
     """
     # Start MATLAB engine
     eng = matlab.engine.start_matlab()

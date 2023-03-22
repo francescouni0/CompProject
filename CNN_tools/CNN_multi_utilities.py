@@ -21,12 +21,10 @@ def import_dataset(k_slice=45):
 
     Returns
     -------
-    images : ndarray
-        Numpy array containing the DTI images of the subjects. Each slice corresponds to a different parameter (FA, MD
-        and AD in order).
-    labels : ndarray
-        Numpy array containing the corresponding label for each DTI image. Value 1 indicates a subject with alzheimer's
-        disease.
+    images : numpy.ndarray
+        DTI images of the subjects. Each slice corresponds to a different parameter (FA, MD and AD in order).
+    labels : numpy.ndarray
+        Corresponding labels for each DTI image. Value 1 indicates a subject with alzheimer's disease.
     """
     paths_FA = reading.data_path("Diffusion_parameters_maps-20230215T134959Z-001", "corrected_FA_image")
     paths_MD = reading.data_path("Diffusion_parameters_maps-20230215T134959Z-001", "corrected_MD_image")
@@ -59,17 +57,17 @@ def data_augmentation(images, labels):
 
     Parameters
     ----------
-    images : ndarray
-        Numpy array containing the DTI images of the subjects.
-    labels : ndarray
-        Numpy array containing the corresponding label for each DTI image.
+    images : numpy.ndarray
+        DTI images of the subjects.
+    labels : numpy.ndarray
+        Corresponding label for each DTI image.
 
     Returns
     -------
-    augmented_images : ndarray
-        Numpy array containing the original DTI images and the augmented ones.
-    augmented_labels : ndarray
-        Numpy array containing the corresponding label for each image (original and augmented).
+    augmented_images : numpy.ndarray
+        Array containing the original DTI images and the augmented ones.
+    augmented_labels : numpy.ndarray
+        Array containing the corresponding label for each image (original and augmented).
     """
     aug_rotation = Sequential([RandomRotation((-0.5, 0.5))])
     aug_zoom_1 = Sequential([RandomZoom(0.5)])
@@ -118,25 +116,25 @@ def train_val_test_split(images, labels):
 
     Parameters
     ----------
-    images : ndarray
-        Numpy array containing the DTI images of the subjects.
-    labels : ndarray
-        Numpy array containing the corresponding label for each DTI image.
+    images : numpy.ndarray
+        DTI images of the subjects.
+    labels : numpy.ndarray
+        Corresponding label for each DTI image.
 
     Returns
     -------
-    x_train : ndarray
-        Numpy array containing the train subset of DTI images.
-    y_train : ndarray
-        Numpy array containing the labels corresponding to x_train.
+    x_train : numpy.ndarray
+        Train subset of DTI images.
+    y_train : numpy.ndarray
+        Labels corresponding to x_train.
     x_val : ndarray
-        Numpy array containing the validation subset of DTI images.
-    y_val : ndarray
-        Numpy array containing the labels corresponding to x_val.
-    x_test : ndarray
-        Numpy array containing the test subset of DTI images.
-    y_test : ndarray
-        Numpy array containing the labels corresponding to x_test.
+        Validation subset of DTI images.
+    y_val : numpy.ndarray
+        Labels corresponding to x_val.
+    x_test : numpy.ndarray
+        Test subset of DTI images.
+    y_test : numpy.ndarray
+        Labels corresponding to x_test.
     """
 
     X_train, x_test, Y_train, y_test = train_test_split(images[:, :, :], labels, test_size=0.2, random_state=10)
