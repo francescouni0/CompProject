@@ -1,42 +1,37 @@
 import os
-import nibabel as nib
 
-# La funzione scorre tutte le cartelle e seleziona i file nelle cartelle e sottocartelle
-# selezionate, restituisce un array di paths per i file della sottocartella
-def data_path(dir,subdir):
-    """_summary_
 
-    Args:
-        dir (_type_): _description_
-        subdir (_type_): _description_
-
-    Returns:
-        _type_: _description_
+def data_path(dir, subdir):
     """
-    r = []
-    a = []
+    Creates a list collecting absolute paths to the files contained in a sub-folder of a parent folder.
+
+    Parameters
+    ----------
+        dir : str
+            Name of the parent folder.
+        subdir : str
+            Name of the sub-folder.
+
+    Returns
+    -------
+        file_paths : list
+            Paths to the files contained in the specified sub-folder.
+    """
+
+    roots = []
+    file_paths = []
 
     for root, dirs, files in os.walk(dir):    
-            for name in files:
-                r.append(os.path.join(root, name))
+        for name in files:
+            roots.append(os.path.join(root, name))
             
-    
-    for i, word in enumerate(r):
-        
+    for i, word in enumerate(roots):
         if subdir in word:
-            
-            a.append(r[i])
-            
-    
+            file_paths.append(roots[i])
+
     if "segmentation" in subdir:
-        a.sort(key=lambda x: int(os.path.basename(x).split('_')[2]))
-    
+        file_paths.sort(key=lambda x: int(os.path.basename(x).split('_')[2]))
     else:
-        a.sort(key=lambda x: int(os.path.basename(x).split('_')[3]))         
-                    
-                    
-    return a
+        file_paths.sort(key=lambda x: int(os.path.basename(x).split('_')[3]))
 
-#
-
-
+    return file_paths
