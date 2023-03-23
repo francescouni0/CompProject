@@ -1,6 +1,13 @@
 import numpy as np
 import pandas as pd
 import matlab.engine
+import sys
+from pathlib import Path
+import os
+sys.path.insert(0, str(Path(os.getcwd()).parent))
+
+
+
 
 
 def feature_extractor(image_filepaths, masks_filepaths):
@@ -26,12 +33,19 @@ def feature_extractor(image_filepaths, masks_filepaths):
     """
 
 # Start MATLAB engine
+    #print(os.getcwd())
+
     eng = matlab.engine.start_matlab()
+    
+    eng.addpath('./ML_tools')
+    
+    current_folder=(eng.pwd())
 
 # Call a MATLAB function
     [region, mean, std] = eng.feature_extractor(image_filepaths, masks_filepaths, nargout=3)
 # Stop MATLAB engine
     eng.quit()
+    print(current_folder)
 # Create Pd dataframe
     n_regxsub = np.shape(mean[:][1])
     mean_t = np.transpose(np.asarray(mean))

@@ -16,6 +16,11 @@ The CNN is evaluated by means the following parameters:
 - AUC
 """
 
+import sys
+from pathlib import Path
+import os
+
+sys.path.insert(0, str(Path(os.getcwd()).parent))
 
 import CNN_tools.CNN_multi_class as CNN_multi_class
 import CNN_tools.CNN_multi_utilities as CNN_multi_utilities

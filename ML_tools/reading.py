@@ -1,5 +1,13 @@
 import os
 import nibabel as nib
+import sys
+from pathlib import Path
+import os
+
+sys.path.insert(0, str(Path(os.getcwd()).parent))
+os.chdir('..')
+
+
 
 # La funzione scorre tutte le cartelle e seleziona i file nelle cartelle e sottocartelle
 # selezionate, restituisce un array di paths per i file della sottocartella

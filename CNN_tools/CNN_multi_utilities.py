@@ -1,5 +1,9 @@
 """Useful functions for the CNN-2.5D"""
+import sys
+from pathlib import Path
+import os
 
+sys.path.insert(0, str(Path(os.getcwd()).parent))
 import ML_tools.reading as reading
 import numpy as np
 import pandas as pd
@@ -7,6 +11,8 @@ import nibabel as nib
 from sklearn.model_selection import train_test_split
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import RandomRotation, RandomZoom, RandomCrop, RandomContrast
+
+
 
 
 def import_dataset(k_slice=45):

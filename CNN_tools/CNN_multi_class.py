@@ -1,3 +1,10 @@
+
+import sys
+from pathlib import Path
+import os
+
+sys.path.insert(0, str(Path(os.getcwd()).parent))
+
 import ML_tools.reading as reading
 import CNN_tools.CNN_multi_utilities as CNN_multi_utilities
 import numpy as np
@@ -16,8 +23,11 @@ from tensorflow.keras import layers
 from tensorflow.keras import losses
 from tensorflow import keras
 import tensorflow
-from pathlib import Path
+
+
+
 import CNN_tools.CNN_multi_utilities as CNN_multi_utilities
+
 
 
 class MyModel(tensorflow.keras.Model):

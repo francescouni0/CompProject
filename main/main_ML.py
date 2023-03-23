@@ -15,16 +15,17 @@ The binary classifiers are evaluate by means the following parameters:
 
 
 
+import sys
+from pathlib import Path
+import os
 
-
-
+sys.path.insert(0, str(Path(os.getcwd()).parent))
 
 
 import ML_tools.classifiers as classifiers
-import ML_tools.reading as reading 
+import ML_tools.reading as reading
 from ML_tools.feature_extractor import feature_extractor, feature_extractor_par
 import argparse
-
 
 if __name__ == '__main__':
     
