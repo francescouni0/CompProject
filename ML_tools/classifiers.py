@@ -52,7 +52,8 @@ def RFPipeline_noPCA(df1, df2, n_iter, cv):
     pipeline_simple = Pipeline(steps=[("hyper_opt", RandomizedSearchCV(RandomForestClassifier(),
                                                                        param_distributions=param_dist,
                                                                        n_iter=n_iter,
-                                                                       cv=cv))
+                                                                       cv=cv,
+                                                                       random_state=9))
                                       ]
                                )
 
@@ -113,7 +114,8 @@ def RFPipeline_PCA(df1, df2, n_iter, cv):
                                    ("hyper_opt", RandomizedSearchCV(RandomForestClassifier(),
                                                                     param_distributions=param_dist,
                                                                     n_iter=n_iter,
-                                                                    cv=cv))
+                                                                    cv=cv,
+                                                                    random_state=9))
                                    ]
                             )
 
