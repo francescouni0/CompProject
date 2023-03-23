@@ -1,5 +1,12 @@
-import reading
-import CNN_multi_utilities
+
+import sys
+from pathlib import Path
+import os
+
+sys.path.insert(0, str(Path(os.getcwd()).parent))
+
+import ML_tools.reading as reading
+import CNN_tools.CNN_multi_utilities as CNN_multi_utilities
 import numpy as np
 import pandas as pd
 import nibabel as nib
@@ -16,11 +23,20 @@ from tensorflow.keras import layers
 from tensorflow.keras import losses
 from tensorflow import keras
 import tensorflow
-from pathlib import Path
-import CNN_multi_utilities
+
+
+
+import CNN_tools.CNN_multi_utilities as CNN_multi_utilities
+
 
 
 class MyModel(tensorflow.keras.Model):
+    """
+
+    Args:
+        tensorflow (_type_): _description_
+
+    """
     
     def __init__(self, shape=(110, 110, 3)):
         super(MyModel, self).__init__()

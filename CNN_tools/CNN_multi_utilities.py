@@ -1,10 +1,18 @@
-import reading
+"""Useful functions for the CNN-2.5D"""
+import sys
+from pathlib import Path
+import os
+
+sys.path.insert(0, str(Path(os.getcwd()).parent))
+import ML_tools.reading as reading
 import numpy as np
 import pandas as pd
 import nibabel as nib
 from sklearn.model_selection import train_test_split
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import RandomRotation, RandomZoom, RandomCrop, RandomContrast
+
+
 
 
 def import_dataset(k_slice=45):
@@ -14,17 +22,16 @@ def import_dataset(k_slice=45):
 
     Parameters
     ----------
-        k_slice : int
-            Selected slice. Default value 45 is the slice centered on the hippocampus.
+    k_slice : int
+        Selected slice. Default value 45 is the slice centered on the hippocampus.
 
     Returns
     -------
-        images : numpy.ndarray
-            DTI images of the subjects. Each slice corresponds to a different parameter (FA, MD and AD in order).
-        labels : numpy.ndarray
-            Corresponding labels for each DTI image. Value 1 indicates a subject with alzheimer's disease.
+    images : numpy.ndarray
+        DTI images of the subjects. Each slice corresponds to a different parameter (FA, MD and AD in order).
+    labels : numpy.ndarray
+        Corresponding labels for each DTI image. Value 1 indicates a subject with alzheimer's disease.
     """
-
     paths_FA = reading.data_path("Diffusion_parameters_maps-20230215T134959Z-001", "corrected_FA_image")
     paths_MD = reading.data_path("Diffusion_parameters_maps-20230215T134959Z-001", "corrected_MD_image")
     paths_AD = reading.data_path("Diffusion_parameters_maps-20230215T134959Z-001", "corrected_AD_image")
@@ -56,19 +63,18 @@ def data_augmentation(images, labels):
 
     Parameters
     ----------
-        images : numpy.ndarray
-            DTI images of the subjects.
-        labels : numpy.ndarray
-            Corresponding label for each DTI image.
+    images : numpy.ndarray
+        DTI images of the subjects.
+    labels : numpy.ndarray
+        Corresponding label for each DTI image.
 
     Returns
     -------
-        augmented_images : numpy.ndarray
-            Array containing the original DTI images and the augmented ones.
-        augmented_labels : numpy.ndarray
-            Array containing the corresponding label for each image (original and augmented).
+    augmented_images : numpy.ndarray
+        Array containing the original DTI images and the augmented ones.
+    augmented_labels : numpy.ndarray
+        Array containing the corresponding label for each image (original and augmented).
     """
-
     aug_rotation = Sequential([RandomRotation((-0.5, 0.5))])
     aug_zoom_1 = Sequential([RandomZoom(0.5)])
     aug_zoom_2 = Sequential([RandomZoom(0.6)])
@@ -116,25 +122,25 @@ def train_val_test_split(images, labels):
 
     Parameters
     ----------
-        images : numpy.ndarray
-            DTI images of the subjects.
-        labels : numpy.ndarray
-            Corresponding label for each DTI image.
+    images : numpy.ndarray
+        DTI images of the subjects.
+    labels : numpy.ndarray
+        Corresponding label for each DTI image.
 
     Returns
     -------
-        x_train : numpy.ndarray
-            Train subset of DTI images.
-        y_train : numpy.ndarray
-            Labels corresponding to x_train.
-        x_val : numpy.ndarray
-            Validation subset of DTI images.
-        y_val : numpy.ndarray
-            Labels corresponding to x_val.
-        x_test : numpy.ndarray
-            Test subset of DTI images.
-        y_test : numpy.ndarray
-            Labels corresponding to x_test.
+    x_train : numpy.ndarray
+        Train subset of DTI images.
+    y_train : numpy.ndarray
+        Labels corresponding to x_train.
+    x_val : ndarray
+        Validation subset of DTI images.
+    y_val : numpy.ndarray
+        Labels corresponding to x_val.
+    x_test : numpy.ndarray
+        Test subset of DTI images.
+    y_test : numpy.ndarray
+        Labels corresponding to x_test.
     """
 
     X_train, x_test, Y_train, y_test = train_test_split(images[:, :, :], labels, test_size=0.2, random_state=10)
