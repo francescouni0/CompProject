@@ -1,18 +1,14 @@
 """
-CMEPDA Project: Image binary classification using a custom-built Convolutional Neural Network.
+Image binary classification using a custom-built Convolutional Neural Network.
 This python script trains and evaluates the performance of a custom-built Convolutional Neural Network.
-The Neural Network is trained on the hippocampus region of different types of Diffusion Images.
-The data is augmented by applying a random rotation, random zoom to the images and random contrast by means 
-of a custom-built function tha uses keras layers.
-Using the color channels as a way of avoiding the use of a 3D convolutional layer.
-As an option the user can use pre-trained weights for the convolutional layers previously trained on the same dataset.
-The subjects are divided in two groups: AD and CN. Corresponding to subjects affected
-with Alzheimer's disease and control subjects respectively.
-The CNN is evaluated by means the following parameters:
-- Accuracy
-- Precision
-- Recall
-- AUC
+The Neural Network is trained using different types of Diffusion Tensor Images centered on the hippocampus region.
+The original dataset is augmented by applying random rotations, zooms and random contrast enhancements to the images by
+means of a custom-built function that uses Keras layers.
+This model uses the color channels as a way of avoiding the use of a 3D convolutional layer.
+As an option, the user can use pre-trained weights for the convolutional layers (previously trained on the same dataset).
+The subjects are divided in two groups: AD and CN, corresponding to subjects suffering from Alzheimer's disease and
+control subjects respectively.
+The CNN is evaluated by means the following parameters: Accuracy, Precision, Recall and AUC
 """
 
 import sys

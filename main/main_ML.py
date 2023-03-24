@@ -1,16 +1,12 @@
 """
-CMEPDA Project: Image binary classification using Machine Learning.
-This python script evaluates the performance of a RandomForest classifier and a
-Support Vector Machine classifier on the feature extracted from the diffusion tensor.
-The subjects are divided in two groups: AD and CN. Corresponding to subjects affected
-with Alzheimer's disease and control subjects respectively.
-As an option, the user can choose to perform a Principal Component Analysis (PCA) on the Random Forest classifier.
-and a feature reduction on the Support Vector Machine classifier.
-The binary classifiers are evaluate by means the following parameters:
-- Accuracy
-- Precision
-- Recall
-- AUC
+Image binary classification using Machine Learning.
+This python script evaluates the performance of a Random Forest classifier and a Support Vector Machine classifier on
+the feature extracted from the Diffusion Tensor Images.
+The subjects are divided in two groups: AD and CN, corresponding to subjects suffering from Alzheimer's disease and
+control subjects respectively.
+As an option, the user can choose to perform a Principal Component Analysis (PCA) on the Random Forest classifier and
+a Recursive Feature Elimination (RFE) on the Support Vector Machine classifier.
+The binary classifiers are evaluated by means the following parameters: Accuracy, Precision, Recall and AUC.
 """
 
 import sys

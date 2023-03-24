@@ -292,35 +292,27 @@ document.write(`
 <h1>main package<a class="headerlink" href="#main-package" title="Permalink to this heading">#</a></h1>
 <section id="module-main.main_DL">
 <span id="main-main-dl-module"></span><h2>main.main_DL module<a class="headerlink" href="#module-main.main_DL" title="Permalink to this heading">#</a></h2>
-<p>CMEPDA Project: Image binary classification using a custom built Convolutional Neural Network.
-This python script trains and evaluates the performance of a custom built Convolutional Neural Network.
-The Neural Network is trained on the hippocampus region of different types of Diffusion Images.
-The data is augmented by applying a random rotation, random zoom to the images and random contrast by means
-of a costum built function tha uses keras layers.
-Using the color channels as a way of avoiding the use of a 3D convolutional layer.
-As an option the user can use pre-trained weights for the convolutional layers previously trained on the same dataset.
-The subjects are divided in two groups: AD and CN. Corresponding to subjects affected
-with Alzheimer’s disease and control subjects respectively.
-The CNN is evaluated by means the following parameters:
-- Accuracy
-- Precision
-- Recall
-- AUC</p>
+<p>Image binary classification using a custom-built Convolutional Neural Network.
+This python script trains and evaluates the performance of a custom-built Convolutional Neural Network.
+The Neural Network is trained using different types of Diffusion Tensor Images centered on the hippocampus region.
+The original dataset is augmented by applying random rotations, zooms and random contrast enhancements to the images by
+means of a custom-built function that uses Keras layers.
+This model uses the color channels as a way of avoiding the use of a 3D convolutional layer.
+As an option, the user can use pre-trained weights for the convolutional layers (previously trained on the same dataset).
+The subjects are divided in two groups: AD and CN, corresponding to subjects suffering from Alzheimer’s disease and
+control subjects respectively.
+The CNN is evaluated by means the following parameters: Accuracy, Precision, Recall and AUC</p>
 </section>
 <section id="module-main.main_ML">
 <span id="main-main-ml-module"></span><h2>main.main_ML module<a class="headerlink" href="#module-main.main_ML" title="Permalink to this heading">#</a></h2>
-<p>CMEPDA Project: Image binary classification using Machine Learning.
-This python script evaluates the performance of a RandomForest classifier and a
-Support Vector Machine classifier on the feature extracted from the diffusion tensor.
-The subjects are divided in two groups: AD and CN. Corresponding to subjects affected
-with Alzheimer’s disease and control subjects respectively.
-As an option, the user can choose to perform a Principal Component Analysis (PCA) on the Random Forest classifier.
-and a feature reduction on the Support Vector Machine classifier.
-The binary classifiers are evaluate by means the following parameters:
-- Accuracy
-- Precision
-- Recall
-- AUC</p>
+<p>Image binary classification using Machine Learning.
+This python script evaluates the performance of a Random Forest classifier and a Support Vector Machine classifier on
+the feature extracted from the Diffusion Tensor Images.
+The subjects are divided in two groups: AD and CN, corresponding to subjects suffering from Alzheimer’s disease and
+control subjects respectively.
+As an option, the user can choose to perform a Principal Component Analysis (PCA) on the Random Forest classifier and
+a Recursive Feature Elimination (RFE) on the Support Vector Machine classifier.
+The binary classifiers are evaluated by means the following parameters: Accuracy, Precision, Recall and AUC.</p>
 </section>
 <section id="module-main.test">
 <span id="main-test-module"></span><h2>main.test module<a class="headerlink" href="#module-main.test" title="Permalink to this heading">#</a></h2>

@@ -258,11 +258,7 @@ document.write(`
 <div class="viewcode-block" id="MyModel"><a class="viewcode-back" href="../../CNN_tools.html#CNN_tools.CNN_multi_class.MyModel">[docs]</a><span class="k">class</span> <span class="nc">MyModel</span><span class="p">(</span><span class="n">tensorflow</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        tensorflow (_type_): _description_</span>
-
 <span class="sd">    &quot;&quot;&quot;</span>
-    
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">110</span><span class="p">,</span> <span class="mi">110</span><span class="p">,</span> <span class="mi">3</span><span class="p">)):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">MyModel</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">conv1</span> <span class="o">=</span> <span class="n">Conv2D</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;valid&#39;</span><span class="p">,</span> <span class="n">input_shape</span><span class="o">=</span><span class="n">shape</span><span class="p">,</span> <span class="n">kernel_regularizer</span><span class="o">=</span><span class="s1">&#39;l1&#39;</span><span class="p">)</span>
