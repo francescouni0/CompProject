@@ -1,0 +1,623 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>ML_tools package &#8212; CompProject 0.1.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'ML_tools';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="main package" href="main.html" />
+    <link rel="prev" title="CNN_tools package" href="CNN_tools.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">CompProject 0.1.0 documentation</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="modules.html">CompProject</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="CNN_tools.html">CNN_tools package</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">ML_tools package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="main.html">main package</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/ML_tools.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>ML_tools package</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-ML_tools.classifiers">ML_tools.classifiers module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ML_tools.classifiers.RFPipeline_PCA"><code class="docutils literal notranslate"><span class="pre">RFPipeline_PCA()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ML_tools.classifiers.RFPipeline_noPCA"><code class="docutils literal notranslate"><span class="pre">RFPipeline_noPCA()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ML_tools.classifiers.SVM_feature_reduction"><code class="docutils literal notranslate"><span class="pre">SVM_feature_reduction()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ML_tools.classifiers.SVM_simple"><code class="docutils literal notranslate"><span class="pre">SVM_simple()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-ML_tools.feature_extractor">ML_tools.feature_extractor module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ML_tools.feature_extractor.feature_extractor"><code class="docutils literal notranslate"><span class="pre">feature_extractor()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ML_tools.feature_extractor.feature_extractor_par"><code class="docutils literal notranslate"><span class="pre">feature_extractor_par()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-ML_tools.reading">ML_tools.reading module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ML_tools.reading.data_path"><code class="docutils literal notranslate"><span class="pre">data_path()</span></code></a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section id="ml-tools-package">
+<h1>ML_tools package<a class="headerlink" href="#ml-tools-package" title="Permalink to this heading">#</a></h1>
+<section id="module-ML_tools.classifiers">
+<span id="ml-tools-classifiers-module"></span><h2>ML_tools.classifiers module<a class="headerlink" href="#module-ML_tools.classifiers" title="Permalink to this heading">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="ML_tools.classifiers.RFPipeline_PCA">
+<span class="sig-prename descclassname"><span class="pre">ML_tools.classifiers.</span></span><span class="sig-name descname"><span class="pre">RFPipeline_PCA</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_iter</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cv</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ML_tools/classifiers.html#RFPipeline_PCA"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ML_tools.classifiers.RFPipeline_PCA" title="Permalink to this definition">#</a></dt>
+<dd><p>Creates pipeline that perform Random Forest classification on the data with Principal Component Analysis. The
+input data is split into training and test sets, then a Randomized Search (with cross-validation) is performed to
+find the best hyperparameters for the model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>df1</strong> (<em>pandas.DataFrame</em>) – Dataframe containing the features.</p></li>
+<li><p><strong>df2</strong> (<em>pandas.DataFrame</em>) – Dataframe containing the labels.</p></li>
+<li><p><strong>n_iter</strong> (<em>int</em>) – Number of parameter settings that are sampled.</p></li>
+<li><p><strong>cv</strong> (<em>int</em>) – Number of cross-validation folds to use.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>pipeline_PCA</strong> – A fitted pipeline (includes PCA, hyperparameter optimization using RandomizedSearchCV and a Random Forest
+Classifier model).</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>sklearn.pipeline.Pipeline</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">PCA</span></code></dt><dd><p><a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html">https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html</a></p>
+</dd>
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">RandomizedSearchCV</span></code></dt><dd><p><a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.RandomizedSearchCV.html">https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.RandomizedSearchCV.html</a></p>
+</dd>
+</dl>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ML_tools.classifiers.RFPipeline_noPCA">
+<span class="sig-prename descclassname"><span class="pre">ML_tools.classifiers.</span></span><span class="sig-name descname"><span class="pre">RFPipeline_noPCA</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_iter</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cv</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ML_tools/classifiers.html#RFPipeline_noPCA"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ML_tools.classifiers.RFPipeline_noPCA" title="Permalink to this definition">#</a></dt>
+<dd><p>Creates pipeline that perform Random Forest classification on the data without Principal Component Analysis. The
+input data is split into training and test sets, then a Randomized Search (with cross-validation) is performed to
+find the best hyperparameters for the model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>df1</strong> (<em>pandas.DataFrame</em>) – Dataframe containing the features.</p></li>
+<li><p><strong>df2</strong> (<em>pandas.DataFrame</em>) – Dataframe containing the labels.</p></li>
+<li><p><strong>n_iter</strong> (<em>int</em>) – Number of parameter settings that are sampled.</p></li>
+<li><p><strong>cv</strong> (<em>int</em>) – Number of cross-validation folds to use.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>pipeline_simple</strong> – A fitted pipeline (includes hyperparameter optimization using RandomizedSearchCV and a Random Forest
+Classifier model).</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>sklearn.pipeline.Pipeline</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">RandomizedSearchCV</span></code></dt><dd><p><a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.RandomizedSearchCV.html">https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.RandomizedSearchCV.html</a></p>
+</dd>
+</dl>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ML_tools.classifiers.SVM_feature_reduction">
+<span class="sig-prename descclassname"><span class="pre">ML_tools.classifiers.</span></span><span class="sig-name descname"><span class="pre">SVM_feature_reduction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ML_tools/classifiers.html#SVM_feature_reduction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ML_tools.classifiers.SVM_feature_reduction" title="Permalink to this definition">#</a></dt>
+<dd><p>Performs SVM classification on the data. The input data is split into training and test sets, then a Grid Search
+(with cross-validation) is performed to find the best hyperparameters for the model. Feature reduction is
+implemented in this function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>df1</strong> (<em>pandas.DataFrame</em>) – Dataframe containing the features.</p></li>
+<li><p><strong>df2</strong> (<em>pandas.DataFrame</em>) – Dataframe containing the labels.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>grid</strong> – A fitted grid search object with the best parameters for the SVM model using the selected features.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>sklearn.model_selection.GridSearchCV</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">RFECV</span></code></dt><dd><p><a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.RFECV.html">https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.RFECV.html</a></p>
+</dd>
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">GridSearchCV</span></code></dt><dd><p><a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.GridSearchCV.html">https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.GridSearchCV.html</a></p>
+</dd>
+</dl>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ML_tools.classifiers.SVM_simple">
+<span class="sig-prename descclassname"><span class="pre">ML_tools.classifiers.</span></span><span class="sig-name descname"><span class="pre">SVM_simple</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ker</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ML_tools/classifiers.html#SVM_simple"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ML_tools.classifiers.SVM_simple" title="Permalink to this definition">#</a></dt>
+<dd><p>Performs SVM classification on the data. The input data is split into training and test sets, then a Grid Search
+(with cross-validation) is performed to find the best hyperparameters for the model. Feature reduction is not
+implemented in this function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>df1</strong> (<em>pandas.DataFrame</em>) – Dataframe containing the features.</p></li>
+<li><p><strong>df2</strong> (<em>pandas.DataFrame</em>) – Dataframe containing the labels.</p></li>
+<li><p><strong>ker</strong> (<em>str</em>) – Kernel type.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>grid</strong> – A fitted grid search object with the best parameters for the SVM model.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>sklearn.model_selection.GridSearchCV</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">GridSearchCV</span></code></dt><dd><p><a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.GridSearchCV.html">https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.GridSearchCV.html</a></p>
+</dd>
+</dl>
+</div>
+</dd></dl>
+
+</section>
+<section id="module-ML_tools.feature_extractor">
+<span id="ml-tools-feature-extractor-module"></span><h2>ML_tools.feature_extractor module<a class="headerlink" href="#module-ML_tools.feature_extractor" title="Permalink to this heading">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="ML_tools.feature_extractor.feature_extractor">
+<span class="sig-prename descclassname"><span class="pre">ML_tools.feature_extractor.</span></span><span class="sig-name descname"><span class="pre">feature_extractor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image_filepaths</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">masks_filepaths</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ML_tools/feature_extractor.html#feature_extractor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ML_tools.feature_extractor.feature_extractor" title="Permalink to this definition">#</a></dt>
+<dd><p>Uses the MATLAB Engine API to run the feature_extractor.m function. From the outputs of that function, it defines 2
+dataframes containing the extracted features and a series containing the labels of the respective subjects.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>image_filepaths</strong> (<em>list</em>) – Paths to the diffusion parameters maps.</p></li>
+<li><p><strong>masks_filepaths</strong> (<em>list</em>) – Paths to the diffusion space segmentations.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>df_mean</strong> (<em>pandas.DataFrame</em>) – Mean of pixel values for each region (columns) and each subject (rows).</p></li>
+<li><p><strong>df_std</strong> (<em>pandas.DataFrame</em>) – Standard deviation of pixel values for each region (columns) and each subject (rows).</p></li>
+<li><p><strong>group</strong> (<em>pandas.Series</em>) – Subject labels.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ML_tools.feature_extractor.feature_extractor_par">
+<span class="sig-prename descclassname"><span class="pre">ML_tools.feature_extractor.</span></span><span class="sig-name descname"><span class="pre">feature_extractor_par</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image_filepaths</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">masks_filepaths</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ML_tools/feature_extractor.html#feature_extractor_par"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ML_tools.feature_extractor.feature_extractor_par" title="Permalink to this definition">#</a></dt>
+<dd><p>Uses the MATLAB Engine API to run the feature_extractor_par.m function (parallelized version of feature_extractor.m).
+From the outputs of that function, it defines 2 dataframes containing the extracted features and an array containing
+the labels of the respective subjects.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>image_filepaths</strong> (<em>list</em>) – Paths to the diffusion parameters maps.</p></li>
+<li><p><strong>masks_filepaths</strong> (<em>list</em>) – Paths to the diffusion space segmentations.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>df_mean</strong> (<em>pandas.DataFrame</em>) – Mean of pixel values for each region (columns) and each subject (rows).</p></li>
+<li><p><strong>df_std</strong> (<em>pandas.DataFrame</em>) – Standard deviation of pixel values for each region (columns) and each subject (rows).</p></li>
+<li><p><strong>group</strong> (<em>pandas.Series</em>) – Subject labels.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-ML_tools.reading">
+<span id="ml-tools-reading-module"></span><h2>ML_tools.reading module<a class="headerlink" href="#module-ML_tools.reading" title="Permalink to this heading">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="ML_tools.reading.data_path">
+<span class="sig-prename descclassname"><span class="pre">ML_tools.reading.</span></span><span class="sig-name descname"><span class="pre">data_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subdir</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ML_tools/reading.html#data_path"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ML_tools.reading.data_path" title="Permalink to this definition">#</a></dt>
+<dd><p>_summary_</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dir</strong> (<em>_type_</em>) – _description_</p></li>
+<li><p><strong>subdir</strong> (<em>_type_</em>) – _description_</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>_description_</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>_type_</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="CNN_tools.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">CNN_tools package</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="main.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">main package</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-ML_tools.classifiers">ML_tools.classifiers module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ML_tools.classifiers.RFPipeline_PCA"><code class="docutils literal notranslate"><span class="pre">RFPipeline_PCA()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ML_tools.classifiers.RFPipeline_noPCA"><code class="docutils literal notranslate"><span class="pre">RFPipeline_noPCA()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ML_tools.classifiers.SVM_feature_reduction"><code class="docutils literal notranslate"><span class="pre">SVM_feature_reduction()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ML_tools.classifiers.SVM_simple"><code class="docutils literal notranslate"><span class="pre">SVM_simple()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-ML_tools.feature_extractor">ML_tools.feature_extractor module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ML_tools.feature_extractor.feature_extractor"><code class="docutils literal notranslate"><span class="pre">feature_extractor()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ML_tools.feature_extractor.feature_extractor_par"><code class="docutils literal notranslate"><span class="pre">feature_extractor_par()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-ML_tools.reading">ML_tools.reading module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ML_tools.reading.data_path"><code class="docutils literal notranslate"><span class="pre">data_path()</span></code></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            <div class="bd-footer-content__inner">
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By SSimone Damiani & Francesco Urso
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2023, Simone Damiani &amp; Francesco Urso.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div></div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

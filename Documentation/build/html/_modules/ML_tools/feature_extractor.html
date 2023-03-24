@@ -1,0 +1,209 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ML_tools.feature_extractor &#8212; C 1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for ML_tools.feature_extractor</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matlab.engine</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">())</span><span class="o">.</span><span class="n">parent</span><span class="p">))</span>
+
+
+
+
+
+<div class="viewcode-block" id="feature_extractor"><a class="viewcode-back" href="../../ML_tools.html#ML_tools.feature_extractor.feature_extractor">[docs]</a><span class="k">def</span> <span class="nf">feature_extractor</span><span class="p">(</span><span class="n">image_filepaths</span><span class="p">,</span> <span class="n">masks_filepaths</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Uses the MATLAB Engine API to run the feature_extractor.m function. From the outputs of that function, it defines 2</span>
+<span class="sd">    dataframes containing the extracted features and a series containing the labels of the respective subjects.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">        image_filepaths : list</span>
+<span class="sd">            Paths to the diffusion parameters maps.</span>
+<span class="sd">        masks_filepaths : list</span>
+<span class="sd">            Paths to the diffusion space segmentations.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">        df_mean : pandas.DataFrame</span>
+<span class="sd">            Mean of pixel values for each region (columns) and each subject (rows).</span>
+<span class="sd">        df_std : pandas.DataFrame</span>
+<span class="sd">            Standard deviation of pixel values for each region (columns) and each subject (rows).</span>
+<span class="sd">        group : pandas.Series</span>
+<span class="sd">            Subject labels.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<span class="c1"># Start MATLAB engine</span>
+    <span class="c1">#print(os.getcwd())</span>
+
+    <span class="n">eng</span> <span class="o">=</span> <span class="n">matlab</span><span class="o">.</span><span class="n">engine</span><span class="o">.</span><span class="n">start_matlab</span><span class="p">()</span>
+    
+    <span class="n">eng</span><span class="o">.</span><span class="n">addpath</span><span class="p">(</span><span class="s1">&#39;./ML_tools&#39;</span><span class="p">)</span>
+    
+    <span class="n">current_folder</span><span class="o">=</span><span class="p">(</span><span class="n">eng</span><span class="o">.</span><span class="n">pwd</span><span class="p">())</span>
+
+<span class="c1"># Call a MATLAB function</span>
+    <span class="p">[</span><span class="n">region</span><span class="p">,</span> <span class="n">mean</span><span class="p">,</span> <span class="n">std</span><span class="p">]</span> <span class="o">=</span> <span class="n">eng</span><span class="o">.</span><span class="n">feature_extractor</span><span class="p">(</span><span class="n">image_filepaths</span><span class="p">,</span> <span class="n">masks_filepaths</span><span class="p">,</span> <span class="n">nargout</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="c1"># Stop MATLAB engine</span>
+    <span class="n">eng</span><span class="o">.</span><span class="n">quit</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">current_folder</span><span class="p">)</span>
+<span class="c1"># Create Pd dataframe</span>
+    <span class="n">n_regxsub</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">mean</span><span class="p">[:][</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">mean_t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">mean</span><span class="p">))</span>
+    <span class="n">std_t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">std</span><span class="p">))</span>
+    <span class="n">df_mean</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">mean_t</span><span class="p">[</span><span class="mi">1</span><span class="p">:,</span> <span class="mi">1</span><span class="p">:(</span><span class="n">n_regxsub</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">)],</span>
+                           <span class="n">index</span><span class="o">=</span><span class="n">mean</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">:(</span><span class="n">n_regxsub</span><span class="p">[</span><span class="mi">1</span><span class="p">])],</span>
+                           <span class="n">columns</span><span class="o">=</span><span class="n">region</span><span class="p">[</span><span class="mi">1</span><span class="p">:(</span><span class="n">n_regxsub</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">)])</span>
+    <span class="n">df_std</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">std_t</span><span class="p">[</span><span class="mi">1</span><span class="p">:,</span> <span class="mi">1</span><span class="p">:(</span><span class="n">n_regxsub</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">)],</span>
+                          <span class="n">index</span><span class="o">=</span><span class="n">std</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">:(</span><span class="n">n_regxsub</span><span class="p">[</span><span class="mi">1</span><span class="p">])],</span>
+                          <span class="n">columns</span><span class="o">=</span><span class="n">region</span><span class="p">[</span><span class="mi">1</span><span class="p">:(</span><span class="n">n_regxsub</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">)])</span>
+    <span class="n">df_group</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;ADNI_dataset_diffusion.csv&#39;</span><span class="p">)</span>
+    <span class="n">df_group</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Subject&quot;</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">group</span> <span class="o">=</span> <span class="n">df_group</span><span class="p">[</span><span class="s2">&quot;Group&quot;</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">df_mean</span><span class="p">,</span> <span class="n">df_std</span><span class="p">,</span> <span class="n">group</span></div>
+
+
+<div class="viewcode-block" id="feature_extractor_par"><a class="viewcode-back" href="../../ML_tools.html#ML_tools.feature_extractor.feature_extractor_par">[docs]</a><span class="k">def</span> <span class="nf">feature_extractor_par</span><span class="p">(</span><span class="n">image_filepaths</span><span class="p">,</span> <span class="n">masks_filepaths</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Uses the MATLAB Engine API to run the feature_extractor_par.m function (parallelized version of feature_extractor.m).</span>
+<span class="sd">    From the outputs of that function, it defines 2 dataframes containing the extracted features and an array containing</span>
+<span class="sd">    the labels of the respective subjects.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">        image_filepaths : list</span>
+<span class="sd">            Paths to the diffusion parameters maps.</span>
+<span class="sd">        masks_filepaths : list</span>
+<span class="sd">            Paths to the diffusion space segmentations.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">        df_mean : pandas.DataFrame</span>
+<span class="sd">            Mean of pixel values for each region (columns) and each subject (rows).</span>
+<span class="sd">        df_std : pandas.DataFrame</span>
+<span class="sd">            Standard deviation of pixel values for each region (columns) and each subject (rows).</span>
+<span class="sd">        group : pandas.Series</span>
+<span class="sd">            Subject labels.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Start MATLAB engine</span>
+    <span class="n">eng</span> <span class="o">=</span> <span class="n">matlab</span><span class="o">.</span><span class="n">engine</span><span class="o">.</span><span class="n">start_matlab</span><span class="p">()</span>
+
+    <span class="c1"># Call a MATLAB function</span>
+    <span class="p">[</span><span class="n">region</span><span class="p">,</span> <span class="n">mean</span><span class="p">,</span> <span class="n">std</span><span class="p">]</span> <span class="o">=</span> <span class="n">eng</span><span class="o">.</span><span class="n">feature_extractor</span><span class="p">(</span><span class="n">image_filepaths</span><span class="p">,</span> <span class="n">masks_filepaths</span><span class="p">,</span> <span class="n">nargout</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+    <span class="c1"># Stop MATLAB engine</span>
+    <span class="n">eng</span><span class="o">.</span><span class="n">quit</span><span class="p">()</span>
+    <span class="c1"># Create Pd dataframe</span>
+    <span class="n">n_regxsub</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">mean</span><span class="p">[:][</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">mean_t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">mean</span><span class="p">))</span>
+    <span class="n">std_t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">std</span><span class="p">))</span>
+    <span class="n">df_mean</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">mean_t</span><span class="p">[</span><span class="mi">1</span><span class="p">:,</span> <span class="mi">1</span><span class="p">:(</span><span class="n">n_regxsub</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)],</span>
+                           <span class="n">index</span><span class="o">=</span><span class="n">mean</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">:(</span><span class="n">n_regxsub</span><span class="p">[</span><span class="mi">1</span><span class="p">])],</span>
+                           <span class="n">columns</span><span class="o">=</span><span class="n">region</span><span class="p">[</span><span class="mi">1</span><span class="p">:(</span><span class="n">n_regxsub</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)])</span>
+    <span class="n">df_std</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">std_t</span><span class="p">[</span><span class="mi">1</span><span class="p">:,</span> <span class="mi">1</span><span class="p">:(</span><span class="n">n_regxsub</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)],</span>
+                          <span class="n">index</span><span class="o">=</span><span class="n">std</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">:(</span><span class="n">n_regxsub</span><span class="p">[</span><span class="mi">1</span><span class="p">])],</span>
+                          <span class="n">columns</span><span class="o">=</span><span class="n">region</span><span class="p">[</span><span class="mi">1</span><span class="p">:(</span><span class="n">n_regxsub</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)])</span>
+    <span class="n">df_group</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;ADNI_dataset_diffusion.csv&#39;</span><span class="p">))</span>
+    <span class="n">df_group</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Subject&quot;</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">group</span> <span class="o">=</span> <span class="n">df_group</span><span class="p">[</span><span class="s2">&quot;Group&quot;</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">df_mean</span><span class="p">,</span> <span class="n">df_std</span><span class="p">,</span> <span class="n">group</span></div>
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">C</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">CompProject</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2023, S.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 6.1.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.13</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>
