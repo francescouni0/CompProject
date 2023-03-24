@@ -24,16 +24,16 @@ def data_path(dir, subdir):
     filepaths : list
         Paths to the files contained in the specified sub-folder.
     """
-    root = []
+    roots = []
     filepaths = []
 
-    for root, dirs, files in os.walk(dir):    
+    for root, dirs, files in os.walk(dir):
         for name in files:
-            root.append(os.path.join(root, name))
+            roots.append(os.path.join(root, name))
 
-    for i, word in enumerate(root):
+    for i, word in enumerate(roots):
         if subdir in word:
-            filepaths.append(root[i])
+            filepaths.append(roots[i])
 
     if "segmentation" in subdir:
         filepaths.sort(key=lambda x: int(os.path.basename(x).split('_')[2]))

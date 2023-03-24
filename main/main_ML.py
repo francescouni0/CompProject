@@ -79,7 +79,7 @@ if __name__ == '__main__':
             'Support Vector Machines'    
         ],
         help="Type of ML classifier to use",
-        default="RF",
+        default="Random Forest",
     )
 
     args = parser.parse_args()
@@ -91,7 +91,6 @@ if __name__ == '__main__':
     paths_masks = reading.data_path(PATH_masks, "Diffusion_space_segmentations-20230215T134839Z-001")
 
     # ANALYSIS FOR MD DATASET
-
     if args.datatype == "MD":
         path_subdir = "corrected_MD_image"
         paths_MD = reading.data_path(PATH_diff, path_subdir)
@@ -102,7 +101,7 @@ if __name__ == '__main__':
         elif args.featureextractor == "Parallel":
             mean_md, std_md, group = feature_extractor_par(paths_MD, paths_masks)
         else:
-            print('Input not valid, please retry.')
+            print('Input not valid, please retry. (line 106)')
 
         # SELECTING THE CLASSIFIER
         if args.classifier == "Random Forest":
@@ -114,13 +113,13 @@ if __name__ == '__main__':
             elif option1.lower()[0] == "y":
                 classifiers.RFPipeline_PCA(mean_md, group, 10, 5)
             else:
-                print('Input not valid, please retry.')
+                print('Input not valid, please retry. (line 118)')
 
         elif args.classifier == "Support Vector Machines":
             classifiers.SVM_simple(mean_md, group, "rbf")
 
         else:
-            print('Input not valid, please retry.')
+            print('Input not valid, please retry. (line 124)')
 
     # ANALYSIS FOR FA DATASET
     elif args.datatype == "FA":
@@ -133,7 +132,7 @@ if __name__ == '__main__':
         elif args.featureextractor == "Parallel":
             mean_fa, std_fa, group = feature_extractor_par(paths_FA, paths_masks)
         else:
-            print('Input not valid, please retry.')
+            print('Input not valid, please retry. (line 137)')
 
         # SELECTING THE CLASSIFIER
         if args.classifier == "Random Forest":
@@ -145,7 +144,7 @@ if __name__ == '__main__':
             elif option1.lower()[0] == "y":
                 classifiers.RFPipeline_PCA(mean_fa, group, 10, 5)
             else:
-                print('Input not valid, please retry.')
+                print('Input not valid, please retry. (line 149)')
             
         elif args.classifier == "Support Vector Machines":
             option2 = input("Feature Reduction? (approx time 6min) Y or N: ")
@@ -156,10 +155,10 @@ if __name__ == '__main__':
             elif option2.lower()[0] == "y":
                 classifiers.SVM_feature_reduction(mean_fa, group)
             else:
-                print('Input not valid, please retry.')
+                print('Input not valid, please retry. (line 160)')
 
         else:
-            print('Input not valid, please retry.')
+            print('Input not valid, please retry. (line 163)')
 
     else:
-        print('Input not valid, please retry.')
+        print('Input not valid, please retry. (line 166)')
