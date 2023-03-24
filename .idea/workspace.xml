@@ -6,10 +6,26 @@
   <component name="ChangeListManager">
     <list default="true" id="336eb2b3-5b48-4ed4-b1de-8ea2e1353e74" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CNN_tools/CNN_multi_class.py" beforeDir="false" afterPath="$PROJECT_DIR$/CNN_tools/CNN_multi_class.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CNN_tools/CNN_multi_utilities.py" beforeDir="false" afterPath="$PROJECT_DIR$/CNN_tools/CNN_multi_utilities.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CNN_tools/__init__ .py" beforeDir="false" afterPath="$PROJECT_DIR$/CNN_tools/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/__init__ .py" beforeDir="false" afterPath="$PROJECT_DIR$/main/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Documentation/build/doctrees/CNN_tools.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/Documentation/build/doctrees/CNN_tools.doctree" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Documentation/build/doctrees/ML_tools.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/Documentation/build/doctrees/ML_tools.doctree" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Documentation/build/doctrees/environment.pickle" beforeDir="false" afterPath="$PROJECT_DIR$/Documentation/build/doctrees/environment.pickle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Documentation/build/html/CNN_tools.html" beforeDir="false" afterPath="$PROJECT_DIR$/Documentation/build/html/CNN_tools.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Documentation/build/html/ML_tools.html" beforeDir="false" afterPath="$PROJECT_DIR$/Documentation/build/html/ML_tools.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Documentation/build/html/_modules/CNN_tools/CNN_multi_class.html" beforeDir="false" afterPath="$PROJECT_DIR$/Documentation/build/html/_modules/CNN_tools/CNN_multi_class.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Documentation/build/html/_modules/CNN_tools/CNN_multi_utilities.html" beforeDir="false" afterPath="$PROJECT_DIR$/Documentation/build/html/_modules/CNN_tools/CNN_multi_utilities.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Documentation/build/html/_modules/ML_tools/reading.html" beforeDir="false" afterPath="$PROJECT_DIR$/Documentation/build/html/_modules/ML_tools/reading.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Documentation/build/html/genindex.html" beforeDir="false" afterPath="$PROJECT_DIR$/Documentation/build/html/genindex.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Documentation/build/html/modules.html" beforeDir="false" afterPath="$PROJECT_DIR$/Documentation/build/html/modules.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Documentation/build/html/objects.inv" beforeDir="false" afterPath="$PROJECT_DIR$/Documentation/build/html/objects.inv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Documentation/build/html/searchindex.js" beforeDir="false" afterPath="$PROJECT_DIR$/Documentation/build/html/searchindex.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ML_tools/classifiers.py" beforeDir="false" afterPath="$PROJECT_DIR$/ML_tools/classifiers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ML_tools/feature_extractor.py" beforeDir="false" afterPath="$PROJECT_DIR$/ML_tools/feature_extractor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ML_tools/reading.py" beforeDir="false" afterPath="$PROJECT_DIR$/ML_tools/reading.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/main_DL.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/main_DL.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/main_ML.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/main_ML.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/test.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

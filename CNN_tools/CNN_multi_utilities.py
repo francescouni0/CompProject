@@ -1,10 +1,8 @@
-"""Useful functions for the CNN-2.5D"""
 import sys
 from pathlib import Path
 import os
 
-sys.path.insert(0, str(Path(os.getcwd()).parent))
-
+# sys.path.insert(0, str(Path(os.getcwd()).parent))
 
 import ML_tools.reading as reading
 import numpy as np
@@ -13,8 +11,6 @@ import nibabel as nib
 from sklearn.model_selection import train_test_split
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import RandomRotation, RandomZoom, RandomCrop, RandomContrast
-
-
 
 
 def import_dataset(k_slice=45):
@@ -32,7 +28,7 @@ def import_dataset(k_slice=45):
     images : numpy.ndarray
         DTI images of the subjects. Each slice corresponds to a different parameter (FA, MD and AD in order).
     labels : numpy.ndarray
-        Corresponding labels for each DTI image. Value 1 indicates a subject with alzheimer's disease.
+        Corresponding labels for each DTI image. Value 1 indicates a subject with Alzheimer's disease.
     """
     paths_FA = reading.data_path("Diffusion_parameters_maps-20230215T134959Z-001", "corrected_FA_image")
     paths_MD = reading.data_path("Diffusion_parameters_maps-20230215T134959Z-001", "corrected_MD_image")

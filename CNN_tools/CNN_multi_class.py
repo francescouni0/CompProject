@@ -23,21 +23,13 @@ from tensorflow.keras import layers
 from tensorflow.keras import losses
 from tensorflow import keras
 import tensorflow
-
-
-
 import CNN_tools.CNN_multi_utilities as CNN_multi_utilities
-
 
 
 class MyModel(tensorflow.keras.Model):
     """
 
-    Args:
-        tensorflow (_type_): _description_
-
     """
-    
     def __init__(self, shape=(110, 110, 3)):
         super(MyModel, self).__init__()
         self.conv1 = Conv2D(8, (3, 3), padding='valid', input_shape=shape, kernel_regularizer='l1')
@@ -101,12 +93,12 @@ class MyModel(tensorflow.keras.Model):
                            validation_steps=round(len(x_val)/batch_size),
                            callbacks=[reduce_on_plateau, early_stopping])
 
-        self.loss_plot(history)
-        self.accuracy_roc(x_val, y_val)
+        self.accuracy_loss_plot(history)
+        self.validation_roc(x_val, y_val)
         self.test_roc(x_test, y_test)
         self.save_weights(Path('model.h5'))
 
-    def loss_plot(self, history):
+    def accuracy_loss_plot(self, history):
         acc = history.history['accuracy']
         val_acc = history.history['val_accuracy']
         loss = history.history['loss']
@@ -130,7 +122,7 @@ class MyModel(tensorflow.keras.Model):
         plt.title('Training and Validation Loss')
         plt.show()
         
-    def accuracy_roc(self, x_val, y_val):
+    def validation_roc(self, x_val, y_val):
         _, val_acc = self.evaluate(x_val, y_val, verbose=0)
         print('Validation accuracy: %.3f' % val_acc)
     

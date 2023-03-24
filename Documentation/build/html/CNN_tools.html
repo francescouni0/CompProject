@@ -277,12 +277,12 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-CNN_tools.CNN_multi_class">CNN_tools.CNN_multi_class module</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#CNN_tools.CNN_multi_class.MyModel"><code class="docutils literal notranslate"><span class="pre">MyModel</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#CNN_tools.CNN_multi_class.MyModel.accuracy_roc"><code class="docutils literal notranslate"><span class="pre">MyModel.accuracy_roc()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#CNN_tools.CNN_multi_class.MyModel.accuracy_loss_plot"><code class="docutils literal notranslate"><span class="pre">MyModel.accuracy_loss_plot()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#CNN_tools.CNN_multi_class.MyModel.call"><code class="docutils literal notranslate"><span class="pre">MyModel.call()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#CNN_tools.CNN_multi_class.MyModel.compile_and_fit"><code class="docutils literal notranslate"><span class="pre">MyModel.compile_and_fit()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#CNN_tools.CNN_multi_class.MyModel.load"><code class="docutils literal notranslate"><span class="pre">MyModel.load()</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#CNN_tools.CNN_multi_class.MyModel.loss_plot"><code class="docutils literal notranslate"><span class="pre">MyModel.loss_plot()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#CNN_tools.CNN_multi_class.MyModel.test_roc"><code class="docutils literal notranslate"><span class="pre">MyModel.test_roc()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#CNN_tools.CNN_multi_class.MyModel.validation_roc"><code class="docutils literal notranslate"><span class="pre">MyModel.validation_roc()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -318,8 +318,8 @@ document.write(`
 </dd>
 </dl>
 <dl class="py method">
-<dt class="sig sig-object py" id="CNN_tools.CNN_multi_class.MyModel.accuracy_roc">
-<span class="sig-name descname"><span class="pre">accuracy_roc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_val</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_val</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/CNN_tools/CNN_multi_class.html#MyModel.accuracy_roc"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CNN_tools.CNN_multi_class.MyModel.accuracy_roc" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="CNN_tools.CNN_multi_class.MyModel.accuracy_loss_plot">
+<span class="sig-name descname"><span class="pre">accuracy_loss_plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">history</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/CNN_tools/CNN_multi_class.html#MyModel.accuracy_loss_plot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CNN_tools.CNN_multi_class.MyModel.accuracy_loss_plot" title="Permalink to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -362,13 +362,13 @@ a list of tensors if there are more than one outputs.</p>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="CNN_tools.CNN_multi_class.MyModel.loss_plot">
-<span class="sig-name descname"><span class="pre">loss_plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">history</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/CNN_tools/CNN_multi_class.html#MyModel.loss_plot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CNN_tools.CNN_multi_class.MyModel.loss_plot" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="CNN_tools.CNN_multi_class.MyModel.test_roc">
+<span class="sig-name descname"><span class="pre">test_roc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_test</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_test</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/CNN_tools/CNN_multi_class.html#MyModel.test_roc"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CNN_tools.CNN_multi_class.MyModel.test_roc" title="Permalink to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="CNN_tools.CNN_multi_class.MyModel.test_roc">
-<span class="sig-name descname"><span class="pre">test_roc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_test</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_test</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/CNN_tools/CNN_multi_class.html#MyModel.test_roc"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CNN_tools.CNN_multi_class.MyModel.test_roc" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="CNN_tools.CNN_multi_class.MyModel.validation_roc">
+<span class="sig-name descname"><span class="pre">validation_roc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_val</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_val</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/CNN_tools/CNN_multi_class.html#MyModel.validation_roc"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CNN_tools.CNN_multi_class.MyModel.validation_roc" title="Permalink to this definition">#</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -376,7 +376,6 @@ a list of tensors if there are more than one outputs.</p>
 </section>
 <section id="module-CNN_tools.CNN_multi_utilities">
 <span id="cnn-tools-cnn-multi-utilities-module"></span><h2>CNN_tools.CNN_multi_utilities module<a class="headerlink" href="#module-CNN_tools.CNN_multi_utilities" title="Permalink to this heading">#</a></h2>
-<p>Useful functions for the CNN-2.5D</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="CNN_tools.CNN_multi_utilities.data_augmentation">
 <span class="sig-prename descclassname"><span class="pre">CNN_tools.CNN_multi_utilities.</span></span><span class="sig-name descname"><span class="pre">data_augmentation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">images</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/CNN_tools/CNN_multi_utilities.html#data_augmentation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CNN_tools.CNN_multi_utilities.data_augmentation" title="Permalink to this definition">#</a></dt>
@@ -410,7 +409,7 @@ images, which are subsequently converted to a numpy array.</p>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><ul class="simple">
 <li><p><strong>images</strong> (<em>numpy.ndarray</em>) – DTI images of the subjects. Each slice corresponds to a different parameter (FA, MD and AD in order).</p></li>
-<li><p><strong>labels</strong> (<em>numpy.ndarray</em>) – Corresponding labels for each DTI image. Value 1 indicates a subject with alzheimer’s disease.</p></li>
+<li><p><strong>labels</strong> (<em>numpy.ndarray</em>) – Corresponding labels for each DTI image. Value 1 indicates a subject with Alzheimer’s disease.</p></li>
 </ul>
 </p>
 </dd>
@@ -489,12 +488,12 @@ images, which are subsequently converted to a numpy array.</p>
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-CNN_tools.CNN_multi_class">CNN_tools.CNN_multi_class module</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#CNN_tools.CNN_multi_class.MyModel"><code class="docutils literal notranslate"><span class="pre">MyModel</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#CNN_tools.CNN_multi_class.MyModel.accuracy_roc"><code class="docutils literal notranslate"><span class="pre">MyModel.accuracy_roc()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#CNN_tools.CNN_multi_class.MyModel.accuracy_loss_plot"><code class="docutils literal notranslate"><span class="pre">MyModel.accuracy_loss_plot()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#CNN_tools.CNN_multi_class.MyModel.call"><code class="docutils literal notranslate"><span class="pre">MyModel.call()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#CNN_tools.CNN_multi_class.MyModel.compile_and_fit"><code class="docutils literal notranslate"><span class="pre">MyModel.compile_and_fit()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#CNN_tools.CNN_multi_class.MyModel.load"><code class="docutils literal notranslate"><span class="pre">MyModel.load()</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#CNN_tools.CNN_multi_class.MyModel.loss_plot"><code class="docutils literal notranslate"><span class="pre">MyModel.loss_plot()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#CNN_tools.CNN_multi_class.MyModel.test_roc"><code class="docutils literal notranslate"><span class="pre">MyModel.test_roc()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#CNN_tools.CNN_multi_class.MyModel.validation_roc"><code class="docutils literal notranslate"><span class="pre">MyModel.validation_roc()</span></code></a></li>
 </ul>
 </li>
 </ul>
