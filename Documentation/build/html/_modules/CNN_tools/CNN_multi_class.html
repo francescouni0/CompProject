@@ -227,8 +227,7 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <h1>Source code for CNN_tools.CNN_multi_class</h1><div class="highlight"><pre>
-<span></span>
-<span class="kn">import</span> <span class="nn">sys</span>
+<span></span><span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
 <span class="kn">import</span> <span class="nn">os</span>
 
@@ -257,9 +256,53 @@ document.write(`
 
 <div class="viewcode-block" id="MyModel"><a class="viewcode-back" href="../../CNN_tools.html#CNN_tools.CNN_multi_class.MyModel">[docs]</a><span class="k">class</span> <span class="nc">MyModel</span><span class="p">(</span><span class="n">tensorflow</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Subclass of the TensorFlow Keras Model class. This model is a Convolutional Neural Network (CNN) 2.5D designed for</span>
+<span class="sd">    image classification tasks: it consists of two 2D convolutional layers followed by two fully connected layers,</span>
+<span class="sd">    including batch normalization, activation functions, max pooling and dropout to improve its performance and</span>
+<span class="sd">    generalization power.</span>
 
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    conv1 : tensorflow.python.keras.layers.Conv2D</span>
+<span class="sd">        First convolutional layer with 3x3 kernel size and 8 filters.</span>
+<span class="sd">    bn1 : tensorflow.python.keras.layers.BatchNormalization</span>
+<span class="sd">        First batch normalization layer.</span>
+<span class="sd">    act1 : tensorflow.python.keras.layers.Activation</span>
+<span class="sd">        First activation function layer with a Rectified Linear Unit function.</span>
+<span class="sd">    pool1 : tensorflow.python.keras.layers.MaxPooling2D</span>
+<span class="sd">        First max pooling layer with 2x2 pool size and stride 3.</span>
+<span class="sd">    drop1 : tensorflow.python.keras.layers.Dropout</span>
+<span class="sd">        First dropout layer with a 0.3 rate.</span>
+<span class="sd">    conv2 : tensorflow.python.keras.layers.Conv2D</span>
+<span class="sd">        Second convolutional layer with 3x3 kernel size and 16 filters.</span>
+<span class="sd">    bn2 : tensorflow.python.keras.layers.BatchNormalization</span>
+<span class="sd">        Second batch normalization layer.</span>
+<span class="sd">    act2 : tensorflow.python.keras.layers.Activation</span>
+<span class="sd">        Second activation function layer with a Rectified Linear Unit function.</span>
+<span class="sd">    pool2 : tensorflow.python.keras.layers.MaxPooling2D</span>
+<span class="sd">        Second max pooling layer with 3x3 pool size and stride 3.</span>
+<span class="sd">    flatten : tensorflow.python.keras.layers.Flatten</span>
+<span class="sd">        Flatten layer.</span>
+<span class="sd">    fc1 : tensorflow.python.keras.layers.Dense</span>
+<span class="sd">        First fully connected layer with 116 neurons and ReLU activation function.</span>
+<span class="sd">    fc2 : tensorflow.python.keras.layers.Dense</span>
+<span class="sd">        Second fully connected layer with a single neuron and sigmoid activation function for binary classification.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">110</span><span class="p">,</span> <span class="mi">110</span><span class="p">,</span> <span class="mi">3</span><span class="p">)):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initializes the &quot;MyModel&quot; object with the given shape of the input images (default = (110, 110, 3)). It creates</span>
+<span class="sd">        the model architecture by defining the layers and the associated parameters.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        shape : tuple</span>
+<span class="sd">            Tuple containing the (x,y) dimensions of image matrix and the number of slices (or channels). Default is</span>
+<span class="sd">            (110. 110, 3).</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">            None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">MyModel</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">conv1</span> <span class="o">=</span> <span class="n">Conv2D</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;valid&#39;</span><span class="p">,</span> <span class="n">input_shape</span><span class="o">=</span><span class="n">shape</span><span class="p">,</span> <span class="n">kernel_regularizer</span><span class="o">=</span><span class="s1">&#39;l1&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">bn1</span> <span class="o">=</span> <span class="n">BatchNormalization</span><span class="p">()</span>
@@ -275,6 +318,21 @@ document.write(`
         <span class="bp">self</span><span class="o">.</span><span class="n">fc2</span> <span class="o">=</span> <span class="n">Dense</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;sigmoid&#39;</span><span class="p">)</span>
 
 <div class="viewcode-block" id="MyModel.call"><a class="viewcode-back" href="../../CNN_tools.html#CNN_tools.CNN_multi_class.MyModel.call">[docs]</a>    <span class="k">def</span> <span class="nf">call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inputs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Implements the forward pass of the model, taking the input images and feeding them through each layer of the CNN.</span>
+<span class="sd">        The order of execution is as specified in the constructor.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        inputs : numpy.ndarray</span>
+<span class="sd">            Input DTI images to the CNN.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        self.fc2 : numpy.ndarray</span>
+<span class="sd">            A numpy array of shape (n_samples, 1) representing binary classification prediction for each input sample,</span>
+<span class="sd">            where n_samples is the number of input images.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conv1</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
         <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bn1</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
         <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">act1</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
@@ -290,6 +348,34 @@ document.write(`
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">fc2</span><span class="p">(</span><span class="n">x</span><span class="p">)</span></div>
     
 <div class="viewcode-block" id="MyModel.compile_and_fit"><a class="viewcode-back" href="../../CNN_tools.html#CNN_tools.CNN_multi_class.MyModel.compile_and_fit">[docs]</a>    <span class="k">def</span> <span class="nf">compile_and_fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">x_val</span><span class="p">,</span> <span class="n">y_val</span><span class="p">,</span> <span class="n">x_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">n_epochs</span><span class="p">,</span> <span class="n">batchsize</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Compiles the model and fits it to the training data. Once fitted, the training process is shown by loss and</span>
+<span class="sd">        accuracy plots (both for training and validation) and the overall performance is evaluated on the validation and</span>
+<span class="sd">        test set.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        x_train : numpy.ndarray</span>
+<span class="sd">            Train subset of DTI images.</span>
+<span class="sd">        y_train : numpy.ndarray</span>
+<span class="sd">            Labels corresponding to x_train.</span>
+<span class="sd">        x_val : ndarray</span>
+<span class="sd">            Validation subset of DTI images.</span>
+<span class="sd">        y_val : numpy.ndarray</span>
+<span class="sd">            Labels corresponding to x_val.</span>
+<span class="sd">        x_test : numpy.ndarray</span>
+<span class="sd">            Test subset of DTI images.</span>
+<span class="sd">        y_test : numpy.ndarray</span>
+<span class="sd">            Labels corresponding to x_test.</span>
+<span class="sd">        n_epochs : int</span>
+<span class="sd">            Maximum number of epochs to train the models.</span>
+<span class="sd">        batchsize : int</span>
+<span class="sd">            Batch size to use during training.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">            None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="n">SGD</span><span class="p">(</span><span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.01</span><span class="p">),</span> <span class="n">loss</span><span class="o">=</span><span class="n">losses</span><span class="o">.</span><span class="n">Hinge</span><span class="p">(),</span> <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;accuracy&#39;</span><span class="p">])</span>
 
         <span class="n">reduce_on_plateau</span> <span class="o">=</span> <span class="n">ReduceLROnPlateau</span><span class="p">(</span><span class="n">monitor</span><span class="o">=</span><span class="s2">&quot;val_loss&quot;</span><span class="p">,</span>
@@ -328,6 +414,19 @@ document.write(`
         <span class="bp">self</span><span class="o">.</span><span class="n">save_weights</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="s1">&#39;model.h5&#39;</span><span class="p">))</span></div>
 
 <div class="viewcode-block" id="MyModel.accuracy_loss_plot"><a class="viewcode-back" href="../../CNN_tools.html#CNN_tools.CNN_multi_class.MyModel.accuracy_loss_plot">[docs]</a>    <span class="k">def</span> <span class="nf">accuracy_loss_plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">history</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Generates two plots: one of model&#39;s accuracy on the training and validation sets, the other of model&#39;s loss on</span>
+<span class="sd">        the same sets of data.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        history : keras.callbacks.History</span>
+<span class="sd">            History object generated during model training.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">            None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">acc</span> <span class="o">=</span> <span class="n">history</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="s1">&#39;accuracy&#39;</span><span class="p">]</span>
         <span class="n">val_acc</span> <span class="o">=</span> <span class="n">history</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="s1">&#39;val_accuracy&#39;</span><span class="p">]</span>
         <span class="n">loss</span> <span class="o">=</span> <span class="n">history</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="s1">&#39;loss&#39;</span><span class="p">]</span>
@@ -352,11 +451,26 @@ document.write(`
         <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></div>
         
 <div class="viewcode-block" id="MyModel.validation_roc"><a class="viewcode-back" href="../../CNN_tools.html#CNN_tools.CNN_multi_class.MyModel.validation_roc">[docs]</a>    <span class="k">def</span> <span class="nf">validation_roc</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x_val</span><span class="p">,</span> <span class="n">y_val</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Generates a plot of the ROC curve and calculates the AUC score for the model on the validation set.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        x_val : ndarray</span>
+<span class="sd">            Validation subset of DTI images.</span>
+<span class="sd">        y_val : numpy.ndarray</span>
+<span class="sd">            Labels corresponding to x_val.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">            None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">_</span><span class="p">,</span> <span class="n">val_acc</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">x_val</span><span class="p">,</span> <span class="n">y_val</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Validation accuracy: </span><span class="si">%.3f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">val_acc</span><span class="p">)</span>
     
         <span class="n">preds</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x_val</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-        <span class="c1"># Compute Receiver operating characteristic (ROC)</span>
+
+        <span class="c1"># Compute Receiver operating characteristic (ROC) curve</span>
         <span class="n">fpr</span><span class="p">,</span> <span class="n">tpr</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">roc_curve</span><span class="p">(</span><span class="n">y_val</span><span class="p">,</span> <span class="n">preds</span><span class="p">)</span>
         <span class="n">roc_auc</span> <span class="o">=</span> <span class="n">auc</span><span class="p">(</span><span class="n">fpr</span><span class="p">,</span> <span class="n">tpr</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;AUC = </span><span class="si">%.3f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">roc_auc</span><span class="p">)</span>
@@ -375,14 +489,31 @@ document.write(`
         <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></div>
         
 <div class="viewcode-block" id="MyModel.test_roc"><a class="viewcode-back" href="../../CNN_tools.html#CNN_tools.CNN_multi_class.MyModel.test_roc">[docs]</a>    <span class="k">def</span> <span class="nf">test_roc</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Generates a plot of the ROC curve and calculates the AUC score for the model on the test set.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        x_test : ndarray</span>
+<span class="sd">            Test subset of DTI images.</span>
+<span class="sd">        y_test : numpy.ndarray</span>
+<span class="sd">            Labels corresponding to x_test.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">            None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">test_loss</span><span class="p">,</span> <span class="n">test_acc</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">x_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Test accuracy: </span><span class="si">%.3f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">test_acc</span><span class="p">)</span>
         
         <span class="n">preds_test</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x_test</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="c1"># Compute Receiver operating characteristic (ROC) curve</span>
         <span class="n">fpr</span><span class="p">,</span> <span class="n">tpr</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">roc_curve</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">preds_test</span><span class="p">)</span>
         <span class="n">roc_auc</span> <span class="o">=</span> <span class="n">auc</span><span class="p">(</span><span class="n">fpr</span><span class="p">,</span> <span class="n">tpr</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;AUC = </span><span class="si">%.3f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">roc_auc</span><span class="p">)</span>
-        
+
+        <span class="c1"># Plot of a ROC curve</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
         <span class="n">lw</span> <span class="o">=</span> <span class="mi">2</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">fpr</span><span class="p">,</span> <span class="n">tpr</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;darkorange&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="n">lw</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;ROC curve (area = </span><span class="si">%0.2f</span><span class="s1">)&#39;</span> <span class="o">%</span> <span class="n">roc_auc</span><span class="p">)</span>
@@ -396,6 +527,34 @@ document.write(`
         <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></div>
     
 <div class="viewcode-block" id="MyModel.load"><a class="viewcode-back" href="../../CNN_tools.html#CNN_tools.CNN_multi_class.MyModel.load">[docs]</a>    <span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">x_val</span><span class="p">,</span> <span class="n">y_val</span><span class="p">,</span> <span class="n">x_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">n_epochs</span><span class="p">,</span> <span class="n">batchsize</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Loads, compiles and re-trains a previously trained model stored in a H5 file.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        path : str</span>
+<span class="sd">            Path to the H5 file storing the pre-trained model.</span>
+<span class="sd">        x_train : numpy.ndarray</span>
+<span class="sd">            Train subset of DTI images.</span>
+<span class="sd">        y_train : numpy.ndarray</span>
+<span class="sd">            Labels corresponding to x_train.</span>
+<span class="sd">        x_val : ndarray</span>
+<span class="sd">            Validation subset of DTI images.</span>
+<span class="sd">        y_val : numpy.ndarray</span>
+<span class="sd">            Labels corresponding to x_val.</span>
+<span class="sd">        x_test : numpy.ndarray</span>
+<span class="sd">            Test subset of DTI images.</span>
+<span class="sd">        y_test : numpy.ndarray</span>
+<span class="sd">            Labels corresponding to x_test.</span>
+<span class="sd">        n_epochs : int</span>
+<span class="sd">            Maximum number of epochs to train the models.</span>
+<span class="sd">        batchsize : int</span>
+<span class="sd">            Batch size to use during training.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">            None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="n">SGD</span><span class="p">(</span><span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.01</span><span class="p">),</span> <span class="n">loss</span><span class="o">=</span><span class="n">losses</span><span class="o">.</span><span class="n">Hinge</span><span class="p">(),</span> <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;accuracy&#39;</span><span class="p">])</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">train_on_batch</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">load_weights</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>

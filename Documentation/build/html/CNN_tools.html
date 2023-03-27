@@ -277,6 +277,18 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-CNN_tools.CNN_multi_class">CNN_tools.CNN_multi_class module</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#CNN_tools.CNN_multi_class.MyModel"><code class="docutils literal notranslate"><span class="pre">MyModel</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#CNN_tools.CNN_multi_class.MyModel.conv1"><code class="docutils literal notranslate"><span class="pre">MyModel.conv1</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#CNN_tools.CNN_multi_class.MyModel.bn1"><code class="docutils literal notranslate"><span class="pre">MyModel.bn1</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#CNN_tools.CNN_multi_class.MyModel.act1"><code class="docutils literal notranslate"><span class="pre">MyModel.act1</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#CNN_tools.CNN_multi_class.MyModel.pool1"><code class="docutils literal notranslate"><span class="pre">MyModel.pool1</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#CNN_tools.CNN_multi_class.MyModel.drop1"><code class="docutils literal notranslate"><span class="pre">MyModel.drop1</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#CNN_tools.CNN_multi_class.MyModel.conv2"><code class="docutils literal notranslate"><span class="pre">MyModel.conv2</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#CNN_tools.CNN_multi_class.MyModel.bn2"><code class="docutils literal notranslate"><span class="pre">MyModel.bn2</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#CNN_tools.CNN_multi_class.MyModel.act2"><code class="docutils literal notranslate"><span class="pre">MyModel.act2</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#CNN_tools.CNN_multi_class.MyModel.pool2"><code class="docutils literal notranslate"><span class="pre">MyModel.pool2</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#CNN_tools.CNN_multi_class.MyModel.flatten"><code class="docutils literal notranslate"><span class="pre">MyModel.flatten</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#CNN_tools.CNN_multi_class.MyModel.fc1"><code class="docutils literal notranslate"><span class="pre">MyModel.fc1</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#CNN_tools.CNN_multi_class.MyModel.fc2"><code class="docutils literal notranslate"><span class="pre">MyModel.fc2</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#CNN_tools.CNN_multi_class.MyModel.accuracy_loss_plot"><code class="docutils literal notranslate"><span class="pre">MyModel.accuracy_loss_plot()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#CNN_tools.CNN_multi_class.MyModel.call"><code class="docutils literal notranslate"><span class="pre">MyModel.call()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#CNN_tools.CNN_multi_class.MyModel.compile_and_fit"><code class="docutils literal notranslate"><span class="pre">MyModel.compile_and_fit()</span></code></a></li>
@@ -312,36 +324,172 @@ document.write(`
 <dt class="sig sig-object py" id="CNN_tools.CNN_multi_class.MyModel">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">CNN_tools.CNN_multi_class.</span></span><span class="sig-name descname"><span class="pre">MyModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/CNN_tools/CNN_multi_class.html#MyModel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CNN_tools.CNN_multi_class.MyModel" title="Permalink to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></p>
+<p>Subclass of the TensorFlow Keras Model class. This model is a Convolutional Neural Network (CNN) 2.5D designed for
+image classification tasks: it consists of two 2D convolutional layers followed by two fully connected layers,
+including batch normalization, activation functions, max pooling and dropout to improve its performance and
+generalization power.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="CNN_tools.CNN_multi_class.MyModel.conv1">
+<span class="sig-name descname"><span class="pre">conv1</span></span><a class="headerlink" href="#CNN_tools.CNN_multi_class.MyModel.conv1" title="Permalink to this definition">#</a></dt>
+<dd><p>First convolutional layer with 3x3 kernel size and 8 filters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tensorflow.python.keras.layers.Conv2D</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="CNN_tools.CNN_multi_class.MyModel.bn1">
+<span class="sig-name descname"><span class="pre">bn1</span></span><a class="headerlink" href="#CNN_tools.CNN_multi_class.MyModel.bn1" title="Permalink to this definition">#</a></dt>
+<dd><p>First batch normalization layer.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tensorflow.python.keras.layers.BatchNormalization</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="CNN_tools.CNN_multi_class.MyModel.act1">
+<span class="sig-name descname"><span class="pre">act1</span></span><a class="headerlink" href="#CNN_tools.CNN_multi_class.MyModel.act1" title="Permalink to this definition">#</a></dt>
+<dd><p>First activation function layer with a Rectified Linear Unit function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tensorflow.python.keras.layers.Activation</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="CNN_tools.CNN_multi_class.MyModel.pool1">
+<span class="sig-name descname"><span class="pre">pool1</span></span><a class="headerlink" href="#CNN_tools.CNN_multi_class.MyModel.pool1" title="Permalink to this definition">#</a></dt>
+<dd><p>First max pooling layer with 2x2 pool size and stride 3.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tensorflow.python.keras.layers.MaxPooling2D</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="CNN_tools.CNN_multi_class.MyModel.drop1">
+<span class="sig-name descname"><span class="pre">drop1</span></span><a class="headerlink" href="#CNN_tools.CNN_multi_class.MyModel.drop1" title="Permalink to this definition">#</a></dt>
+<dd><p>First dropout layer with a 0.3 rate.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tensorflow.python.keras.layers.Dropout</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="CNN_tools.CNN_multi_class.MyModel.conv2">
+<span class="sig-name descname"><span class="pre">conv2</span></span><a class="headerlink" href="#CNN_tools.CNN_multi_class.MyModel.conv2" title="Permalink to this definition">#</a></dt>
+<dd><p>Second convolutional layer with 3x3 kernel size and 16 filters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tensorflow.python.keras.layers.Conv2D</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="CNN_tools.CNN_multi_class.MyModel.bn2">
+<span class="sig-name descname"><span class="pre">bn2</span></span><a class="headerlink" href="#CNN_tools.CNN_multi_class.MyModel.bn2" title="Permalink to this definition">#</a></dt>
+<dd><p>Second batch normalization layer.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tensorflow.python.keras.layers.BatchNormalization</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="CNN_tools.CNN_multi_class.MyModel.act2">
+<span class="sig-name descname"><span class="pre">act2</span></span><a class="headerlink" href="#CNN_tools.CNN_multi_class.MyModel.act2" title="Permalink to this definition">#</a></dt>
+<dd><p>Second activation function layer with a Rectified Linear Unit function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tensorflow.python.keras.layers.Activation</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="CNN_tools.CNN_multi_class.MyModel.pool2">
+<span class="sig-name descname"><span class="pre">pool2</span></span><a class="headerlink" href="#CNN_tools.CNN_multi_class.MyModel.pool2" title="Permalink to this definition">#</a></dt>
+<dd><p>Second max pooling layer with 3x3 pool size and stride 3.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tensorflow.python.keras.layers.MaxPooling2D</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="CNN_tools.CNN_multi_class.MyModel.flatten">
+<span class="sig-name descname"><span class="pre">flatten</span></span><a class="headerlink" href="#CNN_tools.CNN_multi_class.MyModel.flatten" title="Permalink to this definition">#</a></dt>
+<dd><p>Flatten layer.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tensorflow.python.keras.layers.Flatten</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="CNN_tools.CNN_multi_class.MyModel.fc1">
+<span class="sig-name descname"><span class="pre">fc1</span></span><a class="headerlink" href="#CNN_tools.CNN_multi_class.MyModel.fc1" title="Permalink to this definition">#</a></dt>
+<dd><p>First fully connected layer with 116 neurons and ReLU activation function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tensorflow.python.keras.layers.Dense</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="CNN_tools.CNN_multi_class.MyModel.fc2">
+<span class="sig-name descname"><span class="pre">fc2</span></span><a class="headerlink" href="#CNN_tools.CNN_multi_class.MyModel.fc2" title="Permalink to this definition">#</a></dt>
+<dd><p>Second fully connected layer with a single neuron and sigmoid activation function for binary classification.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tensorflow.python.keras.layers.Dense</p>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="CNN_tools.CNN_multi_class.MyModel.accuracy_loss_plot">
 <span class="sig-name descname"><span class="pre">accuracy_loss_plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">history</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/CNN_tools/CNN_multi_class.html#MyModel.accuracy_loss_plot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CNN_tools.CNN_multi_class.MyModel.accuracy_loss_plot" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
+<dd><p>Generates two plots: one of model’s accuracy on the training and validation sets, the other of model’s loss on
+the same sets of data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>history</strong> (<em>keras.callbacks.History</em>) – History object generated during model training.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="CNN_tools.CNN_multi_class.MyModel.call">
 <span class="sig-name descname"><span class="pre">call</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inputs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/CNN_tools/CNN_multi_class.html#MyModel.call"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CNN_tools.CNN_multi_class.MyModel.call" title="Permalink to this definition">#</a></dt>
-<dd><p>Calls the model on new inputs and returns the outputs as tensors.</p>
-<p>In this case <cite>call()</cite> just reapplies
-all ops in the graph to the new inputs
-(e.g. build a new computational graph from the provided inputs).</p>
-<p>Note: This method should not be called directly. It is only meant to be
-overridden when subclassing <cite>tf.keras.Model</cite>.
-To call a model on an input, always use the <cite>__call__()</cite> method,
-i.e. <cite>model(inputs)</cite>, which relies on the underlying <cite>call()</cite> method.</p>
+<dd><p>Implements the forward pass of the model, taking the input images and feeding them through each layer of the CNN.
+The order of execution is as specified in the constructor.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>inputs</strong> – Input tensor, or dict/list/tuple of input tensors.</p></li>
-<li><p><strong>training</strong> – Boolean or boolean scalar tensor, indicating whether to
-run the <cite>Network</cite> in training mode or inference mode.</p></li>
-<li><p><strong>mask</strong> – A mask or list of masks. A mask can be either a boolean tensor
-or None (no mask). For more details, check the guide
-[here](<a class="reference external" href="https://www.tensorflow.org/guide/keras/masking_and_padding">https://www.tensorflow.org/guide/keras/masking_and_padding</a>).</p></li>
-</ul>
+<dd class="field-odd"><p><strong>inputs</strong> (<em>numpy.ndarray</em>) – Input DTI images to the CNN.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>A tensor if there is a single output, or
-a list of tensors if there are more than one outputs.</p>
+<dd class="field-even"><p><strong>self.fc2</strong> – A numpy array of shape (n_samples, 1) representing binary classification prediction for each input sample,
+where n_samples is the number of input images.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>numpy.ndarray</p>
 </dd>
 </dl>
 </dd></dl>
@@ -349,22 +497,85 @@ a list of tensors if there are more than one outputs.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="CNN_tools.CNN_multi_class.MyModel.compile_and_fit">
 <span class="sig-name descname"><span class="pre">compile_and_fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_train</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_train</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_val</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_val</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_test</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_test</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_epochs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batchsize</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/CNN_tools/CNN_multi_class.html#MyModel.compile_and_fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CNN_tools.CNN_multi_class.MyModel.compile_and_fit" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
+<dd><p>Compiles the model and fits it to the training data. Once fitted, the training process is shown by loss and
+accuracy plots (both for training and validation) and the overall performance is evaluated on the validation and
+test set.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x_train</strong> (<em>numpy.ndarray</em>) – Train subset of DTI images.</p></li>
+<li><p><strong>y_train</strong> (<em>numpy.ndarray</em>) – Labels corresponding to x_train.</p></li>
+<li><p><strong>x_val</strong> (<em>ndarray</em>) – Validation subset of DTI images.</p></li>
+<li><p><strong>y_val</strong> (<em>numpy.ndarray</em>) – Labels corresponding to x_val.</p></li>
+<li><p><strong>x_test</strong> (<em>numpy.ndarray</em>) – Test subset of DTI images.</p></li>
+<li><p><strong>y_test</strong> (<em>numpy.ndarray</em>) – Labels corresponding to x_test.</p></li>
+<li><p><strong>n_epochs</strong> (<em>int</em>) – Maximum number of epochs to train the models.</p></li>
+<li><p><strong>batchsize</strong> (<em>int</em>) – Batch size to use during training.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="CNN_tools.CNN_multi_class.MyModel.load">
 <span class="sig-name descname"><span class="pre">load</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_train</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_train</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_val</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_val</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_test</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_test</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_epochs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batchsize</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/CNN_tools/CNN_multi_class.html#MyModel.load"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CNN_tools.CNN_multi_class.MyModel.load" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
+<dd><p>Loads, compiles and re-trains a previously trained model stored in a H5 file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path</strong> (<em>str</em>) – Path to the H5 file storing the pre-trained model.</p></li>
+<li><p><strong>x_train</strong> (<em>numpy.ndarray</em>) – Train subset of DTI images.</p></li>
+<li><p><strong>y_train</strong> (<em>numpy.ndarray</em>) – Labels corresponding to x_train.</p></li>
+<li><p><strong>x_val</strong> (<em>ndarray</em>) – Validation subset of DTI images.</p></li>
+<li><p><strong>y_val</strong> (<em>numpy.ndarray</em>) – Labels corresponding to x_val.</p></li>
+<li><p><strong>x_test</strong> (<em>numpy.ndarray</em>) – Test subset of DTI images.</p></li>
+<li><p><strong>y_test</strong> (<em>numpy.ndarray</em>) – Labels corresponding to x_test.</p></li>
+<li><p><strong>n_epochs</strong> (<em>int</em>) – Maximum number of epochs to train the models.</p></li>
+<li><p><strong>batchsize</strong> (<em>int</em>) – Batch size to use during training.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="CNN_tools.CNN_multi_class.MyModel.test_roc">
 <span class="sig-name descname"><span class="pre">test_roc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_test</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_test</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/CNN_tools/CNN_multi_class.html#MyModel.test_roc"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CNN_tools.CNN_multi_class.MyModel.test_roc" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
+<dd><p>Generates a plot of the ROC curve and calculates the AUC score for the model on the test set.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x_test</strong> (<em>ndarray</em>) – Test subset of DTI images.</p></li>
+<li><p><strong>y_test</strong> (<em>numpy.ndarray</em>) – Labels corresponding to x_test.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="CNN_tools.CNN_multi_class.MyModel.validation_roc">
 <span class="sig-name descname"><span class="pre">validation_roc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_val</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_val</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/CNN_tools/CNN_multi_class.html#MyModel.validation_roc"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CNN_tools.CNN_multi_class.MyModel.validation_roc" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
+<dd><p>Generates a plot of the ROC curve and calculates the AUC score for the model on the validation set.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x_val</strong> (<em>ndarray</em>) – Validation subset of DTI images.</p></li>
+<li><p><strong>y_val</strong> (<em>numpy.ndarray</em>) – Labels corresponding to x_val.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 
@@ -483,6 +694,18 @@ images, which are subsequently converted to a numpy array.</p>
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-CNN_tools.CNN_multi_class">CNN_tools.CNN_multi_class module</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#CNN_tools.CNN_multi_class.MyModel"><code class="docutils literal notranslate"><span class="pre">MyModel</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#CNN_tools.CNN_multi_class.MyModel.conv1"><code class="docutils literal notranslate"><span class="pre">MyModel.conv1</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#CNN_tools.CNN_multi_class.MyModel.bn1"><code class="docutils literal notranslate"><span class="pre">MyModel.bn1</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#CNN_tools.CNN_multi_class.MyModel.act1"><code class="docutils literal notranslate"><span class="pre">MyModel.act1</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#CNN_tools.CNN_multi_class.MyModel.pool1"><code class="docutils literal notranslate"><span class="pre">MyModel.pool1</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#CNN_tools.CNN_multi_class.MyModel.drop1"><code class="docutils literal notranslate"><span class="pre">MyModel.drop1</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#CNN_tools.CNN_multi_class.MyModel.conv2"><code class="docutils literal notranslate"><span class="pre">MyModel.conv2</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#CNN_tools.CNN_multi_class.MyModel.bn2"><code class="docutils literal notranslate"><span class="pre">MyModel.bn2</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#CNN_tools.CNN_multi_class.MyModel.act2"><code class="docutils literal notranslate"><span class="pre">MyModel.act2</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#CNN_tools.CNN_multi_class.MyModel.pool2"><code class="docutils literal notranslate"><span class="pre">MyModel.pool2</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#CNN_tools.CNN_multi_class.MyModel.flatten"><code class="docutils literal notranslate"><span class="pre">MyModel.flatten</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#CNN_tools.CNN_multi_class.MyModel.fc1"><code class="docutils literal notranslate"><span class="pre">MyModel.fc1</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#CNN_tools.CNN_multi_class.MyModel.fc2"><code class="docutils literal notranslate"><span class="pre">MyModel.fc2</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#CNN_tools.CNN_multi_class.MyModel.accuracy_loss_plot"><code class="docutils literal notranslate"><span class="pre">MyModel.accuracy_loss_plot()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#CNN_tools.CNN_multi_class.MyModel.call"><code class="docutils literal notranslate"><span class="pre">MyModel.call()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#CNN_tools.CNN_multi_class.MyModel.compile_and_fit"><code class="docutils literal notranslate"><span class="pre">MyModel.compile_and_fit()</span></code></a></li>
