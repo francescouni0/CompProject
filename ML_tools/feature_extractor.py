@@ -4,10 +4,8 @@ import matlab.engine
 import sys
 from pathlib import Path
 import os
+
 sys.path.insert(0, str(Path(os.getcwd()).parent))
-
-
-
 
 
 def feature_extractor(image_filepaths, masks_filepaths):
@@ -33,8 +31,6 @@ def feature_extractor(image_filepaths, masks_filepaths):
     """
 
 # Start MATLAB engine
-    #print(os.getcwd())
-
     eng = matlab.engine.start_matlab()
     
     eng.addpath('./ML_tools')

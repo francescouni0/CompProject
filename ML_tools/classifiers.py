@@ -19,8 +19,6 @@ import os
 
 sys.path.insert(0, str(Path(os.getcwd()).parent))
 
-
-
 param_dist = {'n_estimators': randint(50, 500),
               'max_depth': randint(1, 20)}
 
