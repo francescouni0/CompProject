@@ -134,7 +134,7 @@ if __name__ == '__main__':
             
         
         elif args.classifier == "Support Vector Machines":
-            classifiers.SVMPipeline(mean_md, group, "rbf")
+            classifiers.SVM_simple(mean_md, group, "rbf")
 
         else:
             print('Input not valid, please retry.')
@@ -166,7 +166,7 @@ if __name__ == '__main__':
             #OPTION FOR PCA
             
             if option1.lower()[0] == "n":
-                classifiers.RFPipeline_noPCA(mean_fa, group, 10, 5)
+                classifiers.RFPipeline_noPCA(mean_fa, group, 5, 5)
             elif option1.lower()[0] == "y":
                 classifiers.RFPipeline_PCA(mean_fa, group, 10, 5)
             else:
@@ -180,9 +180,9 @@ if __name__ == '__main__':
             
             
             if option2.lower()[0] == "n":
-                classifiers.SVMPipeline(mean_fa, group, "rbf")
+                classifiers.SVM_simple(mean_fa, group, "rbf")
             elif option2.lower()[0] == "y":
-                classifiers.SVMPipeline_feature_red(mean_fa, group)
+                classifiers.SVM_feature_reduction(mean_fa, group)
             else:
                 print('Input not valid, please retry.')
 
