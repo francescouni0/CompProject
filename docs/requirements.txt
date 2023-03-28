@@ -2,9 +2,12 @@ numpy
 matplotlib
 pandas
 scipy
-sklearn
+scikit-learn
 tensorflow
 argparse
 h5py
 pathlib
 graphviz
+nibabel
+nilearn
+matlabengine
