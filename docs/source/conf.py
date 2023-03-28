@@ -15,6 +15,10 @@ package_name = 'CompProject'
 package_root = os.path.abspath('../..')
 sys.path.insert(0, package_root)
 sys.path.insert(0, os.path.join(package_root, package_name))
+#list of modules to mock
+
+autodoc_mock_imports = ['matlabengine','matlab','matlab.engine']
+
 
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
@@ -37,6 +41,3 @@ exclude_patterns = []
 
 html_theme = 'alabaster'
 html_static_path = ['_static']
-
-#list of modules to mock
-autodoc_mock_imports = ['matlab.engine']
