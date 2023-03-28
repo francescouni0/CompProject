@@ -1,6 +1,7 @@
 import sys
 import os
 from pathlib import Path
+
 sys.path.insert(0, str(Path(os.getcwd()).parent))
 
 import unittest
@@ -16,8 +17,7 @@ paths_masks = reading.data_path("Diffusion_space_segmentations-20230215T134839Z-
 class TestFeatureExtractor(unittest.TestCase):
 
     def test_feature_extractor(self):
-       
-        #definine input data
+        # defining input data
         num_regions = 176
        
         paths_masks = reading.data_path("Diffusion_space_segmentations-20230215T134839Z-001", "Diffusion_space_segmentations-20230215T134839Z-001")
@@ -34,10 +34,10 @@ class TestFeatureExtractor(unittest.TestCase):
         self.assertEqual(df_mean.shape, (len(paths_masks), num_regions))
         self.assertEqual(df_std.shape, (len(paths_masks), num_regions))
 
-        
         # check output dataframe values
-        #self.assertTrue(np.allclose(df_mean.values, expected_mean_values))
+        # self.assertTrue(np.allclose(df_mean.values, expected_mean_values))
         self.assertTrue(np.allclose(df_std.values, 0))
+
 
 if __name__ == '__main__':
     unittest.main()
