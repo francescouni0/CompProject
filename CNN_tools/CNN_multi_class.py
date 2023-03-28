@@ -9,6 +9,7 @@ import CNN_tools.CNN_multi_utilities as CNN_multi_utilities
 import numpy as np
 import pandas as pd
 import nibabel as nib
+import scipy
 import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
 from tensorflow.keras.models import Sequential
@@ -236,15 +237,26 @@ class MyModel(tensorflow.keras.Model):
         -------
             None
         """
+        confidence_int = 0.683
+        z_score = scipy.stats.norm.ppf((1 + confidence_int) / 2.0)
+
         _, val_acc = self.evaluate(x_val, y_val, verbose=0)
-        print('Validation accuracy: %.3f' % val_acc)
+        accuracy_err = z_score * np.sqrt((val_acc * (1 - val_acc)) / y_val.shape[0])
+        print('Validation accuracy:', round(val_acc, 2), "+/-", round(accuracy_err, 2))
     
         preds = self.predict(x_val, verbose=1)
 
         # Compute Receiver operating characteristic (ROC) curve
         fpr, tpr, _ = roc_curve(y_val, preds)
         roc_auc = auc(fpr, tpr)
-        print('AUC = %.3f' % roc_auc)
+        n1 = sum(y_val == 1)
+        n2 = sum(y_val == 0)
+        q1 = roc_auc / (2 - roc_auc)
+        q2 = 2 * roc_auc ** 2 / (1 + roc_auc)
+        auc_err = z_score * np.sqrt(
+            (roc_auc * (1 - roc_auc) + (n1 - 1) * (q1 - roc_auc ** 2) + (n2 - 1) * (q2 - roc_auc ** 2)) / (n1 * n2)
+        )
+        print("AUC:", round(roc_auc, 2), "+/-", round(auc_err, 2))
     
         # Plot of a ROC curve
         plt.figure()
@@ -274,15 +286,26 @@ class MyModel(tensorflow.keras.Model):
         -------
             None
         """
+        confidence_int = 0.683
+        z_score = scipy.stats.norm.ppf((1 + confidence_int) / 2.0)
+
         test_loss, test_acc = self.evaluate(x_test, y_test)
-        print('\nTest accuracy: %.3f' % test_acc)
+        accuracy_err = z_score * np.sqrt((test_acc * (1 - test_acc)) / y_test.shape[0])
+        print('Validation accuracy:', round(test_acc, 2), "+/-", round(accuracy_err, 2))
         
         preds_test = self.predict(x_test, verbose=1)
 
         # Compute Receiver operating characteristic (ROC) curve
         fpr, tpr, _ = roc_curve(y_test, preds_test)
         roc_auc = auc(fpr, tpr)
-        print('AUC = %.3f' % roc_auc)
+        n1 = sum(y_test == 1)
+        n2 = sum(y_test == 0)
+        q1 = roc_auc / (2 - roc_auc)
+        q2 = 2 * roc_auc ** 2 / (1 + roc_auc)
+        auc_err = z_score * np.sqrt(
+            (roc_auc * (1 - roc_auc) + (n1 - 1) * (q1 - roc_auc ** 2) + (n2 - 1) * (q2 - roc_auc ** 2)) / (n1 * n2)
+        )
+        print("AUC:", round(roc_auc, 2), "+/-", round(auc_err, 2))
 
         # Plot of a ROC curve
         plt.figure()

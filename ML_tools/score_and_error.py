@@ -6,7 +6,33 @@ from sklearn.metrics import accuracy_score, precision_score, recall_score, roc_c
 
 def performance_scores(y_test, y_predicted, y_probability, confidence_int=0.683):
     """
-    Add documentation
+    Computes and displays various performance scores (including accuracy, precision, recall and AUC) with related errors
+    for binary classification models.
+
+    Parameters
+    ----------
+    y_test : numpy.ndarray
+        True labels of test set.
+    y_predicted : numpy.ndarray
+        Predicted labels of test set.
+    y_probability : numpy.ndarray
+        Predicted label probabilities of test set.
+    confidence_int : float, optional
+        Confidence interval for error estimation. Default value is 0.683 (approximately 1 sigma).
+
+    Returns
+    -------
+    scores : dict
+        Dictionary containing various performance scores (and relative errors) including: Accuracy, Precision, Recall
+        and AUC.
+
+    See Also
+    --------
+    accuracy_score: https://scikit-learn.org/stable/modules/generated/sklearn.metrics.accuracy_score.html
+    precision_score: https://scikit-learn.org/stable/modules/generated/sklearn.metrics.precision_score.html
+    recall_score: https://scikit-learn.org/stable/modules/generated/sklearn.metrics.recall_score.html
+    roc_curve: https://scikit-learn.org/stable/modules/generated/sklearn.metrics.roc_curve.html
+    auc: https://scikit-learn.org/stable/modules/generated/sklearn.metrics.auc.html
     """
     if y_probability.ndim == 2:
         y_prob = y_probability[:, 1]
@@ -30,7 +56,9 @@ def performance_scores(y_test, y_predicted, y_probability, confidence_int=0.683)
     n2 = sum(y_test == 0)
     q1 = roc_auc / (2 - roc_auc)
     q2 = 2 * roc_auc ** 2 / (1 + roc_auc)
-    auc_err = np.sqrt((roc_auc * (1 - roc_auc) + (n1 - 1) * (q1 - roc_auc ** 2) + (n2 - 1) * (q2 - roc_auc ** 2)) / (n1 * n2))
+    auc_err = z_score * np.sqrt(
+        (roc_auc * (1 - roc_auc) + (n1 - 1) * (q1 - roc_auc ** 2) + (n2 - 1) * (q2 - roc_auc ** 2)) / (n1 * n2)
+    )
 
     plt.figure()
     lw = 2

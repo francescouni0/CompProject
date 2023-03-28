@@ -227,27 +227,28 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <h1>Source code for ML_tools.classifiers</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">Pipeline</span>
-<span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">PCA</span>
-<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">RocCurveDisplay</span>
-<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span>
-<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span><span class="p">,</span> <span class="n">confusion_matrix</span><span class="p">,</span> <span class="n">precision_score</span><span class="p">,</span> <span class="n">recall_score</span><span class="p">,</span> <span class="n">ConfusionMatrixDisplay</span>
-<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">RandomizedSearchCV</span><span class="p">,</span> <span class="n">train_test_split</span><span class="p">,</span> <span class="n">GridSearchCV</span>
-<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">randint</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">export_graphviz</span>
-<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span> 
-<span class="kn">import</span> <span class="nn">graphviz</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">svm</span><span class="p">,</span> <span class="n">metrics</span>
-<span class="kn">from</span> <span class="nn">sklearn.feature_selection</span> <span class="kn">import</span> <span class="n">RFECV</span>
-<span class="kn">import</span> <span class="nn">scipy</span>
-<span class="kn">import</span> <span class="nn">sys</span>
+<span></span><span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
 <span class="kn">import</span> <span class="nn">os</span>
 
 <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">())</span><span class="o">.</span><span class="n">parent</span><span class="p">))</span>
 
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">graphviz</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">randint</span>
+<span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">Pipeline</span>
+<span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">PCA</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">RocCurveDisplay</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">RandomizedSearchCV</span><span class="p">,</span> <span class="n">train_test_split</span><span class="p">,</span> <span class="n">GridSearchCV</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">export_graphviz</span>
+<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">svm</span><span class="p">,</span> <span class="n">metrics</span>
+<span class="kn">from</span> <span class="nn">sklearn.feature_selection</span> <span class="kn">import</span> <span class="n">RFECV</span>
+<span class="kn">from</span> <span class="nn">ML_tools.score_and_error</span> <span class="kn">import</span> <span class="n">performance_scores</span>
+
+
+<span class="c1"># PARAMETERS DISTRIBUTION FOR RANDOMSEARCHCV</span>
 <span class="n">param_dist</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;n_estimators&#39;</span><span class="p">:</span> <span class="n">randint</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">500</span><span class="p">),</span>
               <span class="s1">&#39;max_depth&#39;</span><span class="p">:</span> <span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">20</span><span class="p">)}</span>
 
@@ -260,55 +261,47 @@ document.write(`
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">        df1 : pandas.DataFrame</span>
-<span class="sd">            Dataframe containing the features.</span>
-<span class="sd">        df2 : pandas.DataFrame</span>
-<span class="sd">            Dataframe containing the labels.</span>
-<span class="sd">        n_iter : int</span>
-<span class="sd">            Number of parameter settings that are sampled.</span>
-<span class="sd">        cv : int</span>
-<span class="sd">            Number of cross-validation folds to use.</span>
+<span class="sd">    df1 : pandas.DataFrame</span>
+<span class="sd">        Dataframe containing the features.</span>
+<span class="sd">    df2 : pandas.DataFrame</span>
+<span class="sd">        Dataframe containing the labels.</span>
+<span class="sd">    n_iter : int</span>
+<span class="sd">        Number of parameter settings that are sampled.</span>
+<span class="sd">    cv : int</span>
+<span class="sd">        Number of cross-validation folds to use.</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">        pipeline_simple : sklearn.pipeline.Pipeline</span>
-<span class="sd">            A fitted pipeline (includes hyperparameter optimization using RandomizedSearchCV and a Random Forest</span>
-<span class="sd">            Classifier model).</span>
+<span class="sd">    pipeline_simple : sklearn.pipeline.Pipeline</span>
+<span class="sd">        A fitted pipeline (includes hyperparameter optimization using RandomizedSearchCV and a Random Forest Classifier</span>
+<span class="sd">        model).</span>
 
 <span class="sd">    See Also</span>
 <span class="sd">    --------</span>
-<span class="sd">        RandomizedSearchCV : https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.RandomizedSearchCV.html</span>
+<span class="sd">    RandomizedSearchCV : https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.RandomizedSearchCV.html</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">X</span> <span class="o">=</span> <span class="n">df1</span><span class="o">.</span><span class="n">values</span>
     <span class="n">y</span> <span class="o">=</span> <span class="n">df2</span><span class="o">.</span><span class="n">values</span>
     <span class="n">region</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">df1</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
 
-    <span class="n">X_tr</span><span class="p">,</span> <span class="n">X_tst</span><span class="p">,</span> <span class="n">y_tr</span><span class="p">,</span> <span class="n">y_tst</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">.1</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+    <span class="n">X_tr</span><span class="p">,</span> <span class="n">X_tst</span><span class="p">,</span> <span class="n">y_tr</span><span class="p">,</span> <span class="n">y_tst</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
 
     <span class="n">pipeline_simple</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span><span class="n">steps</span><span class="o">=</span><span class="p">[(</span><span class="s2">&quot;hyper_opt&quot;</span><span class="p">,</span> <span class="n">RandomizedSearchCV</span><span class="p">(</span><span class="n">RandomForestClassifier</span><span class="p">(),</span>
                                                                        <span class="n">param_distributions</span><span class="o">=</span><span class="n">param_dist</span><span class="p">,</span>
                                                                        <span class="n">n_iter</span><span class="o">=</span><span class="n">n_iter</span><span class="p">,</span>
                                                                        <span class="n">cv</span><span class="o">=</span><span class="n">cv</span><span class="p">,</span>
-                                                                       <span class="n">random_state</span><span class="o">=</span><span class="mi">9</span><span class="p">))</span>
+                                                                       <span class="n">random_state</span><span class="o">=</span><span class="mi">10</span><span class="p">))</span>
                                       <span class="p">]</span>
                                <span class="p">)</span>
 
     <span class="n">pipeline_simple</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_tr</span><span class="p">,</span> <span class="n">y_tr</span><span class="p">)</span>
 
     <span class="n">y_pred</span> <span class="o">=</span> <span class="n">pipeline_simple</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_tst</span><span class="p">)</span>
+    <span class="n">y_prob</span> <span class="o">=</span> <span class="n">pipeline_simple</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X_tst</span><span class="p">)</span>
 
-    <span class="n">accuracy</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_tst</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
-    <span class="n">precision</span> <span class="o">=</span> <span class="n">precision_score</span><span class="p">(</span><span class="n">y_tst</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
-    <span class="n">recall</span> <span class="o">=</span> <span class="n">recall_score</span><span class="p">(</span><span class="n">y_tst</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
-
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Accuracy:&quot;</span><span class="p">,</span> <span class="n">accuracy</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Precision:&quot;</span><span class="p">,</span> <span class="n">precision</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Recall:&quot;</span><span class="p">,</span> <span class="n">recall</span><span class="p">)</span>
-
-    <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
-    <span class="n">rnds_disp</span> <span class="o">=</span> <span class="n">RocCurveDisplay</span><span class="o">.</span><span class="n">from_estimator</span><span class="p">(</span><span class="n">pipeline_simple</span><span class="p">,</span> <span class="n">X_tst</span><span class="p">,</span> <span class="n">y_tst</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    <span class="c1"># SCORES WITH 95% CONFIDENCE INTERVAL</span>
+    <span class="n">scores</span> <span class="o">=</span> <span class="n">performance_scores</span><span class="p">(</span><span class="n">y_tst</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">y_prob</span><span class="p">)</span>
 
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
         <span class="n">tree</span> <span class="o">=</span> <span class="n">pipeline_simple</span><span class="p">[</span><span class="s2">&quot;hyper_opt&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">best_estimator_</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
@@ -332,25 +325,25 @@ document.write(`
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">        df1 : pandas.DataFrame</span>
-<span class="sd">            Dataframe containing the features.</span>
-<span class="sd">        df2 : pandas.DataFrame</span>
-<span class="sd">            Dataframe containing the labels.</span>
-<span class="sd">        n_iter : int</span>
-<span class="sd">            Number of parameter settings that are sampled.</span>
-<span class="sd">        cv : int</span>
-<span class="sd">            Number of cross-validation folds to use.</span>
+<span class="sd">    df1 : pandas.DataFrame</span>
+<span class="sd">        Dataframe containing the features.</span>
+<span class="sd">    df2 : pandas.DataFrame</span>
+<span class="sd">        Dataframe containing the labels.</span>
+<span class="sd">    n_iter : int</span>
+<span class="sd">        Number of parameter settings that are sampled.</span>
+<span class="sd">    cv : int</span>
+<span class="sd">        Number of cross-validation folds to use.</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">        pipeline_PCA : sklearn.pipeline.Pipeline</span>
-<span class="sd">            A fitted pipeline (includes PCA, hyperparameter optimization using RandomizedSearchCV and a Random Forest</span>
-<span class="sd">            Classifier model).</span>
+<span class="sd">    pipeline_PCA : sklearn.pipeline.Pipeline</span>
+<span class="sd">        A fitted pipeline (includes PCA, hyperparameter optimization using RandomizedSearchCV and a Random Forest</span>
+<span class="sd">        Classifier model).</span>
 
 <span class="sd">    See Also</span>
 <span class="sd">    --------</span>
-<span class="sd">        PCA : https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html</span>
-<span class="sd">        RandomizedSearchCV : https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.RandomizedSearchCV.html</span>
+<span class="sd">    PCA : https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html</span>
+<span class="sd">    RandomizedSearchCV : https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.RandomizedSearchCV.html</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">X</span> <span class="o">=</span> <span class="n">df1</span><span class="o">.</span><span class="n">values</span>
@@ -371,18 +364,10 @@ document.write(`
     <span class="n">pipeline_PCA</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_tr</span><span class="p">,</span> <span class="n">y_tr</span><span class="p">)</span>
 
     <span class="n">y_pred</span> <span class="o">=</span> <span class="n">pipeline_PCA</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_tst</span><span class="p">)</span>
+    <span class="n">y_prob</span> <span class="o">=</span> <span class="n">pipeline_PCA</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X_tst</span><span class="p">)</span>
 
-    <span class="n">accuracy</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_tst</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
-    <span class="n">precision</span> <span class="o">=</span> <span class="n">precision_score</span><span class="p">(</span><span class="n">y_tst</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
-    <span class="n">recall</span> <span class="o">=</span> <span class="n">recall_score</span><span class="p">(</span><span class="n">y_tst</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
-
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Accuracy:&quot;</span><span class="p">,</span> <span class="n">accuracy</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Precision:&quot;</span><span class="p">,</span> <span class="n">precision</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Recall:&quot;</span><span class="p">,</span> <span class="n">recall</span><span class="p">)</span>
-
-    <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
-    <span class="n">rnds_disp</span> <span class="o">=</span> <span class="n">RocCurveDisplay</span><span class="o">.</span><span class="n">from_estimator</span><span class="p">(</span><span class="n">pipeline_PCA</span><span class="p">,</span> <span class="n">X_tst</span><span class="p">,</span> <span class="n">y_tst</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    <span class="c1"># SCORES WITH 95% CONFIDENCE INTERVAL</span>
+    <span class="n">scores</span> <span class="o">=</span> <span class="n">performance_scores</span><span class="p">(</span><span class="n">y_tst</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">y_prob</span><span class="p">)</span>
 
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Components shape is:&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">pipeline_PCA</span><span class="p">[</span><span class="s2">&quot;dim_reduction&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">components_</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
 
@@ -397,21 +382,21 @@ document.write(`
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">        df1 : pandas.DataFrame</span>
-<span class="sd">            Dataframe containing the features.</span>
-<span class="sd">        df2 : pandas.DataFrame</span>
-<span class="sd">            Dataframe containing the labels.</span>
-<span class="sd">        ker : str</span>
-<span class="sd">            Kernel type.</span>
+<span class="sd">    df1 : pandas.DataFrame</span>
+<span class="sd">        Dataframe containing the features.</span>
+<span class="sd">    df2 : pandas.DataFrame</span>
+<span class="sd">        Dataframe containing the labels.</span>
+<span class="sd">    ker : str</span>
+<span class="sd">        Kernel type.</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">        grid : sklearn.model_selection.GridSearchCV</span>
-<span class="sd">            A fitted grid search object with the best parameters for the SVM model.</span>
+<span class="sd">    grid : sklearn.model_selection.GridSearchCV</span>
+<span class="sd">        A fitted grid search object with the best parameters for the SVM model.</span>
 
 <span class="sd">    See Also</span>
 <span class="sd">    --------</span>
-<span class="sd">        GridSearchCV : https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.GridSearchCV.html</span>
+<span class="sd">    GridSearchCV : https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.GridSearchCV.html</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     
     <span class="k">if</span> <span class="n">ker</span> <span class="o">==</span> <span class="s1">&#39;linear&#39;</span><span class="p">:</span>
@@ -438,15 +423,11 @@ document.write(`
     <span class="c1"># fitting the model for grid search </span>
     <span class="n">grid</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_tr</span><span class="p">,</span> <span class="n">y_tr</span><span class="p">)</span> 
      
-    <span class="c1"># print best parameter after tuning </span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">grid</span><span class="o">.</span><span class="n">best_params_</span><span class="p">)</span> 
-    
-    <span class="n">grid_predictions</span> <span class="o">=</span> <span class="n">grid</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_tst</span><span class="p">)</span> 
-    <span class="nb">print</span><span class="p">(</span><span class="n">grid_predictions</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">y_tst</span><span class="p">)</span>
-       
-    <span class="c1"># print classification report </span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_tst</span><span class="p">,</span> <span class="n">grid_predictions</span><span class="p">))</span> 
+    <span class="n">y_pred</span> <span class="o">=</span> <span class="n">grid</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_tst</span><span class="p">)</span>
+    <span class="n">y_prob</span> <span class="o">=</span> <span class="n">grid</span><span class="o">.</span><span class="n">decision_function</span><span class="p">(</span><span class="n">X_tst</span><span class="p">)</span>
+
+    <span class="c1"># SCORES WITH 95% CONFIDENCE INTERVAL</span>
+    <span class="n">scores</span> <span class="o">=</span> <span class="n">performance_scores</span><span class="p">(</span><span class="n">y_tst</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">y_prob</span><span class="p">)</span>
         
     <span class="k">return</span> <span class="n">grid</span><span class="o">.</span><span class="n">fit</span></div>
 
@@ -459,19 +440,19 @@ document.write(`
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">        df1 : pandas.DataFrame</span>
-<span class="sd">            Dataframe containing the features.</span>
-<span class="sd">        df2 : pandas.DataFrame</span>
-<span class="sd">            Dataframe containing the labels.</span>
+<span class="sd">    df1 : pandas.DataFrame</span>
+<span class="sd">        Dataframe containing the features.</span>
+<span class="sd">    df2 : pandas.DataFrame</span>
+<span class="sd">        Dataframe containing the labels.</span>
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">        grid : sklearn.model_selection.GridSearchCV</span>
-<span class="sd">            A fitted grid search object with the best parameters for the SVM model using the selected features.</span>
+<span class="sd">    grid : sklearn.model_selection.GridSearchCV</span>
+<span class="sd">        A fitted grid search object with the best parameters for the SVM model using the selected features.</span>
 
 <span class="sd">    See Also</span>
 <span class="sd">    --------</span>
-<span class="sd">        RFECV: https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.RFECV.html</span>
-<span class="sd">        GridSearchCV : https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.GridSearchCV.html</span>
+<span class="sd">    RFECV: https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.RFECV.html</span>
+<span class="sd">    GridSearchCV : https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.GridSearchCV.html</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">X</span> <span class="o">=</span> <span class="n">df1</span><span class="o">.</span><span class="n">values</span>
@@ -503,13 +484,11 @@ document.write(`
     <span class="c1"># fitting the model</span>
     <span class="n">grid</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_tr</span><span class="p">,</span> <span class="n">y_tr</span><span class="p">)</span>
      
-    <span class="c1"># print best parameter after tuning </span>
-    <span class="n">predictions</span> <span class="o">=</span> <span class="n">grid</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_tst</span><span class="p">)</span> 
-    <span class="nb">print</span><span class="p">(</span><span class="n">predictions</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">y_tst</span><span class="p">)</span>
-       
-    <span class="c1"># print classification report </span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_tst</span><span class="p">,</span> <span class="n">predictions</span><span class="p">))</span>
+    <span class="n">y_pred</span> <span class="o">=</span> <span class="n">grid</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_tst</span><span class="p">)</span>
+    <span class="n">y_prob</span> <span class="o">=</span> <span class="n">grid</span><span class="o">.</span><span class="n">decision_function</span><span class="p">(</span><span class="n">X_tst</span><span class="p">)</span>
+
+    <span class="c1"># SCORES WITH 95% CONFIDENCE INTERVAL</span>
+    <span class="n">scores</span> <span class="o">=</span> <span class="n">performance_scores</span><span class="p">(</span><span class="n">y_tst</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">y_prob</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">grid</span><span class="o">.</span><span class="n">fit</span></div>
 </pre></div>

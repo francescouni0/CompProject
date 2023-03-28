@@ -32,24 +32,24 @@ def RFPipeline_noPCA(df1, df2, n_iter, cv):
 
     Parameters
     ----------
-        df1 : pandas.DataFrame
-            Dataframe containing the features.
-        df2 : pandas.DataFrame
-            Dataframe containing the labels.
-        n_iter : int
-            Number of parameter settings that are sampled.
-        cv : int
-            Number of cross-validation folds to use.
+    df1 : pandas.DataFrame
+        Dataframe containing the features.
+    df2 : pandas.DataFrame
+        Dataframe containing the labels.
+    n_iter : int
+        Number of parameter settings that are sampled.
+    cv : int
+        Number of cross-validation folds to use.
 
     Returns
     -------
-        pipeline_simple : sklearn.pipeline.Pipeline
-            A fitted pipeline (includes hyperparameter optimization using RandomizedSearchCV and a Random Forest
-            Classifier model).
+    pipeline_simple : sklearn.pipeline.Pipeline
+        A fitted pipeline (includes hyperparameter optimization using RandomizedSearchCV and a Random Forest Classifier
+        model).
 
     See Also
     --------
-        RandomizedSearchCV : https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.RandomizedSearchCV.html
+    RandomizedSearchCV : https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.RandomizedSearchCV.html
     """
 
     X = df1.values
@@ -96,25 +96,25 @@ def RFPipeline_PCA(df1, df2, n_iter, cv):
 
     Parameters
     ----------
-        df1 : pandas.DataFrame
-            Dataframe containing the features.
-        df2 : pandas.DataFrame
-            Dataframe containing the labels.
-        n_iter : int
-            Number of parameter settings that are sampled.
-        cv : int
-            Number of cross-validation folds to use.
+    df1 : pandas.DataFrame
+        Dataframe containing the features.
+    df2 : pandas.DataFrame
+        Dataframe containing the labels.
+    n_iter : int
+        Number of parameter settings that are sampled.
+    cv : int
+        Number of cross-validation folds to use.
 
     Returns
     -------
-        pipeline_PCA : sklearn.pipeline.Pipeline
-            A fitted pipeline (includes PCA, hyperparameter optimization using RandomizedSearchCV and a Random Forest
-            Classifier model).
+    pipeline_PCA : sklearn.pipeline.Pipeline
+        A fitted pipeline (includes PCA, hyperparameter optimization using RandomizedSearchCV and a Random Forest
+        Classifier model).
 
     See Also
     --------
-        PCA : https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html
-        RandomizedSearchCV : https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.RandomizedSearchCV.html
+    PCA : https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html
+    RandomizedSearchCV : https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.RandomizedSearchCV.html
     """
 
     X = df1.values
@@ -153,21 +153,21 @@ def SVM_simple(df1, df2, ker: str):
 
     Parameters
     ----------
-        df1 : pandas.DataFrame
-            Dataframe containing the features.
-        df2 : pandas.DataFrame
-            Dataframe containing the labels.
-        ker : str
-            Kernel type.
+    df1 : pandas.DataFrame
+        Dataframe containing the features.
+    df2 : pandas.DataFrame
+        Dataframe containing the labels.
+    ker : str
+        Kernel type.
 
     Returns
     -------
-        grid : sklearn.model_selection.GridSearchCV
-            A fitted grid search object with the best parameters for the SVM model.
+    grid : sklearn.model_selection.GridSearchCV
+        A fitted grid search object with the best parameters for the SVM model.
 
     See Also
     --------
-        GridSearchCV : https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.GridSearchCV.html
+    GridSearchCV : https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.GridSearchCV.html
     """
     
     if ker == 'linear':
@@ -211,19 +211,19 @@ def SVM_feature_reduction(df1, df2):
 
     Parameters
     ----------
-        df1 : pandas.DataFrame
-            Dataframe containing the features.
-        df2 : pandas.DataFrame
-            Dataframe containing the labels.
+    df1 : pandas.DataFrame
+        Dataframe containing the features.
+    df2 : pandas.DataFrame
+        Dataframe containing the labels.
     Returns
     -------
-        grid : sklearn.model_selection.GridSearchCV
-            A fitted grid search object with the best parameters for the SVM model using the selected features.
+    grid : sklearn.model_selection.GridSearchCV
+        A fitted grid search object with the best parameters for the SVM model using the selected features.
 
     See Also
     --------
-        RFECV: https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.RFECV.html
-        GridSearchCV : https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.GridSearchCV.html
+    RFECV: https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.RFECV.html
+    GridSearchCV : https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.GridSearchCV.html
     """
 
     X = df1.values

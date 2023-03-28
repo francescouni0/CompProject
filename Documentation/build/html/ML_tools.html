@@ -291,6 +291,10 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ML_tools.reading.data_path"><code class="docutils literal notranslate"><span class="pre">data_path()</span></code></a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-ML_tools.score_and_error">ML_tools.score_and_error module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ML_tools.score_and_error.performance_scores"><code class="docutils literal notranslate"><span class="pre">performance_scores()</span></code></a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -356,8 +360,8 @@ find the best hyperparameters for the model.</p>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>pipeline_simple</strong> – A fitted pipeline (includes hyperparameter optimization using RandomizedSearchCV and a Random Forest
-Classifier model).</p>
+<dd class="field-even"><p><strong>pipeline_simple</strong> – A fitted pipeline (includes hyperparameter optimization using RandomizedSearchCV and a Random Forest Classifier
+model).</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>sklearn.pipeline.Pipeline</p>
@@ -507,6 +511,48 @@ the labels of the respective subjects.</p>
 </dd></dl>
 
 </section>
+<section id="module-ML_tools.score_and_error">
+<span id="ml-tools-score-and-error-module"></span><h2>ML_tools.score_and_error module<a class="headerlink" href="#module-ML_tools.score_and_error" title="Permalink to this heading">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="ML_tools.score_and_error.performance_scores">
+<span class="sig-prename descclassname"><span class="pre">ML_tools.score_and_error.</span></span><span class="sig-name descname"><span class="pre">performance_scores</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y_test</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_predicted</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_probability</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">confidence_int</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.683</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ML_tools/score_and_error.html#performance_scores"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ML_tools.score_and_error.performance_scores" title="Permalink to this definition">#</a></dt>
+<dd><p>Computes and displays various performance scores (including accuracy, precision, recall and AUC) with related errors
+for binary classification models.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>y_test</strong> (<em>numpy.ndarray</em>) – True labels of test set.</p></li>
+<li><p><strong>y_predicted</strong> (<em>numpy.ndarray</em>) – Predicted labels of test set.</p></li>
+<li><p><strong>y_probability</strong> (<em>numpy.ndarray</em>) – Predicted label probabilities of test set.</p></li>
+<li><p><strong>confidence_int</strong> (<em>float</em><em>, </em><em>optional</em>) – Confidence interval for error estimation. Default value is 0.683 (approximately 1 sigma).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>scores</strong> – Dictionary containing various performance scores (and relative errors) including: Accuracy, Precision, Recall
+and AUC.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">accuracy_score</span></code></dt><dd><p><a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.accuracy_score.html">https://scikit-learn.org/stable/modules/generated/sklearn.metrics.accuracy_score.html</a></p>
+</dd>
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">precision_score</span></code></dt><dd><p><a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.precision_score.html">https://scikit-learn.org/stable/modules/generated/sklearn.metrics.precision_score.html</a></p>
+</dd>
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">recall_score</span></code></dt><dd><p><a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.recall_score.html">https://scikit-learn.org/stable/modules/generated/sklearn.metrics.recall_score.html</a></p>
+</dd>
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">roc_curve</span></code></dt><dd><p><a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.roc_curve.html">https://scikit-learn.org/stable/modules/generated/sklearn.metrics.roc_curve.html</a></p>
+</dd>
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">auc</span></code></dt><dd><p><a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.auc.html">https://scikit-learn.org/stable/modules/generated/sklearn.metrics.auc.html</a></p>
+</dd>
+</dl>
+</div>
+</dd></dl>
+
+</section>
 </section>
 
 
@@ -565,6 +611,10 @@ the labels of the respective subjects.</p>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-ML_tools.reading">ML_tools.reading module</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ML_tools.reading.data_path"><code class="docutils literal notranslate"><span class="pre">data_path()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-ML_tools.score_and_error">ML_tools.score_and_error module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ML_tools.score_and_error.performance_scores"><code class="docutils literal notranslate"><span class="pre">performance_scores()</span></code></a></li>
 </ul>
 </li>
 </ul>
