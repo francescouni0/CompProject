@@ -10,4 +10,4 @@ pathlib
 graphviz
 nibabel
 nilearn
-shpinx-book-theme
+sphinx-book-theme
