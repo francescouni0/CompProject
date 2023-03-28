@@ -9,7 +9,7 @@ from ML_tools.reading import data_path_general
 import tempfile
 
 paths_masks = data_path_general("Diffusion_space_segmentations-20230215T134839Z-001",
-                            "Diffusion_space_segmentations-20230215T134839Z-001")
+                                "Diffusion_space_segmentations-20230215T134839Z-001")
 
 path_subdir = "corrected_MD_image"
         
