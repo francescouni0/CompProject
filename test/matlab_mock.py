@@ -10,3 +10,7 @@ class MockMatlabEngine(MagicMock):
         return cls()
 
 sys.modules['matlab.engine'] = MockMatlabEngine
+sys.modules['matlab'] = MockMatlabEngine
+sys.modules['matlabengine'] = MockMatlabEngine
+
+
