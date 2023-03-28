@@ -8,7 +8,6 @@ As an option, the user can choose to perform a Principal Component Analysis (PCA
 a Recursive Feature Elimination (RFE) on the Support Vector Machine classifier.
 The binary classifiers are evaluated by means the following parameters: Accuracy, Precision, Recall and AUC.
 """
-
 import sys
 from pathlib import Path
 import os
@@ -36,7 +35,7 @@ if __name__ == '__main__':
             'Sequential',
             'Parallel'
         ],
-        help="Type of feature extractor to use",
+        help="Type of feature extractor to use (Sequential/Parallel)",
         default="Sequential",
     )
 
@@ -65,7 +64,7 @@ if __name__ == '__main__':
             'MD',
             'FA'    
         ],
-        help="Type of datatype from the diffusion tensor",
+        help="Type of datatype from the diffusion tensor (MD/FA)",
         default="MD",
     )
    
@@ -78,7 +77,7 @@ if __name__ == '__main__':
             'Random Forest',
             'Support Vector Machines'    
         ],
-        help="Type of ML classifier to use",
+        help="Type of ML classifier to use (Random Forest/Support Vector Machines)",
         default="Random Forest",
     )
 
