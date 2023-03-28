@@ -12,7 +12,7 @@ sys.path.insert(0, os.path.abspath('../..'))
 
 project = 'CompProject'
 copyright = '2023, Simone Damiani & Francesco Urso'
-author = 'SSimone Damiani & Francesco Urso'
+author = 'Simone Damiani & Francesco Urso'
 release = '0.1.0'
 
 # -- General configuration ---------------------------------------------------
