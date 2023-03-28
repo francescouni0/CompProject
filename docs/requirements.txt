@@ -1,0 +1,13 @@
+numpy
+os
+sys
+matplotlib
+pandas
+scipy
+sklearn
+tensorflow
+argparse
+h5py
+pathlib
+graphviz
+re
