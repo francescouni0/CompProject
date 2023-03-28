@@ -5,25 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="336eb2b3-5b48-4ed4-b1de-8ea2e1353e74" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CNN_tools/CNN_multi_class.py" beforeDir="false" afterPath="$PROJECT_DIR$/CNN_tools/CNN_multi_class.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documentation/build/doctrees/ML_tools.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/Documentation/build/doctrees/ML_tools.doctree" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documentation/build/doctrees/environment.pickle" beforeDir="false" afterPath="$PROJECT_DIR$/Documentation/build/doctrees/environment.pickle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documentation/build/html/ML_tools.html" beforeDir="false" afterPath="$PROJECT_DIR$/Documentation/build/html/ML_tools.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documentation/build/html/_modules/CNN_tools/CNN_multi_class.html" beforeDir="false" afterPath="$PROJECT_DIR$/Documentation/build/html/_modules/CNN_tools/CNN_multi_class.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documentation/build/html/_modules/ML_tools/classifiers.html" beforeDir="false" afterPath="$PROJECT_DIR$/Documentation/build/html/_modules/ML_tools/classifiers.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documentation/build/html/_modules/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/Documentation/build/html/_modules/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documentation/build/html/_sources/ML_tools.rst" beforeDir="false" afterPath="$PROJECT_DIR$/Documentation/build/html/_sources/ML_tools.rst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documentation/build/html/genindex.html" beforeDir="false" afterPath="$PROJECT_DIR$/Documentation/build/html/genindex.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documentation/build/html/modules.html" beforeDir="false" afterPath="$PROJECT_DIR$/Documentation/build/html/modules.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documentation/build/html/objects.inv" beforeDir="false" afterPath="$PROJECT_DIR$/Documentation/build/html/objects.inv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documentation/build/html/py-modindex.html" beforeDir="false" afterPath="$PROJECT_DIR$/Documentation/build/html/py-modindex.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documentation/build/html/searchindex.js" beforeDir="false" afterPath="$PROJECT_DIR$/Documentation/build/html/searchindex.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documentation/source/ML_tools.rst" beforeDir="false" afterPath="$PROJECT_DIR$/Documentation/source/ML_tools.rst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ML_tools/classifiers.py" beforeDir="false" afterPath="$PROJECT_DIR$/ML_tools/classifiers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ML_tools/reading.py" beforeDir="false" afterPath="$PROJECT_DIR$/ML_tools/reading.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ML_tools/score_and_error.py" beforeDir="false" afterPath="$PROJECT_DIR$/ML_tools/score_and_error.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/fe_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/fe_test.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/reading_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/reading_test.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
