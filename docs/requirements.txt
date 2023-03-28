@@ -10,3 +10,5 @@ pathlib
 graphviz
 nibabel
 nilearn
+matlabengineforpython
+matlab.engine
