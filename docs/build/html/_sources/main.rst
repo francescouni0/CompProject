@@ -1,8 +1,6 @@
 main package
 ============
 
-
-
 main.main\_DL module
 --------------------
 
@@ -18,13 +16,3 @@ main.main\_ML module
    :members:
    :undoc-members:
    :show-inheritance:
-
-main.test module
-----------------
-
-.. automodule:: main.test
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-

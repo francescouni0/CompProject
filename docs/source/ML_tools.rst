@@ -1,8 +1,6 @@
 ML\_tools package
 =================
 
-
-
 ML\_tools.classifiers module
 ----------------------------
 
@@ -27,12 +25,10 @@ ML\_tools.reading module
    :undoc-members:
    :show-inheritance:
 
-ML\_tools.score_and_error module
---------------------------------
+ML\_tools.score\_and\_error module
+----------------------------------
 
 .. automodule:: ML_tools.score_and_error
    :members:
    :undoc-members:
    :show-inheritance:
-
-

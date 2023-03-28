@@ -1,8 +1,6 @@
 CNN\_tools package
 ==================
 
-
-
 CNN\_tools.CNN\_multi\_class module
 -----------------------------------
 
@@ -18,5 +16,4 @@ CNN\_tools.CNN\_multi\_utilities module
    :members:
    :undoc-members:
    :show-inheritance:
-
 
