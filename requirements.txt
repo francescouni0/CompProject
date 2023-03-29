@@ -1,0 +1,13 @@
+numpy
+matplotlib
+pandas
+scipy
+scikit-learn
+tensorflow
+argparse
+h5py
+pathlib
+graphviz
+nibabel
+nilearn
+sphinx-book-theme
