@@ -208,14 +208,14 @@ class MyModel(tensorflow.keras.Model):
 
         # Train and validation accuracy
         plt.figure(figsize=(15, 15))
-        plt.subplot(2, 2, 1)
+        plt.subplot(1, 2, 1)
         plt.plot(epochs_range, acc, label='Training Accuracy')
         plt.plot(epochs_range, val_acc, label='Validation Accuracy')
         plt.legend(loc='lower right')
         plt.title('Training and Validation Accuracy')
 
         # Train and validation loss
-        plt.subplot(2, 2, 2)
+        plt.subplot(1, 2, 2)
         plt.plot(epochs_range, loss, label='Training Loss')
         plt.plot(epochs_range, val_loss, label='Validation Loss')
         plt.legend(loc='upper right')
@@ -291,7 +291,7 @@ class MyModel(tensorflow.keras.Model):
 
         test_loss, test_acc = self.evaluate(x_test, y_test)
         accuracy_err = z_score * np.sqrt((test_acc * (1 - test_acc)) / y_test.shape[0])
-        print('Validation accuracy:', round(test_acc, 2), "+/-", round(accuracy_err, 2))
+        print('Test accuracy:', round(test_acc, 2), "+/-", round(accuracy_err, 2))
         
         preds_test = self.predict(x_test, verbose=1)
 
