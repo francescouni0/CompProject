@@ -17,6 +17,7 @@ from sklearn.tree import export_graphviz
 from sklearn import svm, metrics
 from sklearn.feature_selection import RFECV
 from ML_tools.score_and_error import performance_scores
+import scipy
 
 
 # PARAMETERS DISTRIBUTION FOR RANDOMSEARCHCV

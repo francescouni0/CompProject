@@ -141,7 +141,7 @@ if __name__ == '__main__':
             if option1.lower()[0] == "n":
                 classifiers.RFPipeline_noPCA(mean_fa, group, 5, 5)
             elif option1.lower()[0] == "y":
-                classifiers.RFPipeline_PCA(mean_fa, group, 10, 5)
+                classifiers.RFPipeline_PCA(mean_fa, group, 5, 5)
             else:
                 print('Input not valid, please retry. (line 149)')
             

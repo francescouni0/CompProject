@@ -1,33 +1,9 @@
 digraph Tree {
 node [shape=box, style="filled", color="black", fontname="helvetica"] ;
 edge [fontname="helvetica"] ;
-0 [label="wm-lh-bankssts <= 0.001\nsamples = 100.0%\nvalue = [0.545, 0.455]\nclass = CN", fillcolor="#fbeade"] ;
-1 [label="Right-Amygdala <= 0.001\nsamples = 76.0%\nvalue = [0.712, 0.288]\nclass = CN", fillcolor="#f0b489"] ;
+0 [label="ctx-rh-unknown <= 0.001\nsamples = 100.0%\nvalue = [0.584, 0.416]\nclass = CN", fillcolor="#f7dbc6"] ;
+1 [label="samples = 59.2%\nvalue = [0.851, 0.149]\nclass = CN", fillcolor="#ea975c"] ;
 0 -> 1 [labeldistance=2.5, labelangle=45, headlabel="True"] ;
-2 [label="ctx-rh-pericalcarine <= 0.001\nsamples = 66.0%\nvalue = [0.808, 0.192]\nclass = CN", fillcolor="#eb9f68"] ;
-1 -> 2 ;
-3 [label="Right-Amygdala <= 0.001\nsamples = 22.0%\nvalue = [0.5, 0.5]\nclass = CN", fillcolor="#ffffff"] ;
-2 -> 3 ;
-4 [label="samples = 8.0%\nvalue = [1.0, 0.0]\nclass = CN", fillcolor="#e58139"] ;
-3 -> 4 ;
-5 [label="wm-lh-parstriangularis <= 0.001\nsamples = 14.0%\nvalue = [0.2, 0.8]\nclass = AD", fillcolor="#6ab6ec"] ;
-3 -> 5 ;
-6 [label="samples = 10.0%\nvalue = [0.0, 1.0]\nclass = AD", fillcolor="#399de5"] ;
-5 -> 6 ;
-7 [label="samples = 4.0%\nvalue = [1.0, 0.0]\nclass = CN", fillcolor="#e58139"] ;
-5 -> 7 ;
-8 [label="Right-Lateral-Ventricle <= 0.002\nsamples = 44.0%\nvalue = [0.944, 0.056]\nclass = CN", fillcolor="#e78845"] ;
-2 -> 8 ;
-9 [label="samples = 36.0%\nvalue = [1.0, 0.0]\nclass = CN", fillcolor="#e58139"] ;
-8 -> 9 ;
-10 [label="CC_Anterior <= 0.001\nsamples = 8.0%\nvalue = [0.714, 0.286]\nclass = CN", fillcolor="#efb388"] ;
-8 -> 10 ;
-11 [label="samples = 4.0%\nvalue = [1.0, 0.0]\nclass = CN", fillcolor="#e58139"] ;
-10 -> 11 ;
-12 [label="samples = 4.0%\nvalue = [0.0, 1.0]\nclass = AD", fillcolor="#399de5"] ;
-10 -> 12 ;
-13 [label="samples = 10.0%\nvalue = [0.0, 1.0]\nclass = AD", fillcolor="#399de5"] ;
-1 -> 13 ;
-14 [label="samples = 24.0%\nvalue = [0.0, 1.0]\nclass = AD", fillcolor="#399de5"] ;
-0 -> 14 [labeldistance=2.5, labelangle=-45, headlabel="False"] ;
+2 [label="samples = 40.8%\nvalue = [0.167, 0.833]\nclass = AD", fillcolor="#61b1ea"] ;
+0 -> 2 [labeldistance=2.5, labelangle=-45, headlabel="False"] ;
 }
