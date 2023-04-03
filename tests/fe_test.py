@@ -15,7 +15,13 @@ paths_masks = reading.data_path("Diffusion_space_segmentations-20230215T134839Z-
 
 
 class TestFeatureExtractor(unittest.TestCase):
+    """Test the `feature_extractor()` function.
 
+        This test verifies that the output of the `feature_extractor()` function
+        has the expected data types, shapes, and values.
+
+
+    """
     def test_feature_extractor(self):
         # defining input data
         num_regions = 176
