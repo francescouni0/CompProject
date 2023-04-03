@@ -7,3 +7,4 @@ CompProject
    CNN_tools
    ML_tools
    main
+   tests
