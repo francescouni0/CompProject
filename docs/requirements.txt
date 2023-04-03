@@ -11,4 +11,3 @@ graphviz
 nibabel
 nilearn
 sphinx-book-theme
-unittest
