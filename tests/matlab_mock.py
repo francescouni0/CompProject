@@ -7,12 +7,11 @@ sys.path.insert(0, str(Path(os.getcwd()).parent))
 
 
 class MockMatlabEngine(MagicMock):
-    """A mock object for the `matlab.engine` module.
-
+    """
+    A mock object for the `matlab.engine` module.
     This mock object can be used in unit tests that involve the `matlab.engine`
     module. It provides a `connect()` method that returns an instance of the
     `MockMatlabEngine` class.
-
     """
     @classmethod
     def connect(cls, *args, **kwargs):
@@ -28,6 +27,7 @@ class MockMatlabEngine(MagicMock):
 
         """
         return cls()
+
 
 sys.modules['matlab.engine'] = MockMatlabEngine
 sys.modules['matlab'] = MockMatlabEngine

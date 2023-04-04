@@ -6,23 +6,20 @@ sys.path.insert(0, str(Path(os.getcwd()).parent))
 
 import numpy as np
 import graphviz
-from scipy.stats import randint
+from scipy import stats
+from sklearn import svm
+from sklearn.ensemble import RandomForestClassifier
 from sklearn.pipeline import Pipeline
 from sklearn.decomposition import PCA
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import RocCurveDisplay
-from sklearn.model_selection import RandomizedSearchCV, train_test_split, GridSearchCV
-import matplotlib.pyplot as plt
+from sklearn.model_selection import RandomizedSearchCV, GridSearchCV, train_test_split
 from sklearn.tree import export_graphviz
-from sklearn import svm, metrics
 from sklearn.feature_selection import RFECV
 from ML_tools.score_and_error import performance_scores
-import scipy
 
 
 # PARAMETERS DISTRIBUTION FOR RANDOMSEARCHCV
-param_dist = {'n_estimators': randint(50, 500),
-              'max_depth': randint(1, 20)}
+param_dist = {'n_estimators': stats.randint(50, 500),
+              'max_depth': stats.randint(1, 20)}
 
 
 def RFPipeline_noPCA(df1, df2, n_iter, cv):
@@ -172,8 +169,8 @@ def SVM_simple(df1, df2, ker: str):
     """
     
     if ker == 'linear':
-        param_grid = {'C': scipy.stats.expon.rvs(size=100),
-                      'gamma': scipy.stats.expon(scale=.1).rvs(size=100),
+        param_grid = {'C': stats.expon.rvs(size=100),
+                      'gamma': stats.expon(scale=.1).rvs(size=100),
                       'kernel': [ker],
                       'class_weight': ['balanced', None]}
 
@@ -232,8 +229,8 @@ def SVM_feature_reduction(df1, df2):
     
     X_tr, X_tst, y_tr, y_tst = train_test_split(X, y, test_size=.1, random_state=6)
 
-    C_range = scipy.stats.expon.rvs(size=10)
-    g = scipy.stats.expon(scale=.1)
+    C_range = stats.expon.rvs(size=10)
+    g = stats.expon(scale=.1)
     gamma_range = g.rvs(size=10)
 
     # defining parameter range 
