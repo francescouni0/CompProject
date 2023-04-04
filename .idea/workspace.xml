@@ -6,15 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="336eb2b3-5b48-4ed4-b1de-8ea2e1353e74" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CNN_tools/CNN_multi_class.py" beforeDir="false" afterPath="$PROJECT_DIR$/CNN_tools/CNN_multi_class.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CNN_tools/CNN_multi_utilities.py" beforeDir="false" afterPath="$PROJECT_DIR$/CNN_tools/CNN_multi_utilities.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ML_tools/classifiers.py" beforeDir="false" afterPath="$PROJECT_DIR$/ML_tools/classifiers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/_sources/modules.rst" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/html/_sources/modules.rst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/_sources/modules.rst.txt" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/html/_sources/modules.rst.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/source/conf.py" beforeDir="false" afterPath="$PROJECT_DIR$/docs/source/conf.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/fe_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/fe_test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/matlab_mock.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/matlab_mock.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/reading_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/reading_test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ML_tools/score_and_error.py" beforeDir="false" afterPath="$PROJECT_DIR$/ML_tools/score_and_error.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
