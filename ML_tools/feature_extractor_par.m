@@ -35,6 +35,9 @@ function [Regions, Means, Stds] = feature_extractor_par(image_filepaths, segment
 %
 % See also READTABLE, NIFTIREAD, UNIQUE, INTERSECT, PARFOR.
 
+
+parpool(4)
+
 % Set options to import the FreeSurferColorLUT.txt file
 opts = detectImportOptions('FreeSurferColorLUT.txt');
 opts.VariableNames = {'Index', 'Name', 'R', 'G', 'B', 'A'};
