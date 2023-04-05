@@ -68,7 +68,7 @@ def performance_scores(y_test, y_predicted, y_probability, confidence_int=0.683)
     plt.ylim([0.0, 1.05])
     plt.xlabel('False Positive Rate')
     plt.ylabel('True Positive Rate')
-    plt.title('Test ROC')
+    plt.title('Receiver Operating Characteristic Curve')
     plt.legend(loc="lower right")
     plt.show()
 

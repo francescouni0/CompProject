@@ -1,29 +1,17 @@
 import sys
 from pathlib import Path
 import os
-
 sys.path.insert(0, str(Path(os.getcwd()).parent))
 
-import ML_tools.reading as reading
-import CNN_tools.CNN_multi_utilities as CNN_multi_utilities
 import numpy as np
-import pandas as pd
-import nibabel as nib
 import scipy
 import matplotlib.pyplot as plt
-from sklearn.model_selection import train_test_split
-from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import BatchNormalization, Dense, Flatten, InputLayer, Activation, Dropout
-from tensorflow.keras.layers import Conv2D, AveragePooling2D, MaxPooling2D, GlobalAvgPool2D
-from tensorflow.keras.optimizers import Adam, SGD
-from keras.callbacks import ReduceLROnPlateau, EarlyStopping
-from sklearn.metrics import roc_curve, auc
-import os
-from tensorflow.keras import layers
-from tensorflow.keras import losses
-from tensorflow import keras
 import tensorflow
-import CNN_tools.CNN_multi_utilities as CNN_multi_utilities
+from sklearn.metrics import roc_curve, auc
+from keras.layers import BatchNormalization, Dense, Flatten, Activation, Dropout, Conv2D, MaxPooling2D
+from keras.optimizers import SGD
+from keras.callbacks import ReduceLROnPlateau, EarlyStopping
+from keras.losses import Hinge
 
 
 class MyModel(tensorflow.keras.Model):
@@ -148,7 +136,7 @@ class MyModel(tensorflow.keras.Model):
         -------
             None
         """
-        self.compile(optimizer=SGD(learning_rate=0.01), loss=losses.Hinge(), metrics=['accuracy'])
+        self.compile(optimizer=SGD(learning_rate=0.01), loss=Hinge(), metrics=['accuracy'])
 
         reduce_on_plateau = ReduceLROnPlateau(monitor="val_loss",
                                               factor=0.1,
@@ -349,7 +337,7 @@ class MyModel(tensorflow.keras.Model):
         -------
             None
         """
-        self.compile(optimizer=SGD(learning_rate=0.01), loss=losses.Hinge(), metrics=['accuracy'])
+        self.compile(optimizer=SGD(learning_rate=0.01), loss=Hinge(), metrics=['accuracy'])
         self.train_on_batch(x_train, y_train)
         self.load_weights(path)
         self.compile_and_fit(x_train, y_train, x_val, y_val, x_test, y_test, n_epochs, batchsize)
