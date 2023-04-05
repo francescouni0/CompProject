@@ -75,3 +75,5 @@ if __name__ == '__main__':
         model.compile_and_fit(x_train, y_train, x_val, y_val, x_test, y_test, args.epochs, args.batchsize)
     elif option.lower()[0] == "y":
         model.load('model.h5', x_train, y_train, x_val, y_val, x_test, y_test, args.epochs, args.batchsize)
+    else
+        raise ValueError('Input not valid, please retry. (line 79)')
