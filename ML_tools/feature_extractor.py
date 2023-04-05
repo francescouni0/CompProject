@@ -41,7 +41,6 @@ def feature_extractor(image_filepaths, masks_filepaths):
     [region, mean, std] = eng.feature_extractor(image_filepaths, masks_filepaths, nargout=3)
 # Stop MATLAB engine
     eng.quit()
-    print(current_folder)
 # Create Pd dataframe
     n_regxsub = np.shape(mean[:][1])
     mean_t = np.transpose(np.asarray(mean))
