@@ -5,15 +5,15 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(os.getcwd()).parent))
 
-from ML_tools.reading import data_path_general
+from ML_tools.reading import data_path
 import tempfile
 
-paths_masks = data_path_general("Diffusion_space_segmentations-20230215T134839Z-001",
+paths_masks = data_path("Diffusion_space_segmentations-20230215T134839Z-001",
                                 "Diffusion_space_segmentations-20230215T134839Z-001")
 
 path_subdir = "corrected_MD_image"
         
-paths_MD = data_path_general("Diffusion_parameters_maps-20230215T134959Z-001", path_subdir)
+paths_MD = data_path("Diffusion_parameters_maps-20230215T134959Z-001", path_subdir)
 
 print(paths_MD[0:2])
 print(paths_masks[0:2])
@@ -21,7 +21,7 @@ print(paths_masks[0:2])
 
 class TestDataPath(unittest.TestCase):
     """
-    This class defines the unit tests for the 'data_path_general' function in 'ML_tools.reading' module.
+    This class defines the unit tests for the 'data_path' function in 'ML_tools.reading' module.
     """
     
     def setUp(self):
@@ -39,11 +39,11 @@ class TestDataPath(unittest.TestCase):
     
     def test_data_path(self):
         """
-        This method tests whether the 'data_path_general' function returns the correct number of files for a given
+        This method tests whether the 'data_path' function returns the correct number of files for a given
         directory and subdirectory.
         """
-        img_filepaths = data_path_general(str(self.temp_dir.name), 'Diffusion_space_parameters')
-        seg_filepaths = data_path_general(str(self.temp_dir.name), 'Diffusion_space_segmentation')
+        img_filepaths = data_path(str(self.temp_dir.name), 'Diffusion_space_parameters')
+        seg_filepaths = data_path(str(self.temp_dir.name), 'Diffusion_space_segmentation')
         self.assertEqual(len(img_filepaths), 2)
         self.assertEqual(len(seg_filepaths), 2)
 
