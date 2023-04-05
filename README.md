@@ -24,7 +24,7 @@ Package containing different tools for feature exctraction, machine learning and
 
 ## Run
 
-The package can be run as a whole using the two different main with parser:
+The package can be run using the two different main with parser:
 
 ```bash
   python main_ML.py [generic options] <subparser name> [subparser options]
