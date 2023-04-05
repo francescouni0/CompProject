@@ -35,7 +35,7 @@ The package can be run using the two different main with parser:
   python main_DL.py [generic options] <subparser name> [subparser options]
 ```
 
-##References
+## References
 
 LIN, W., TONG, T., GAO, Q., GUO, D., DU, X., YANG, Y., GUO, G., XIAO, M., DU, M., QU, X.,
 ET AL. 2018. Convolutional neural networks-based mri image analysis for the alzheimer’s disease
