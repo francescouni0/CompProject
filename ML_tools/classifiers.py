@@ -229,9 +229,9 @@ def SVM_feature_reduction(df1, df2):
     
     X_tr, X_tst, y_tr, y_tst = train_test_split(X, y, test_size=.1, random_state=6)
 
-    C_range = stats.expon.rvs(size=10)
+    C_range = stats.expon.rvs(size=8)
     g = stats.expon(scale=.1)
-    gamma_range = g.rvs(size=10)
+    gamma_range = g.rvs(size=8)
 
     # defining parameter range 
     param_grid = {'estimator__C': C_range,
