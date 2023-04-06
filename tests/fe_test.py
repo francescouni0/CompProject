@@ -11,8 +11,6 @@ import matlab.engine
 from ML_tools.feature_extractor import feature_extractor
 import ML_tools.reading as reading
 
-paths_masks = reading.data_path("Diffusion_space_segmentations-20230215T134839Z-001", "Diffusion_space_segmentations-20230215T134839Z-001")
-
 
 class TestFeatureExtractor(unittest.TestCase):
     """
@@ -39,7 +37,6 @@ class TestFeatureExtractor(unittest.TestCase):
         self.assertEqual(df_std.shape, (len(paths_masks), num_regions))
 
         # check output dataframe values
-        # self.assertTrue(np.allclose(df_mean.values, expected_mean_values))
         self.assertTrue(np.allclose(df_std.values, 0))
 
 

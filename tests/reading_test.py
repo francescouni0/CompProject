@@ -8,16 +8,6 @@ sys.path.insert(0, str(Path(os.getcwd()).parent))
 from ML_tools.reading import data_path
 import tempfile
 
-paths_masks = data_path("Diffusion_space_segmentations-20230215T134839Z-001",
-                                "Diffusion_space_segmentations-20230215T134839Z-001")
-
-path_subdir = "corrected_MD_image"
-        
-paths_MD = data_path("Diffusion_parameters_maps-20230215T134959Z-001", path_subdir)
-
-print(paths_MD[0:2])
-print(paths_masks[0:2])
-
 
 class TestDataPath(unittest.TestCase):
     """

@@ -15,7 +15,8 @@ class MockMatlabEngine(MagicMock):
     """
     @classmethod
     def connect(cls, *args, **kwargs):
-        """Returns an instance of the `MockMatlabEngine` class.
+        """
+        Returns an instance of the `MockMatlabEngine` class.
 
         This method is used to mock the behavior of the `matlab.engine.connect()`
         function. It returns an instance of the `MockMatlabEngine` class, which

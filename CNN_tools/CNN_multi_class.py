@@ -1,6 +1,7 @@
 import sys
 from pathlib import Path
 import os
+
 sys.path.insert(0, str(Path(os.getcwd()).parent))
 
 import numpy as np
@@ -149,7 +150,7 @@ class MyModel(tensorflow.keras.Model):
 
         early_stopping = EarlyStopping(monitor="val_loss",
                                        min_delta=0,
-                                       patience=100,
+                                       patience=20,
                                        verbose=0,
                                        mode="auto",
                                        baseline=None,
