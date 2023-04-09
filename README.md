@@ -1,6 +1,6 @@
 # CompProject
 
-Project for the exam "computing methods for experimental physics"
+Project for the exam "Computing Methods for Experimental Physics and Data Analysis"
 
 Package containing different tools for feature exctraction, machine learning and deep learning analysis of Diffusion Tensor Imaging for Alzheimer's desease classification.
 
