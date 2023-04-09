@@ -54,7 +54,7 @@ def RFPipeline_noPCA(df1, df2, n_iter, cv):
     y = df2.values
     region = list(df1.columns.values)
 
-    X_tr, X_tst, y_tr, y_tst = train_test_split(X, y, test_size=.2, random_state=7)
+    X_tr, X_tst, y_tr, y_tst = train_test_split(X, y, test_size=.1, random_state=7)
 
     pipeline_simple = Pipeline(steps=[("hyper_opt", RandomizedSearchCV(RandomForestClassifier(),
                                                                        param_distributions=param_dist,
