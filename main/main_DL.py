@@ -58,11 +58,13 @@ if __name__ == '__main__':
     images, labels = CNN_multi_utilities.import_dataset()
     
      # TRAIN SPLIT
-    X_train, Y_train, x_val, y_val, x_test, y_test = CNN_multi_utilities.train_val_test_split(images,
+    X_train, Y_train, X_val, Y_val, x_test, y_test = CNN_multi_utilities.train_val_test_split(images,
                                                                                               labels)
     
     # FUNCTION THAT PERFORMS DATA AUGMENTATION
     x_train, y_train = CNN_multi_utilities.data_augmentation(X_train, Y_train)
+    x_val, y_val = CNN_multi_utilities.data_augmentation(X_val, Y_val)
+
     
    
 
