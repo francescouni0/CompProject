@@ -57,12 +57,14 @@ if __name__ == '__main__':
     # IMPORT DATASET OF IMAGES AND LABELS
     images, labels = CNN_multi_utilities.import_dataset()
     
-    # FUNCTION THAT PERFORMS DATA AUGMENTATION
-    augmented_images, augmented_labels = CNN_multi_utilities.data_augmentation(images, labels)
+     # TRAIN SPLIT
+    X_train, Y_train, x_val, y_val, x_test, y_test = CNN_multi_utilities.train_val_test_split(images,
+                                                                                              labels)
     
-    # TRAIN SPLIT
-    x_train, y_train, x_val, y_val, x_test, y_test = CNN_multi_utilities.train_val_test_split(augmented_images,
-                                                                                              augmented_labels)
+    # FUNCTION THAT PERFORMS DATA AUGMENTATION
+    x_train, y_train = CNN_multi_utilities.data_augmentation(X_train, Y_train)
+    
+   
 
     # CALLING THE MODEL
     shape = (110, 110, 3)
