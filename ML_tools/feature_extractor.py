@@ -84,7 +84,7 @@ def feature_extractor_par(image_filepaths, masks_filepaths):
     eng = matlab.engine.start_matlab()
 
     # Call a MATLAB function
-    [region, mean, std] = eng.feature_extractor(image_filepaths, masks_filepaths, nargout=3)
+    [region, mean, std] = eng.feature_extractor_par(image_filepaths, masks_filepaths, nargout=3)
     # Stop MATLAB engine
     eng.quit()
     # Create Pd dataframe
