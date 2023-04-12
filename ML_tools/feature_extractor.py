@@ -83,6 +83,10 @@ def feature_extractor_par(image_filepaths, masks_filepaths):
     # Start MATLAB engine
     eng = matlab.engine.start_matlab()
 
+    eng.addpath('./ML_tools')
+
+    current_folder = (eng.pwd())
+
     # Call a MATLAB function
     [region, mean, std] = eng.feature_extractor_par(image_filepaths, masks_filepaths, nargout=3)
     # Stop MATLAB engine
